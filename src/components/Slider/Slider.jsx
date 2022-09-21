@@ -1,7 +1,10 @@
 import React from "react";
 
-import image2 from "../../assets/images/image2.jpeg";
+import Slider from "react-slick";
+import Item from "./components/Item";
+
 import image1 from "../../assets/images/image1.jpeg";
+import image2 from "../../assets/images/image2.jpeg";
 import image3 from "../../assets/images/image3.jpeg";
 import image4 from "../../assets/images/image4.jpeg";
 import image5 from "../../assets/images/image5.jpeg";
@@ -24,17 +27,25 @@ const IMAGES = [
   },
 ];
 
-const Slider = () => {
-  console.log(IMAGES.map((item) => item.image));
+const Slide = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    className: "center",
+    centerPadding: "60px",
+  };
+
   return (
-    <div className="slider">
+    <Slider {...settings}>
       {IMAGES.map((item, index) => (
-        <div className="slider__container" key={index} className="">
-          <img className="slider__container__item" src={item.image} alt="img" />
-        </div>
+        <Item image={item.image} />
       ))}
-    </div>
+    </Slider>
   );
 };
 
-export default Slider;
+export default Slide;

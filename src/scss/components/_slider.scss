@@ -1,19 +1,90 @@
 .slider {
-  width: 100%;
-  height: auto;
-//   overflow-x: scroll;
-//   overflow: hidden;
+  &__item {
+    width: 950px;
+    height: 450px;
+    position: relative;
+    color: $txt-white;
+    // margin: 0 10px;
+    // overflow: scroll;
 
-  @include flex(center, center);
-
-  &__container {
     @include flex(center, center);
 
-    flex-direction: row;
+    &__image {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
 
-    &__item {
-      height: 500px;
-      width: 800px;
+      
+    }
+
+    .zoomin img {
+      height: 100%;
+      width: 100%;
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+      transition: all 1s ease;
+    }
+    .zoomin img:hover {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    // &__image:hover {
+    //   transform: scale(1.2);
+    // }
+
+    &__title {
+      position: absolute;
+      padding: 0 10px;
+      width: 850px;
+      font-size: 2.2rem;
+      font-weight: 600;
+      text-transform: capitalize;
+      text-align: center;
+      text-shadow: $text-shadow;
+    }
+
+    &__collection {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      width: 100px;
+      height: 40px;
+      font-weight: 400;
+      background-color: $main-color;
+      border-radius: 20px;
+      border: 1px solid $txt-white;
+
+      @include flex(center, center);
+    }
+
+    &__info {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      padding: 0 50px;
+
+      @include flex(space-between, space-between);
+
+      &__card {
+        width: 140px;
+        height: 70px;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 20px;
+
+        @include flex(center, space-evenly);
+
+        .icon {
+          font-size: 1.6rem;
+        }
+
+        .info {
+          font-weight: normal;
+          font-size: 0.9rem;
+          text-shadow: $text-shadow;
+        }
+      }
     }
   }
 }
