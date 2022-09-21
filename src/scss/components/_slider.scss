@@ -1,0 +1,19 @@
+.slider {
+  width: 100%;
+  height: auto;
+//   overflow-x: scroll;
+//   overflow: hidden;
+
+  @include flex(center, center);
+
+  &__container {
+    @include flex(center, center);
+
+    flex-direction: row;
+
+    &__item {
+      height: 500px;
+      width: 800px;
+    }
+  }
+}

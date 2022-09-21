@@ -1,0 +1,73 @@
+.header {
+  // background-color: $main-color;
+  width: 100%;
+  height: $header-height;
+  transition: height 0.3s ease;
+  box-shadow: $box-shadow;
+  padding: 0 0 0 50px;
+
+  @include flex(center, space-between);
+
+  &__logo {
+    width: calc(100% - 91%);
+    min-width: 80px;
+    height: auto;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__navigation {
+    // background-color: $main-color;
+    flex: 1;
+    font-size: 1.3rem;
+    height: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    @include flex(center, flex-end);
+
+    &__items {
+      @include flex(center, flex-end);
+
+      height: 100%;
+      padding: 0 10px;
+      margin: 0 10px;
+    }
+
+    &__select {
+      @include flex(center, flex-end);
+
+      height: 100%;
+      padding: 0 10px;
+      margin: 0 10px;
+      border-bottom: 5px solid $main-color;
+      color: $main-color;
+    }
+
+    &__items:hover {
+      border-bottom: 5px solid $main-color;
+      color: $main-color;
+      cursor: pointer;
+    }
+  }
+
+  &__nav-right {
+    @include flex(center, space-between);
+    // background-color: $main-color;
+    height: 100%;
+
+    .line {
+      height: 100%;
+      width: 4px;
+      background-color: $txt-main-color;
+    }
+
+    .icon {
+      font-size: 2rem;
+      padding: 0 30px;
+      font-weight: bolder;
+    }
+  }
+}
