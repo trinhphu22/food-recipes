@@ -18,11 +18,11 @@ const Routers = () => {
     <Routes>
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/home" element={<Home/>} />
-      <Route path="food-type" element={<DishType/>} />
+      <Route path="/food-type" element={<DishType/>} />
       <Route path="/collection" element={<Cuisines/>} />
       <Route path="/blog" element={<Blog/>} />
       <Route path="/contact" element={<Contact/>} />
-      <Route path="/foods:/:id" element={<FoodDetails/>} />
+      <Route path="/foods/:id" element={<FoodDetails/>} />
       {/* <Route path="/search" element={<Search/>} /> */}
       <Route path="/cart" element={<Cart/>} />
       <Route path="/checkout" element={<Checkout/>} />

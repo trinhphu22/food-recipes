@@ -1,0 +1,148 @@
+.login {
+    min-height: 100vh;
+
+    @include flex(center, center);
+
+    &__card {
+        min-width: 400px;
+        max-height: 600px;
+        background-color: $txt-white;
+        border-radius: 5px;
+        box-shadow: $box-shadow;
+        border-top: 10px solid $main-color;
+        padding: 20px 30px;
+        flex-direction: column;
+
+        @include flex(center, flex-start);
+
+        &__logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &__title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-style: italic;
+            // font-family: $font-style;
+        }
+
+        &__input {
+            width: 100%;
+            height: auto;
+            margin: 10px 0;
+            padding: 0 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            flex-direction: column;
+
+            @include flex(center, center);
+
+  
+
+            input, button {
+                width: 100%;
+                height: 40px;
+                margin-bottom: 30px ;
+                padding: 0 10px;
+                outline: none;
+                border-radius: 5px;
+                border: 1px solid $txt-gray;
+
+                &::placeholder {
+                    color: $txt-gray;
+                    text-transform: capitalize;
+                }
+
+                &:focus {
+                    outline: 1px solid $txt-gray;
+                    box-shadow: $box-shadow-item;
+                    border: 1px solid $txt-gray;
+                  }
+            }
+
+            .password {
+                margin: 0;
+            }
+
+            .text {
+                width: 100%;
+                margin-bottom: 30px;
+                text-align: end;
+                color: $main-color;
+                font-size: 0.8rem;
+                font-weight: 500;
+            }
+
+            button {
+                text-transform: uppercase;
+                background: linear-gradient(to right, #ffc7b3, #fea280, #fe6935);
+                border: none;
+                color: $txt-white;
+                font-weight: 500;
+                width: 50%;
+                margin: 0;
+            }
+
+            button:hover {
+                background: linear-gradient(to right, #fe6935, #fea280, #ffc7b3);
+            }
+
+        }
+
+        &__choose {
+            width: 100%;
+            text-align: center;
+            color: $txt-gray;
+            font-size: 0.8rem;
+            font-weight: 500;
+
+            &__button {
+                @include flex(center, space-between);
+
+                button {
+                    width: 100%;
+                    height: 40px;
+                    margin: 0 5px;
+                    border: none;
+                    border-radius: 5px;
+
+                    @include flex(center, center);
+
+                    .icon {
+                        margin-right: 5px;
+                        color: $txt-white;
+                    }
+                }
+
+                .facebook {
+                    background-color: #4267b2;
+                    color: $txt-white;
+                }
+            }
+        }
+
+        &__register {
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            color: $txt-gray;
+            font-size: 0.8rem;
+            font-weight: 500;
+
+            a {
+                color: $main-color;
+                font-weight: 600;
+            }
+        }
+
+    }
+}

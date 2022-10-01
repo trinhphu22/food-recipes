@@ -1,10 +1,35 @@
 .slider {
+  // width: 100%;
+  // height: auto;
+  // //   overflow-x: scroll;
+  // //   overflow: hidden;
+  // // overflow: hidden;
+  // flex-direction: row;
+
+  // @include flex(center, center);
+
+  // &__container {
+  //   @include flex(center, center);
+
+  //   flex-direction: row;
+
+  //   &__item {
+  //     height: 500px;
+  //     width: 800px;
+  //   }
+  // }
+
+  // item card
+
   &__item {
-    width: 950px;
+    display: block;
+    aspect-ratio: auto;
+    max-width: 950px;
+    width: auto;
     height: 450px;
     position: relative;
     color: $txt-white;
-    // margin: 0 10px;
+    margin: 0 5px;
     // overflow: scroll;
 
     @include flex(center, center);
@@ -13,8 +38,6 @@
       height: 100%;
       width: 100%;
       overflow: hidden;
-
-      
     }
 
     .zoomin img {
@@ -25,6 +48,7 @@
       -ms-transition: all 1s ease;
       transition: all 1s ease;
     }
+
     .zoomin img:hover {
       transform: scale(1.2);
       cursor: pointer;
@@ -37,7 +61,7 @@
     &__title {
       position: absolute;
       padding: 0 10px;
-      width: 850px;
+      width: 90%;
       font-size: 2.2rem;
       font-weight: 600;
       text-transform: capitalize;
@@ -87,4 +111,13 @@
       }
     }
   }
+
+  &__item:hover {
+    color: $txt-white;
+    cursor: default;
+  }
+}
+
+.center {
+  @include flex(center, center);
 }

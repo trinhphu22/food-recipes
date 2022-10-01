@@ -29,20 +29,20 @@ const IMAGES = [
 
 const Slide = () => {
   const settings = {
-    dots: true,
+    // dots: true,
+    adaptiveHeight: true,
     infinite: true,
     arrows: false,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
     className: "center",
-    centerPadding: "60px",
   };
 
   return (
     <Slider {...settings}>
       {IMAGES.map((item, index) => (
-        <Item image={item.image} />
+        <Item key={index} image={item.image} />
       ))}
     </Slider>
   );

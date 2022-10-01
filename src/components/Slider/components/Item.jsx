@@ -2,6 +2,7 @@ import React from "react";
 import { BsHourglassSplit } from "react-icons/bs";
 import { MdLocalFireDepartment } from "react-icons/md";
 import { HiUsers } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const Cards = [
   {
@@ -23,7 +24,7 @@ const Cards = [
 
 const Item = ({ image }) => {
   return (
-    <div className="slider__item">
+    <div to="/" className="slider__item">
       <div className="slider__item__image zoomin ">
         <img src={image} alt="" />
       </div>

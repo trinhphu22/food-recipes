@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-import { Container } from "reactstrap";
 import { NavLink, Link } from "react-router-dom";
 import logo from "../../assets/images/logo_tasty.png";
 import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
@@ -63,9 +61,9 @@ const Header = () => {
           <AiOutlineSearch />
         </a>
         <div className="line" />
-        <a className="icon">
+        <Link to="/login" className="icon">
           <AiOutlineUser />
-        </a>
+        </Link>
       </div>
     </div>
     // </Container>
