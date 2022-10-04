@@ -34,12 +34,6 @@ a:hover {
   cursor: pointer;
 }
 
-@each $color, $val in $colors {
-  .color-#{color} {
-    color: $val;
-  }
-}
-
 @each $var in $numbers {
   .grid-col-#{$var} {
     grid-template-columns: repeat($var, 1fr);

@@ -1,8 +1,13 @@
 import React from 'react'
+import SliderBlog from '../components/Blog/SliderBlog'
+import SubItem from '../components/Blog/SubItem'
 
 const Blog = () => {
   return (
-    <div>Blog</div>
+    <div className='blog'>
+      <SliderBlog />
+      <SubItem />
+    </div>
   )
 }
 

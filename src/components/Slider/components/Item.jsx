@@ -2,7 +2,6 @@ import React from "react";
 import { BsHourglassSplit } from "react-icons/bs";
 import { MdLocalFireDepartment } from "react-icons/md";
 import { HiUsers } from "react-icons/hi";
-import { Link } from "react-router-dom";
 
 const Cards = [
   {

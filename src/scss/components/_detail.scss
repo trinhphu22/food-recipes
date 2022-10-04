@@ -1,0 +1,668 @@
+.detail {
+  min-height: 100vh;
+  height: auto;
+  padding: 0 40px;
+  margin: 30px 0;
+
+  &__main {
+    @include flex(flex-start, space-between);
+
+    &__image {
+      width: 50%;
+      height: 100%;
+      margin-right: 30px;
+    }
+
+    &__info {
+      width: 50%;
+      height: 100%;
+
+      &__title {
+        font-size: 3rem;
+        font-family: $font-style;
+        font-style: italic;
+        font-weight: bold;
+        // color: $main-color;
+      }
+
+      &__user {
+        width: 70%;
+        margin-bottom: 30px;
+
+        @include flex(center, space-between);
+
+        .user {
+          color: $txt-second-color;
+
+          &__name {
+            // color: $main-color;
+            font-weight: 600;
+            font-style: italic;
+          }
+        }
+
+        .user__rating {
+          @include flex(center, center);
+
+          .rate {
+            @include flex(center, center);
+
+            color: $rating;
+            font-size: 1.2rem;
+            right: 10px;
+            margin-right: 5px;
+          }
+
+          .text {
+            @include flex(center, center);
+
+            color: $txt-gray;
+          }
+        }
+      }
+
+      &__price {
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: $main-color;
+      }
+
+      &__description {
+        margin-bottom: 40px;
+        font-size: 1.1rem;
+        color: $txt-second-color;
+      }
+
+      &__quantity {
+        width: 80%;
+        margin-bottom: 40px;
+
+        @include flex(center, space-between);
+
+        .quantity {
+          @include flex(center, flex-start);
+
+          &__title {
+            font-weight: 600;
+          }
+
+          &__number {
+            margin: 0 20px;
+
+            @include flex(center, center);
+
+            &__button {
+              width: 40px;
+              height: 60px;
+              font-size: 2rem;
+              background-color: $txt-white;
+              border: 1px solid $txt-second-color;
+            }
+
+            &__value {
+              @include flex(center, center);
+
+              width: 40px;
+              height: 60px;
+              border-top: 1px solid $txt-second-color;
+              border-bottom: 1px solid $txt-second-color;
+              font-size: 1.5rem;
+              font-weight: 600;
+            }
+          }
+        }
+
+        .add-cart {
+          &__button {
+            padding: 0 20px;
+            // width: 100%;
+            height: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background-color: $main-color;
+            color: $txt-white;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+          }
+
+          &__button:hover {
+            background-color: #093d5d;
+          }
+        }
+      }
+
+      &__tag {
+        .tags {
+          font-weight: bold;
+          font-size: 1rem;
+          color: $txt-second-color;
+
+          .tag__value {
+            font-weight: normal;
+            font-style: italic;
+          }
+        }
+      }
+
+      &__card {
+        @include flex(center, flex-start);
+
+        margin-top: 60px;
+
+        .card {
+          @include flex(center, center);
+
+          flex-direction: row;
+          color: $txt-second-color;
+          padding: 5px 10px;
+          margin-right: 10px;
+          box-shadow: $box-shadow-item;
+
+          // border: none;
+
+          .icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            color: $main-color;
+          }
+        }
+      }
+    }
+  }
+  &__sub {
+    margin: 50px 0 30px 0;
+
+    @include flex(flex-start, flex-start);
+
+    &__title {
+      min-width: 180px;
+      height: 60px;
+      margin: 10px;
+
+      color: $txt-main-color;
+      background-color: $txt-silver;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border-radius: 30px;
+
+      @include flex(center, center);
+
+      &:hover {
+        cursor: pointer;
+        color: $main-color;
+        background-color: $txt-main-color;
+      }
+    }
+
+    .select {
+      color: $main-color;
+      background-color: $txt-main-color;
+    }
+  }
+
+  &__content {
+    .description {
+      font-size: 1.1rem;
+      color: $txt-second-color;
+    }
+
+    .review {
+      &__header {
+        @include flex(flex-start, space-between);
+
+        &__user {
+          width: 60%;
+          margin-right: 40px;
+          padding: 20px 0;
+
+          &__title {
+            @include flex(center, flex-start);
+
+            .title {
+              font-size: 2.2rem;
+              font-weight: bolder;
+              font-style: italic;
+              font-family: $font-style;
+            }
+
+            .shape {
+              margin: 0 40px;
+
+              @include flex(center, center);
+
+              .line {
+                width: 120px;
+                height: 2px;
+                background-color: $rating;
+              }
+
+              //   .diamond {
+              //     color: $main-color;
+              //   }
+
+              .diamond {
+                margin-left: -3px;
+                width: 0;
+                height: 0;
+                border: 6px solid transparent;
+                border-bottom-color: $rating;
+                position: relative;
+                top: -6px;
+
+                &::after {
+                  content: "";
+                  position: absolute;
+                  left: -6px;
+                  top: 6px;
+                  width: 0;
+                  height: 0;
+                  border: 6px solid transparent;
+                  border-top-color: $rating;
+                }
+              }
+            }
+          }
+
+          &__rating {
+            @include flex(center, flex-start);
+
+            margin: 30px 0 20px 0;
+            color: $txt-second-color;
+            font-weight: 500;
+
+            .rate {
+              @include flex(center, center);
+
+              margin: 0 10px;
+              font-size: 1.2rem;
+            }
+
+            .star:hover {
+              cursor: pointer;
+              color: $rating;
+            }
+
+            .rate-selected {
+              color: $rating;
+            }
+          }
+
+          &__comment {
+            width: 100%;
+
+            .input-card {
+              @include flex(center, center);
+
+              width: 100%;
+
+              &__name,
+              &__email {
+                position: relative;
+                width: 50%;
+                height: 60px;
+
+                @include flex(center, flex-start);
+
+                input {
+                  width: 100%;
+                  height: 100%;
+                  padding-left: 40px;
+                  border: none;
+                  border-bottom: 3px solid $txt-gray;
+
+                  &:focus {
+                    outline: none;
+                  }
+
+                  &::placeholder {
+                    color: $txt-second-color;
+                  }
+                }
+
+                .icon {
+                  position: absolute;
+                  height: 100%;
+                  top: -3px;
+                  font-size: 1.5rem;
+                  color: $txt-second-color;
+                }
+              }
+
+              &__name {
+                margin-right: 40px;
+              }
+            }
+
+            .area-card {
+              position: relative;
+              margin: 30px 0;
+
+              textarea {
+                width: 100%;
+                min-height: 50px;
+                padding: 10px 40px;
+                border: 0;
+                border-bottom: 3px solid $txt-gray;
+                // resize: none;
+
+                &:focus {
+                  outline: none;
+                }
+
+                &::placeholder {
+                  color: $txt-second-color;
+                }
+              }
+
+              .icon {
+                position: absolute;
+                top: 10px;
+                left: 0;
+                font-size: 1.5rem;
+                color: $txt-second-color;
+              }
+            }
+
+            .submit {
+              &__button {
+                padding: 0 20px;
+                // width: 100%;
+                height: 60px;
+                font-size: 1.2rem;
+                font-weight: 600;
+                background-color: $main-color;
+                color: $txt-white;
+                border-radius: 50px;
+                border: none;
+                cursor: pointer;
+              }
+
+              &__button:hover {
+                background-color: #093d5d;
+              }
+            }
+          }
+        }
+
+        &__reviews {
+          width: 40%;
+
+          .card {
+            width: 100%;
+            min-height: 400px;
+            height: auto;
+            padding: 20px 40px;
+            border: none;
+            box-shadow: $box-shadow;
+            flex-direction: column;
+
+            @include flex(center, flex-start);
+
+            &__title {
+              font-size: 2rem;
+              font-weight: bolder;
+              font-style: italic;
+              font-family: $font-style;
+            }
+
+            &__rating {
+              margin: 10px 0;
+              font-size: 1.1rem;
+
+              @include flex(center, center);
+
+              &__text {
+                font-weight: 600;
+                padding: 0 10px;
+              }
+
+              &__stars {
+                @include flex(center, center);
+                font-size: 1.2rem;
+                color: $rating;
+              }
+            }
+
+            &__progress {
+              width: 100%;
+              padding: 10px 0;
+              color: $txt-second-color;
+
+              .progress {
+                height: 20px;
+                border-radius: 10px;
+              }
+
+              .progress-bar {
+                background-color: $rating;
+                color: #093d5d;
+              }
+            }
+          }
+        }
+      }
+
+      &__body {
+        margin: 20px 0;
+
+        @include flex(flex-start, flex-start);
+
+        &__avatar {
+          margin-right: 40px;
+
+          &__image {
+            height: 100px;
+            width: 100px;
+
+            img {
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+          }
+        }
+
+        &__content {
+          @include flex(flex-start, center);
+
+          flex-direction: column;
+
+          .name {
+            font-size: 1.5rem;
+            font-weight: bolder;
+            font-family: $font-style;
+            font-style: italic;
+          }
+
+          .stars {
+            font-size: 1.2rem;
+            color: $rating;
+          }
+
+          .content {
+            color: $txt-second-color;
+          }
+
+          .bottom {
+            margin: 20px 0;
+
+            @include flex(center, center);
+
+            .date {
+              color: $txt-second-color;
+            }
+
+            .line {
+              width: 2px;
+              height: 20px;
+              margin: 10px;
+              background-color: $txt-second-color;
+            }
+
+            .reply {
+              @include flex(center, center);
+              color: $rating;
+
+              .icon {
+                margin-right: 5px;
+                font-size: 1.2rem;
+              }
+
+              .text {
+                font-size: 0.8rem;
+              }
+
+              &:hover {
+                cursor: pointer;
+                color: #093d5d;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .recipe {
+      // &__title {
+      //   @include flex(center, center);
+
+      //   font-size: 2rem;
+      //   font-weight: bolder;
+      //   font-style: italic;
+      //   font-family: $font-style;
+      //   margin-bottom: 20px;
+      // }
+
+      &__body {
+        @include flex(flex-start, space-between);
+
+        &__left {
+          width: 40%;
+          margin-right: 40px;
+
+          &__ingredient {
+            .title {
+              font-weight: 600;
+              text-transform: capitalize;
+              padding: 10px 0;
+            }
+
+            .list {
+              @include flex(center, flex-start);
+
+              padding: 10px 0;
+
+              .icon {
+                margin-right: 10px;
+                font-size: 1.2rem;
+
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+
+              .icon-click {
+                color: $main-color;
+              }
+
+              .text-click {
+                color: $txt-gray;
+                text-decoration: line-through;
+              }
+            }
+          }
+
+          &__nutrient {
+            margin-top: 30px;
+            padding: 30px 20px;
+            min-height: 400px;
+            width: 300px;
+            background-color: $txt-silver;
+            border-radius: 10px;
+
+            &__list {
+              @include flex(flex-start, space-between);
+
+              margin-top: 20px;
+              padding-bottom: 5px;
+              color: $txt-second-color;
+              border-bottom: 1px solid $txt-gray;
+
+              .value {
+                color: $txt-main-color;
+              }
+            }
+          }
+        }
+
+        &__right {
+          width: 60%;
+
+          &__list {
+            @include flex(flex-start, flex-start);
+            margin: 20px 0 30px 0;
+
+            .step {
+              width: 50px;
+              border-radius: 50%;
+              background-color: $main-color;
+              color: $txt-white;
+
+              @include flex(center, center);
+            }
+
+            .list {
+              margin-left: 20px;
+              // fw
+            }
+          }
+        }
+
+        &__title {
+          font-size: 2.2rem;
+          font-weight: bolder;
+          font-style: italic;
+          font-family: $font-style;
+          margin-bottom: 10px;
+          color: $main-color;
+        }
+      }
+    }
+  }
+}
+
+.slick-thumb {
+  width: 100%;
+}
+
+.slick-dots.slick-thumb li {
+  margin: 0;
+  padding: 0 5px;
+  width: calc(100% / 3);
+  height: 180px;
+  transition: all 0.5s ease-in-out;
+  will-change: width;
+}
+
+.image-main {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  @include flex(flex-start, flex-start);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.image {
+  margin-bottom: 170px;
+  padding: 0 5px;
+  width: 100%;
+  height: 500px;
+}

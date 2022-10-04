@@ -17,7 +17,7 @@ const Login = () => {
         <div className="login__card__input">
           <input placeholder="email" type="text" />
           <input className="password" placeholder="password" type="text" />
-          <span className="text">Forgot Password? </span>
+          <Link className="text">Forgot Password? </Link>
           <button>Log in</button>
         </div>
         <div className="login__card__choose">

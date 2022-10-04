@@ -40,17 +40,18 @@ const Header = () => {
       {/* ======= menu ======= */}
       <div className="header__navigation">
         {nav_links.map((item, index) => (
-          <div
+          <NavLink
+            to={item.path}
             onClick={() => setSelect(item.display)}
             className={
               select === item.display
-              ? "header__navigation__select"
-              : "header__navigation__items"
+                ? "header__navigation__select"
+                : "header__navigation__items"
             }
             key={index}
           >
-            <NavLink to={item.path}>{item.display}</NavLink>
-          </div>
+            <div>{item.display}</div>
+          </NavLink>
         ))}
       </div>
 

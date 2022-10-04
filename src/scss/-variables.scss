@@ -5,6 +5,7 @@ $txt-main-color: #1d1d1d;
 $txt-second-color: #5c6f70;
 $txt-white: #fff;
 $txt-gray: #aaa;
+$txt-silver: #f2f2f2;
 
 $btn-main-bg: $main-color;
 $btn-main-color: #fff;
@@ -15,20 +16,11 @@ $header-mobile-height: 40px;
 $header-shrink-height: 60px;
 $rating: #f7b500;
 
-$box-shadow: rgba(149, 157, 165, 0.7) 0px 8px 24px;
+$box-shadow: rgba(149, 157, 165, 0.7) 0px 8px 20px;
 $box-shadow-item: 0px 3px 5px -1px rgba(149, 157, 165, 0.7);
 $text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 $font-style: "Montez";
-
-$colors: (
-  "blue": #4267b2,
-  "orange": #fbb96b,
-  "pink": #fe7e73,
-  "white": #fff,
-  "black": #000,
-  "main": $main-color,
-);
 
 $mobile-width: 600px;
 $tablet-width: 1024px;

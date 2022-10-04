@@ -1,6 +1,4 @@
 import React from 'react'
-import { FaFacebookSquare } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 
 import Logo from "../assets/images/logo_tasty.png";
