@@ -88,3 +88,10 @@ a:hover {
 .grid {
   display: grid;
 }
+
+.rate {
+  color: $rating;
+  font-size: 1.2rem;
+  right: 10px;
+  margin-right: 5px;
+}

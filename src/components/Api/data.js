@@ -2,6 +2,12 @@ import avt1 from "../../assets/images/avt1.jpeg";
 import avt2 from "../../assets/images/avt2.jpeg";
 import avt3 from "../../assets/images/avt3.jpeg";
 
+import Image1 from "../../assets/images/image1.jpeg";
+import Image2 from "../../assets/images/image2.jpeg";
+import Image3 from "../../assets/images/image3.jpeg";
+import Image4 from "../../assets/images/image4.jpeg";
+import Image5 from "../../assets/images/image5.jpeg";
+
 export const Reviews = [
   {
     name: "Andy Doe",
@@ -187,3 +193,62 @@ export const Recipes = {
     },
   ],
 };
+
+export const Blogs = [
+  {
+    id: 1,
+    title: "Traditional Spaghetti",
+    timeless: "60 minutes",
+    rate: 3.5,
+    review: 3,
+    description:
+      "Easily add-in a short description about your recipe! This can be of any length. Remember, you are trying to sell your recipe!",
+    image: Image1,
+    user : {
+      name: "Kelvin Tang",
+      avatar: avt1,
+    },
+  },
+  {
+    id: 2,
+    title: "Traditional Spaghetti",
+    timeless: "60 minutes",
+    rate: 3.5,
+    review: 3,
+    description:
+      "Easily add-in a short description about your recipe! This can be of any length. Remember, you are trying to sell your recipe!",
+    image: Image2,
+    user : {
+      name: "Kelvin Tang",
+      avatar: avt2,
+    },
+  },
+  {
+    id: 3,
+    title: "Traditional Spaghetti",
+    timeless: "60 minutes",
+    rate: 3.5,
+    review: 3,
+    description:
+      "Easily add-in a short description about your recipe! This can be of any length. Remember, you are trying to sell your recipe!",
+    image: Image3,
+    user : {
+      name: "Kelvin Tang",
+      avatar: avt3,
+    },
+  },
+  {
+    id: 4,
+    title: "Traditional Spaghetti",
+    timeless: "60 minutes",
+    rate: 3.5,
+    review: 3,
+    description:
+      "Easily add-in a short description about your recipe! This can be of any length. Remember, you are trying to sell your recipe!",
+    image: Image4,
+    user : {
+      name: "Kelvin Tang",
+      avatar: avt1,
+    },
+  },
+];
