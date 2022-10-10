@@ -1,0 +1,112 @@
+.blog-detail {
+  min-height: 100vh;
+  margin: 0 80px;
+
+  &__title {
+    margin-top: 80px;
+    font-size: 3.5rem;
+    font-weight: 500;
+    font-family: $font-style;
+    text-align: center;
+  }
+
+  &__user {
+    margin-top: 40px;
+    color: #555;
+    padding: 20px 0;
+    border-bottom: 1px solid $txt-silver;
+
+
+    @include flex(center, flex-start);
+
+    .user {
+      @include flex(center, flex-start);
+
+      &__image {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+
+      &__info {
+        font-style: italic;
+
+        .name {
+          color: $txt-blue;
+
+          &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .date, .chat, .rate  {
+      @include flex(center, center);
+
+      margin: 0 20px;
+
+      .icon {
+        margin-right: 5px;
+      }
+
+      .text {
+        font-style: italic;
+      }
+    }
+
+    .chat {
+      margin: 0;
+    }
+
+    .rate {
+      font-size: 1rem;
+    }
+
+  }
+
+  &__description {
+    margin-top: 20px;
+  }
+
+  &__video {
+    @include flex(center, center);
+
+    margin: 40px 0;
+  }
+
+  &__card {
+    @include flex(center, flex-start);
+
+    margin: 20px 0;
+
+    .card {
+      @include flex(center, center);
+
+      flex-direction: row;
+      color: $txt-second-color;
+      padding: 5px 10px;
+      margin-right: 10px;
+      box-shadow: $box-shadow-item;
+
+      // border: none;
+
+      .icon {
+        margin-right: 10px;
+        font-size: 1.5rem;
+        color: $main-color;
+      }
+    }
+  }
+
+  .space {
+    margin: 50px 0;
+  }
+}

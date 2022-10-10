@@ -1,0 +1,106 @@
+.recipe {
+    // &__title {
+    //   @include flex(center, center);
+
+    //   font-size: 2rem;
+    //   font-weight: bolder;
+    //   font-style: italic;
+    //   font-family: $font-style;
+    //   margin-bottom: 20px;
+    // }
+
+    &__body {
+      @include flex(flex-start, space-between);
+
+      &__left {
+        width: 40%;
+        margin-right: 40px;
+
+        &__ingredient {
+          .title {
+            font-weight: 600;
+            text-transform: capitalize;
+            padding: 10px 0;
+          }
+
+          .list {
+            @include flex(center, flex-start);
+
+            padding: 10px 0;
+
+            .icon {
+              margin-right: 10px;
+              font-size: 1.2rem;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .icon-click {
+              color: $main-color;
+            }
+
+            .text-click {
+              color: $txt-gray;
+              text-decoration: line-through;
+            }
+          }
+        }
+
+        &__nutrient {
+          margin-top: 30px;
+          padding: 30px 20px;
+          min-height: 400px;
+          width: 300px;
+          background-color: $txt-silver;
+          border-radius: 10px;
+
+          &__list {
+            @include flex(flex-start, space-between);
+
+            margin-top: 20px;
+            padding-bottom: 5px;
+            color: $txt-second-color;
+            border-bottom: 1px solid $txt-gray;
+
+            .value {
+              color: $txt-main-color;
+            }
+          }
+        }
+      }
+
+      &__right {
+        width: 60%;
+
+        &__list {
+          @include flex(flex-start, flex-start);
+          margin: 20px 0 30px 0;
+
+          .step {
+            width: 50px;
+            border-radius: 50%;
+            background-color: $main-color;
+            color: $txt-white;
+
+            @include flex(center, center);
+          }
+
+          .list {
+            margin-left: 20px;
+            // fw
+          }
+        }
+      }
+
+      &__title {
+        font-size: 2.2rem;
+        font-weight: bolder;
+        font-style: italic;
+        font-family: $font-style;
+        margin-bottom: 10px;
+        color: $main-color;
+      }
+    }
+  }

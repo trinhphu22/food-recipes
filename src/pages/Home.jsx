@@ -103,7 +103,7 @@ const Home = () => {
           <Item item={item} />
         ))}
       </div>
-      <Link to="/" className="home__load-more">
+      <Link to="/food-type" className="home__load-more">
         <span className="btn__load-more">Load more</span>
       </Link>
     </div>

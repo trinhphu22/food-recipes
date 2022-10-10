@@ -1,12 +1,13 @@
 import React from "react";
 import { MdLocalFireDepartment } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { Rating } from "../common/Rating";
 
 const MainBlog = ({ item, index }) => {
   return (
     <div className="blog__main__card">
       {index % 2 === 0 ? (
-        <div className="left">
+        <Link to={`/recipes/id:${item.id}`} className="left">
           <div className="blog__main__card__image">
             <img src={item.image} alt="" />
           </div>
@@ -37,9 +38,9 @@ const MainBlog = ({ item, index }) => {
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       ) : (
-        <div className="right">
+        <Link to={`/recipes/id:${item.id}`} className="right">
           <div className="blog__main__card__image">
             <img src={item.image} alt="" />
           </div>
@@ -70,7 +71,7 @@ const MainBlog = ({ item, index }) => {
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       )}
     </div>
   );

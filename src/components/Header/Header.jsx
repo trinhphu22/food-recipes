@@ -6,7 +6,7 @@ import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
 const nav_links = [
   {
     display: "Home",
-    path: "/home",
+    path: "/",
   },
   {
     display: "Dish Type",
