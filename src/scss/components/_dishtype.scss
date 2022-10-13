@@ -1,210 +1,24 @@
 .sub-page {
   min-height: 100vh;
-  height: auto;
-  padding: 0 40px;
-  margin: 30px 0;
+  margin: 80px;
 
   &__title {
-    margin-top: 30px;
-    font-size: 2rem;
-    font-weight: 600;
-
-    @include flex(center, center);
-  }
-
-  &__subtitle {
+    // margin-top: 80px;
+    padding-bottom: 20px;
+    font-size: 3.5rem;
+    font-weight: 500;
     font-family: $font-style;
-    font-size: 2rem;
-    color: $main-color;
-    margin: 10px 0;
-
-    @include flex(center, center);
-  }
-
-  &__search {
-    position: relative;
-    margin: 40px 0 30px 0;
-    width: 100%;
-
-    @include flex(center, flex-start);
-
-    flex-direction: column;
-
-    .search-bar {
-      width: 100%;
-      height: 40px;
-      padding-left: 50px;
-      padding-right: 470px;
-      border-radius: 10px;
-      border: 1px solid $txt-gray;
-      outline: none;
-      color: $txt-gray;
-    }
-
-    .search-bar::placeholder {
-      color: $txt-gray;
-    }
-
-    .icon {
-      position: absolute;
-      left: 20px;
-      color: $txt-gray;
-      font-size: 1.3rem;
-    }
-
-    .collect,
-    .skill,
-    .kitchen {
-      @include flex(center, space-between);
-
-      position: absolute;
-      width: 150px;
-      height: 100%;
-      padding: 0 10px;
-      background-color: #eee;
-      flex-direction: row;
-      border: 1px solid $txt-gray;
-      color: $main-color;
-      font-size: 1.2rem;
-
-      .text {
-        color: $txt-main-color;
-        font-size: 1rem;
-      }
-    }
-
-    .collect {
-      right: 300px;
-    }
-
-    .skill {
-      right: 150px;
-    }
-
-    .kitchen {
-      right: 0px;
-      border-bottom-right-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-  }
-
-  .line {
-    background-color: $txt-gray;
-    width: 100%;
-    height: 2px;
-  }
-
-  &__num {
-    width: 100%;
-    margin: 10px 0;
-    font-weight: 600;
-    color: $txt-gray;
-
-    .num {
-      margin-right: 5px;
-      color: $txt-main-color;
-    }
+    text-align: center;
+    border-bottom: 1px solid $txt-silver;
   }
 
   &__container {
     width: 100%;
 
-    @include flex(center, space-between);
+    @include flex(center, space-evenly);
 
     flex-direction: row;
     flex-wrap: wrap;
-
-    .item-ft {
-      width: 22%;
-      height: auto;
-      margin-bottom: 30px;
-      // border-radius: 10px;
-
-      &__image {
-        width: 100%;
-        max-height: 200px;
-        // border-top-left-radius: 10px;
-        // border-top-right-radius: 10px;
-        border-radius: 10px;
-        box-shadow: $box-shadow-item;
-        -webkit-box-shadow: $box-shadow-item;
-        -moz-box-shadow: $box-shadow-item;
-      }
-
-      &__icons {
-        margin: 15px 0 10px 0;
-
-        @include flex(flex-start, flex-start);
-
-        &__icon {
-          padding: 0 15px;
-          color: $txt-second-color;
-
-          @include flex(center, center);
-
-          .info {
-            font-size: 0.7rem;
-            margin-left: 3px;
-          }
-        }
-      }
-
-      &__title {
-        font-size: 1rem;
-        font-weight: 600;
-      }
-
-      // &__title:hover {
-      //   color: $main-color;
-      // }
-
-      &__rating {
-        color: $rating;
-        font-size: 1.2rem;
-
-        // @include flex(center, center);
-
-        .rate {
-          @include flex(center, flex-start);
-
-          .review {
-            margin-left: 5px;
-            font-size: 1rem;
-          }
-        }
-      }
-
-      &__price {
-        margin: 10px;
-
-        @include flex(center, space-between);
-
-        .price {
-          font-weight: 600;
-          color: $main-color;
-        }
-
-        .add-cart {
-          .text {
-            background-color: $main-color;
-            padding: 10px 20px;
-            color: $txt-white;
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 10px;
-          }
-
-          .text:hover {
-            background-color: #093d5d;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-
-    .item-ft:hover {
-      cursor: pointer;
-    }
   }
 
   &__pages {

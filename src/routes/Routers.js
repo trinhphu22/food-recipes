@@ -16,6 +16,7 @@ import BlogDetails from "../pages/BlogDetails";
 import Admin from "../pages/Admin";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
+import FoodMenu from "../pages/FoodMenu";
 
 const Routers = () => {
   const BasicLayout = () => {
@@ -47,6 +48,8 @@ const Routers = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recipes/:id" element={<BlogDetails />} />
+        <Route path="/categories/:id" element={<FoodMenu />} />
+        <Route path="/cuisines/:id" element={<FoodMenu />} />
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Admin />} />

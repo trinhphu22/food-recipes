@@ -1,78 +1,18 @@
-import classNames from 'classnames';
 import React from 'react'
-import { ImSearch } from 'react-icons/im';
-import { IoChevronDown } from 'react-icons/io5';
-import { MdDoubleArrow } from 'react-icons/md';
-import ItemFoodType from '../components/Item/ItemFoodType';
+import { Countries } from '../components/Api/data';
+import ItemCuisines from '../components/Item/ItemCuisines';
 
 const Cuisines = () => {
-  const [page, setPage] = React.useState(1);
 
   return (
     <div className="sub-page">
       <div className="sub-page__title">
-        <span>COLLECTION</span>
-      </div>
-      <div className="sub-page__subtitle">
-        <span>America</span>
-      </div>
-      <div className="sub-page__search">
-        <input
-          onChange={(event) => event.target("")}
-          className="search-bar"
-          type="text"
-          placeholder="Search for recipes"
-        />
-        <div className="icon">
-          <ImSearch />
-        </div>
-        <div className="collect">
-          <span className="text">Skill level</span>
-          <IoChevronDown />
-        </div>
-        <div className="skill">
-          <span className="text">Kitchen Type</span>
-          <IoChevronDown />
-        </div>
-        <div className="kitchen">
-          <span className="text">Food Type</span>
-          <IoChevronDown />
-        </div>
-      </div>
-      <div className="line" />
-      <div className="sub-page__num">
-        <span className="num">50</span>
-        <span>Recipes</span>
+        <span>Collection</span>
       </div>
       <div className="sub-page__container">
-        <ItemFoodType />
-        <ItemFoodType />
-        <ItemFoodType />
-        <ItemFoodType />
-        <ItemFoodType />
-        <ItemFoodType />
-        <ItemFoodType />
-        <ItemFoodType />
-      </div>
-      <div className="sub-page__pages">
-        <span
-          onClick={() => setPage(1)}
-          className={classNames(page === 1 && "page-select", "page")}
-        >
-          1
-        </span>
-        <span
-          onClick={() => setPage(2)}
-          className={classNames(page === 2 && "page-select", "page")}
-        >
-          2
-        </span>
-        <span onClick={() => setPage(page + 1)} className="page">
-          <span>next</span>
-          <span className="icon">
-            <MdDoubleArrow />
-          </span>
-        </span>
+        {Countries.map((item) => (
+          <ItemCuisines item={item} />
+        ))}
       </div>
     </div>
   );
