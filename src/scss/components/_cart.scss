@@ -1,33 +1,256 @@
-.cart {
-    position: fixed;
-    bottom: 50px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background-color: $txt-white;
-    opacity: 0.8;
-    box-shadow: $box-shadow;
+.cart-icon {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: $txt-white;
+  box-shadow: $box-shadow;
+  border-radius: 50%;
+
+  @include flex(center, center);
+
+  .icon {
+    font-size: 1.8rem;
+    color: $main-color;
+  }
+
+  .number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: $main-color;
     border-radius: 50%;
+    color: $txt-white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 20px;
+  }
+}
 
-    @include flex(center, center);
+.cart {
+  min-height: 50vh;
 
-    .icon {
-        font-size: 1.8rem;
-        color: $main-color;
-    }
+  & > * {
+    padding: 20px 120px;
+  }
 
-    .number {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 20px;
-        height: 20px;
-        background-color: $main-color;
-        border-radius: 50%;
-        color: $txt-white;
-        font-size: 1rem;
+  &__header {
+    min-height: 300px;
+    box-shadow: $box-shadow;
+
+    @include flex(center, space-between);
+
+    &__title {
+      .title {
+        font-size: 2.5rem;
         font-weight: 600;
-        text-align: center;
-        line-height: 20px;
+        font-family: $font-style;
+        color: $main-color;
+      }
+
+      .subtitle {
+        margin-top: 5px;
+        color: $txt-gray;
+        font-size: 1.1rem;
+      }
     }
+
+    &__button {
+      .button {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        width: 200px;
+        height: 50px;
+        // font-family: $font-style;
+        color: $txt-white;
+        background-color: $main-color;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #093d5d;
+          // background-color: $main-color-light;
+        }
+      }
+    }
+  }
+
+  &__body {
+    @include flex(flex-start, space-between);
+
+    gap: 20px;
+
+    &__items {
+      flex: 5;
+      flex-direction: column;
+
+      @include flex(center, space-between);
+
+      &__item {
+        width: 100%;
+        padding: 5px 2px;
+        margin: 2px 0;
+        border: 1px solid $txt-silver;
+        border-radius: 10px;
+
+        @include flex(center, space-between);
+
+        & > * {
+          flex: 1;
+        }
+
+        &__image {
+          flex: 3;
+
+          img {
+            height: 80px;
+            width: auto;
+            margin-right: 10px;
+          }
+        }
+
+        &__quantity {
+          .quantity {
+            @include flex(center, center);
+
+            width: 60px;
+            height: 30px;
+            border: 1px solid $txt-silver;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+
+            .minus,
+            .plus {
+              color: $txt-gray;
+              font-size: 1.5rem;
+
+              &:hover {
+                cursor: pointer;
+                color: $main-color;
+              }
+            }
+
+            .minus {
+              margin-right: 10px;
+            }
+
+            .plus {
+              margin-left: 10px;
+            }
+          }
+          // border: 1px solid $txt-silver;
+          // .number {
+          //   padding: 0 5px;
+          // }
+
+          // .icon {
+          //   font-size: 1.5rem;
+          //   // color: $main-color;
+          // }
+        }
+
+        &__remove {
+          // font-size: 1.5rem;
+          &:hover {
+            cursor: pointer;
+            color: $main-color;
+          }
+        }
+      }
+    }
+
+    &__subtotal {
+      flex: 2;
+      min-height: 300px;
+      box-shadow: $box-shadow;
+      border-radius: 10px;
+      padding: 20px 10px;
+      flex-direction: column;
+      background-color: $txt-main-color;
+      color: $txt-white;
+
+      @include flex(center, flex-start);
+
+      &__title {
+        margin-top: 10px;
+        font-size: 2.2rem;
+        font-weight: 600;
+        font-family: $font-style;
+        color: $main-color;
+      }
+
+      &__info {
+        width: 100%;
+        padding: 20px;
+        .info,
+        .total {
+          padding: 5px 0;
+
+          @include flex(center, space-between);
+        }
+
+        .total {
+          margin: 10px 0 5px 0;
+          border-top: 1px solid $txt-silver;
+          font-weight: 600;
+          padding-top: 10px;
+          text-transform: uppercase;
+        }
+      }
+
+      &__button {
+        // @include flex(center, center);
+
+        // flex-direction: column;
+
+        width: 90%;
+
+        .button {
+          @include flex(center, center);
+
+          min-width: 100%;
+          min-height: 40px;
+          margin-bottom: 10px;
+          border: none;
+          border-radius: 5px;
+
+          &:hover {
+            cursor: pointer;
+            opacity: 0.9;
+          }
+        }
+
+        .btn-checkout {
+          background-color: $main-color;
+          color: $txt-white;
+          font-weight: 500;
+          transition: all 0.3s ease-in-out;
+
+          .icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .btn-icon {
+          background-color: $txt-silver;
+          img {
+            width: 80px;
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '../components/AdminUI/Header/Header'
 
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div className='admin'>
+      <Header />
+    </div>
   )
 }
 

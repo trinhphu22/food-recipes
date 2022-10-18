@@ -29,14 +29,17 @@ const IMAGES = [
 
 const Slide = () => {
   const settings = {
-    // dots: true,
     adaptiveHeight: true,
-    infinite: true,
     arrows: false,
-    speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 1,
+    // slidesToShow: 2,
+    // slidesToScroll: 1,
+    // className: "center",
     className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 2,
+    speed: 500
   };
 
   return (

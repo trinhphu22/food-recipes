@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 
 import Home from "../pages/Home";
 import DishType from "../pages/DishType";
@@ -17,9 +17,24 @@ import Admin from "../pages/Admin";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import FoodMenu from "../pages/FoodMenu";
+import { HiShoppingCart } from "react-icons/hi";
 
 const Routers = () => {
   const BasicLayout = () => {
+    return (
+      <>
+        <Header />
+        <Outlet />
+        <Footer />
+        <Link to="/cart" className="cart-icon">
+          <HiShoppingCart className="icon" />
+          <span className="number">1</span>
+        </Link>
+      </>
+    );
+  };
+
+  const CartLayout = () => {
     return (
       <>
         <Header />
@@ -43,13 +58,16 @@ const Routers = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/foods/:id" element={<FoodDetails />} />
         {/* <Route path="/search" element={<Search/>} /> */}
-        <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recipes/:id" element={<BlogDetails />} />
         <Route path="/categories/:id" element={<FoodMenu />} />
         <Route path="/cuisines/:id" element={<FoodMenu />} />
+        <Route path="/cart" element={<Cart />} />
+      </Route>
+      <Route path="/cart" element={<CartLayout />}>
+        <Route index element={<Cart />} />
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Admin />} />

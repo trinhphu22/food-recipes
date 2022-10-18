@@ -6,6 +6,10 @@
 
   @include flex(center, flex-end);
 
+  &:hover {
+    cursor: pointer;
+  }
+
   > img {
     width: 250px;
     height: 250px;
