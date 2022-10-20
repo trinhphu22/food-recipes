@@ -1,0 +1,399 @@
+.admin {
+  @include flex(flex-start, flex-start);
+
+  background-color: #f5f5f5;
+  min-height: 100vh;
+
+  &__nav {
+    flex: 1.1;
+    min-height: 100vh;
+    background-color: $txt-white;
+    box-shadow: 2px 2px 8px 1px $txt-silver;
+    -webkit-box-shadow: 2px 2px 8px 1px $txt-silver;
+    -moz-box-shadow: 2px 2px 8px 1px $txt-silver;
+    z-index: 11;
+
+    &__logo {
+      @include flex(center, center);
+
+      width: 160px;
+      height: 80px;
+
+      img {
+        width: 120px;
+      }
+    }
+
+    &__subnav {
+      &__item {
+        @include flex(center, flex-start);
+
+        padding: 15px 30px;
+        color: $txt-second-color;
+
+        .icon {
+          margin-right: 10px;
+          font-size: 1.2rem;
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: #fe4501;
+        }
+      }
+
+      .active {
+        color: $main-color;
+      }
+    }
+
+    &__logout {
+      @include flex(flex-end, center);
+
+      width: 100%;
+      height: 150px;
+
+      .btn-logout {
+        @include flex(center, center);
+
+        width: 80%;
+        height: 50px;
+        background-color: $main-color;
+        border-radius: 10px;
+        color: $txt-white;
+
+        .icon {
+          margin-right: 10px;
+          font-size: 1.2rem;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: #fe4501;
+        }
+      }
+    }
+  }
+
+  &__main {
+    flex: 5;
+    height: 100vh;
+    // overflow: hidden;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__header {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 70px;
+      width: 100%;
+      padding: 0 10px;
+      background-color: $txt-white;
+      box-shadow: 0px 2px 8px 1px $txt-silver;
+      -webkit-box-shadow: 0px 2px 8px 1px $txt-silver;
+      -moz-box-shadow: 0px 2px 8px 1px $txt-silver;
+
+      @include flex(center, flex-end);
+
+      & > * {
+        margin: 0 10px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &__icon {
+        position: relative;
+        font-size: 1.4rem;
+        color: $main-color;
+
+        .number {
+          top: 0;
+          left: -2px;
+          position: absolute;
+          font-size: 0.7rem;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background-color: rgb(4, 148, 16);
+          color: white;
+
+          @include flex(center, center);
+        }
+      }
+
+      &__avatar {
+        height: 35px;
+        width: 35px;
+
+        img {
+          height: 100%;
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    &__body {
+      padding: 20px;
+
+      & > * ~ * {
+        padding: 5px;
+      }
+
+      &__title,
+      &__subtitle {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      &__subtitle {
+        padding: 40px 0 20px 0;
+      }
+
+      &__cards {
+        @include flex(center, space-between);
+
+        margin: 20px 0;
+
+        .card {
+          @include flex(center, center);
+
+          width: 32%;
+          min-height: 150px;
+          flex-direction: column;
+          border: none;
+          border-radius: 10px;
+          color: $txt-white;
+
+          & > * {
+            margin: 2px 0;
+          }
+
+          &__icon {
+            font-size: 2rem;
+          }
+
+          &__title {
+            font-weight: lighter;
+          }
+
+          &__money {
+            font-size: 1.8rem;
+          }
+        }
+
+        .color-0694A2 {
+          background-color: #0694a2;
+        }
+
+        .color-0646A2 {
+          background-color: #0646a2;
+        }
+
+        .color-06A262 {
+          background-color: #06a262;
+        }
+      }
+
+      &__subcards {
+        @include flex(center, space-between);
+
+        .subcard {
+          @include flex(center, flex-start);
+
+          width: 24%;
+          height: 80px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          background-color: $txt-white;
+
+          &__icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            font-size: 1.4rem;
+            border-radius: 50%;
+
+            @include flex(center, center);
+          }
+
+          .color-DED7FB {
+            background-color: #ded7fb;
+            color: #673ab7;
+          }
+
+          .color-F7E3EE {
+            background-color: #f7e3ee;
+            color: #f50057;
+          }
+
+          .color-FBF4E2 {
+            background-color: #fbf4e2;
+            color: #f9a825;
+          }
+
+          // .color-D8F0FA {
+          //   background-color: #D8F0FA;
+          //   color: #03a9f4;
+          // }
+
+          .color-B9F8B9 {
+            background-color: #b9f8b9;
+            color: #4caf50;
+          }
+
+          &__info {
+            &__title {
+              font-size: 0.9rem;
+              color: $txt-second-color;
+            }
+
+            &__amount {
+              font-size: 1.5rem;
+              font-weight: 600;
+              color: $txt-second-color;
+            }
+          }
+        }
+      }
+
+      &__table {
+        .table {
+          font-size: 0.8rem;
+          width: 100%;
+          height: auto;
+          border-collapse: collapse;
+          padding: 0;
+          margin: 0;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          background-color: $txt-white;
+
+          &__header,
+          &__body {
+            @include flex(center, center);
+
+            min-height: 50px;
+
+            &__item {
+              flex: 1;
+              padding: 0 10px;
+            }
+
+            .address {
+              flex: 2;
+            }
+          }
+
+          &__header {
+            border-bottom: 1px solid #ccc;
+            background-color: #d8f0fa;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+
+            &__item {
+              font-weight: 600;
+              color: $txt-second-color;
+              text-transform: uppercase;
+            }
+          }
+
+          &__body {
+            border-bottom: 1px solid #ccc;
+
+            &__item {
+              flex: 1;
+              font-size: 0.9rem;
+              .total,
+              .method {
+                font-weight: 600;
+              }
+
+              .status {
+                border-radius: 20px;
+                font-size: 0.8rem;
+                padding: 5px 10px;
+              }
+
+              .color-F7E3EE {
+                background-color: #f7e3ee;
+                color: #f50057;
+              }
+
+              .color-FBF4E2 {
+                background-color: #fbf4e2;
+                color: #f9a825;
+              }
+
+              .color-B9F8B9 {
+                background-color: #b9f8b9;
+                color: #4caf50;
+              }
+            }
+          }
+
+          &__footer {
+            @include flex(center, space-between);
+
+            min-height: 50px;
+
+            &__show {
+              padding: 0 10px;
+              font-weight: 600;
+              color: $txt-second-color;
+            }
+
+            &__pagination {
+              font-size: 0.7rem;
+
+              @include flex(center, center);
+
+              .prev,
+              .next,
+              .page {
+                @include flex(center, center);
+
+                width: 30px;
+                height: 30px;
+                margin: 0 1px;
+                border-radius: 5px;
+
+                &:hover {
+                  cursor: pointer;
+                  background-color: $txt-silver;
+                }
+              }
+
+              .selected {
+                background-color: $main-color;
+                color: $txt-white;
+
+                &:hover {
+                  background-color: $main-color;
+                }
+                // border-radius: 5px;
+              }
+
+              .disable {
+                color: $txt-gray;
+
+                &:hover {
+                  background-color: $txt-white;
+                  cursor: not-allowed;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

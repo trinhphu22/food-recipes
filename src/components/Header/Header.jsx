@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import logo from "../../assets/images/logo_tasty.png";
+import Logo from "../../assets/images/logo_tasty.png";
 import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
 
 const nav_links = [
@@ -34,7 +34,7 @@ const Header = () => {
     // <Container>
     <div className="header">
       <Link to="/" className="header__logo">
-        <img src={logo} alt="logo" />
+        <img src={Logo} alt="logo" />
       </Link>
 
       {/* ======= menu ======= */}
