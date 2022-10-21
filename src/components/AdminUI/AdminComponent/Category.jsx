@@ -11,7 +11,7 @@ const Category = () => {
   return (
     <div className="admin__main__body">
       <div className="admin__main__body__title">
-        <span>Products</span>
+        <span>Category</span>
       </div>
       <div className={classNames("admin__main__body__search", "categories")}>
         <input

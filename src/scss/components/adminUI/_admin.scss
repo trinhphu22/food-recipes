@@ -5,13 +5,17 @@
   min-height: 100vh;
 
   &__nav {
+    @include flex(flex-start, flex-start);
+
     flex: 1.1;
-    min-height: 100vh;
+    height: 100vh;
     background-color: $txt-white;
     box-shadow: 2px 2px 8px 1px $txt-silver;
     -webkit-box-shadow: 2px 2px 8px 1px $txt-silver;
     -moz-box-shadow: 2px 2px 8px 1px $txt-silver;
     z-index: 11;
+    flex-direction: column;
+
 
     &__logo {
       @include flex(center, center);
@@ -51,7 +55,8 @@
       @include flex(flex-end, center);
 
       width: 100%;
-      height: 150px;
+      height: 100%;
+      margin-bottom: 50px;
 
       .btn-logout {
         @include flex(center, center);
@@ -342,15 +347,6 @@
 
               .product-name {
                 @include flex(center, flex-start);
-
-                // img {
-                //   height: 40px;
-                //   width: 40px;
-                //   margin-right: 10px;
-                //   padding: 2px;
-                //   border-radius: 50%;
-                //   box-shadow: $box-shadow-item;
-                // }
               }
 
               img {
@@ -360,6 +356,11 @@
                 padding: 2px;
                 border-radius: 50%;
                 box-shadow: $box-shadow-item;
+              }
+
+              .img-country {
+                width: 50px;
+                box-shadow: none;
               }
 
               .txt-bold {
