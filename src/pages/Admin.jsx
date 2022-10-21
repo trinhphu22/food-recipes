@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Categories from "../components/AdminUI/AdminComponent/Categories";
-import Cuisines from "../components/AdminUI/AdminComponent/Cuisines";
-import Customers from "../components/AdminUI/AdminComponent/Customers";
+import Category from "../components/AdminUI/AdminComponent/Category";
+import Cuisine from "../components/AdminUI/AdminComponent/Cuisine";
+import Customer from "../components/AdminUI/AdminComponent/Customer";
 import Dashboard from "../components/AdminUI/AdminComponent/Dashboard";
-import Orders from "../components/AdminUI/AdminComponent/Orders";
-import Products from "../components/AdminUI/AdminComponent/Products";
-import Reports from "../components/AdminUI/AdminComponent/Reports";
+import Order from "../components/AdminUI/AdminComponent/Order";
+import Product from "../components/AdminUI/AdminComponent/Product";
+import Report from "../components/AdminUI/AdminComponent/Report";
 import Setting from "../components/AdminUI/AdminComponent/Setting";
-import Tags from "../components/AdminUI/AdminComponent/Tags";
+import Tag from "../components/AdminUI/AdminComponent/Tag";
 import Header from "../components/AdminUI/Header/Header";
 import Nav from "../components/AdminUI/Navbar/Nav";
 
@@ -20,13 +20,13 @@ const Admin = () => {
       <div className="admin__main">
         <Header />
         {active === "Dashboard" && <Dashboard />}
-        {active === "Products" && <Products />}
-        {active === "Categories" && <Categories />}
-        {active === "Cuisines" && <Cuisines />}
-        {active === "Tags" && <Tags />}
-        {active === "Customers" && <Customers />}
-        {active === "Orders" && <Orders />}
-        {active === "Reports" && <Reports />}
+        {active === "Products" && <Product />}
+        {active === "Categories" && <Category />}
+        {active === "Cuisines" && <Cuisine />}
+        {active === "Tags" && <Tag />}
+        {active === "Customers" && <Customer />}
+        {active === "Orders" && <Order />}
+        {active === "Reports" && <Report />}
         {active === "Setting" && <Setting />}
       </div>
     </div>

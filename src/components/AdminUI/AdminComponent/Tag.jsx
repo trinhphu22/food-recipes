@@ -1,6 +1,6 @@
 import React from "react";
 
-const Tags = () => {
+const Tag = () => {
   return (
     <div className="admin__main__body">
       <div className="admin__main__body__title">
@@ -10,4 +10,4 @@ const Tags = () => {
   );
 };
 
-export default Tags;
+export default Tag;

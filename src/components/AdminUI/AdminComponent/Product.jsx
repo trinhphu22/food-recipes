@@ -3,14 +3,12 @@ import classNames from "classnames";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 import { BiShowAlt, BiEdit, BiTrash } from "react-icons/bi";
-import { Product } from "../../Api/data";
+import { Products } from "../../Api/data";
 import Message from "../../common/Message";
 
-import Image from "../../../assets/images/image1.jpeg";
 
-const Products = () => {
+const Product = () => {
   const [page, setPage] = useState(1);
-  const [click, setClick] = useState(true);
 
   return (
     <div className="admin__main__body">
@@ -47,17 +45,17 @@ const Products = () => {
       <div className="admin__main__body__table">
         <div className="table">
           <div className="table__header">
-          <div className="table__header__item flex-id">ID</div>
+            <div className="table__header__item flex-id">ID</div>
             <div className="table__header__item address">PRODUCT NAME</div>
-            <div className="table__header__item">CATEGORY</div>
+            <div className="table__header__item category">CATEGORY</div>
             <div className="table__header__item">cuisine</div>
             <div className="table__header__item">PRICE</div>
             <div className="table__header__item">STATUS</div>
             <div className="table__header__item">DISCOUNT</div>
             <div className="table__header__item">PUBLISHED</div>
-            <div className="table__header__item">ACTIONS</div>
+            <div className="table__header__item action">ACTIONS</div>
           </div>
-          {Product.map((item, index) => (
+          {Products.map((item, index) => (
             <div className="table__body">
               <div className="table__body__item flex-id">{item.id}</div>
               <div className="table__body__item address">
@@ -66,7 +64,11 @@ const Products = () => {
                   <span>{item.title}</span>
                 </div>
               </div>
-              <div className="table__body__item">{item.category}</div>
+              <div className="table__body__item category">
+                {item.categories.map((item, index) => (
+                  <span className="item-spc">{item.category}</span>
+                ))}
+              </div>
               <div className="table__body__item">{item.cuisine}</div>
               <div className="table__body__item">
                 <span className="txt-bold">{item.price}</span>
@@ -93,7 +95,7 @@ const Products = () => {
                   <BsToggleOff className="toggle-off" />
                 )}
               </div>
-              <div className="table__body__item">
+              <div className="table__body__item action">
                 <BiShowAlt className="show" />
                 <BiEdit className="edit" />
                 <BiTrash className="delete" />
@@ -161,4 +163,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Product;

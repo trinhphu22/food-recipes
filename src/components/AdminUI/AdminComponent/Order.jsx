@@ -1,13 +1,13 @@
 import React from "react";
 
-const Reports = () => {
+const Order = () => {
   return (
     <div className="admin__main__body">
       <div className="admin__main__body__title">
-        <span>Reports</span>
+        <span>Orders</span>
       </div>
     </div>
   );
 };
 
-export default Reports;
+export default Order;
