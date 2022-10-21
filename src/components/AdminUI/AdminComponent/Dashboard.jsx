@@ -134,10 +134,10 @@ const Dashboard = () => {
               </div>
               <div className="table__body__item">{item.phone}</div>
               <div className="table__body__item">
-                <span className="method">{item.method}</span>
+                <span className="txt-bold">{item.method}</span>
               </div>
               <div className="table__body__item">
-                <span className="total">{item.total}</span>
+                <span className="txt-bold">{item.total}</span>
               </div>
               <div className="table__body__item">
                 <span

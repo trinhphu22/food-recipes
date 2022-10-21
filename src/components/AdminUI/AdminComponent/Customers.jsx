@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const Customers = () => {
   return (
-    <div>Customers</div>
-  )
-}
+    <div className="admin__main__body">
+      <div className="admin__main__body__title">
+        <span>Customers</span>
+      </div>
+    </div>
+  );
+};
 
-export default Customers
+export default Customers;

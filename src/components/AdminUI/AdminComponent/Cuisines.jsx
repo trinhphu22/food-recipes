@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const Cuisines = () => {
   return (
-    <div>Cuisines</div>
-  )
-}
+    <div className="admin__main__body">
+      <div className="admin__main__body__title">
+        <span>Cuisines</span>
+      </div>
+    </div>
+  );
+};
 
-export default Cuisines
+export default Cuisines;

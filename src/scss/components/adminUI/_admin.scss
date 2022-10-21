@@ -151,6 +151,11 @@
       &__subtitle {
         font-size: 1.2rem;
         font-weight: 600;
+        // margin-bottom: 40px;
+      }
+
+      &__title {
+        margin-bottom: 20px;
       }
 
       &__subtitle {
@@ -160,7 +165,7 @@
       &__cards {
         @include flex(center, space-between);
 
-        margin: 20px 0;
+        // margin: 20px 0;
 
         .card {
           @include flex(center, center);
@@ -291,6 +296,10 @@
             .address {
               flex: 2;
             }
+
+            .flex-id {
+              flex: 0.2;
+            }
           }
 
           &__header {
@@ -312,8 +321,21 @@
             &__item {
               flex: 1;
               font-size: 0.9rem;
-              .total,
-              .method {
+
+              .product-name {
+                @include flex(center, flex-start);
+
+                img {
+                  height: 40px;
+                  width: 40px;
+                  margin-right: 10px;
+                  padding: 2px;
+                  border-radius: 50%;
+                  box-shadow: $box-shadow-item;
+                }
+              }
+
+              .txt-bold {
                 font-weight: 600;
               }
 
@@ -336,6 +358,45 @@
               .color-B9F8B9 {
                 background-color: #b9f8b9;
                 color: #4caf50;
+              }
+
+              .flex-center {
+                @include flex(center, center);
+
+                
+              }
+
+              .show,
+              .edit,
+              .delete {
+                font-size: 2rem;
+                color: $txt-second-color;
+
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+
+              .show:hover {
+                color: #03a9f4;
+              }
+
+              .edit:hover {
+                color: #06a262;
+              }
+
+              .delete:hover {
+                color: #f50057;
+              }
+
+              .toggle-on {
+                color: #06a262;
+                font-size: 2.5rem;
+              }
+
+              .toggle-off {
+                color: #f50057;
+                font-size: 2.5rem;
               }
             }
           }
@@ -392,6 +453,79 @@
               }
             }
           }
+        }
+      }
+
+      &__search {
+        @include flex(center, space-between);
+
+        min-height: 100px;
+        width: 100%;
+        padding: 0 15px;
+        margin-bottom: 40px;
+        color: $txt-second-color;
+        background-color: $txt-white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        font-size: 0.9rem;
+
+        & > * {
+          @include flex(center, flex-start);
+
+          height: 50px;
+          padding: 0 10px;
+          border-radius: 10px;
+          background-color: $txt-silver;
+          border: 1px solid #ccc;
+        }
+
+        .search {
+          color: $txt-second-color;
+
+          &:focus {
+            background-color: $txt-white;
+            // border: unset;
+            outline: none;
+          }
+
+          &::placeholder {
+            color: $txt-second-color;
+          }
+        }
+
+        .select {
+          width: 50px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .button {
+          @include flex(center, center);
+
+          background-color: $main-color;
+          color: $txt-white;
+
+          .icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+          }
+
+          &:hover {
+            cursor: pointer;
+            background-color: #fe4501;
+          }
+        }
+      }
+
+      .products {
+        & > * {
+          width: 21%;
+        }
+
+        .search {
+          width: 30%;
         }
       }
     }

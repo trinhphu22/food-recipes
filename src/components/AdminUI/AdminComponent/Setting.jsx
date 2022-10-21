@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const Setting = () => {
   return (
-    <div>Setting</div>
-  )
-}
+    <div className="admin__main__body">
+      <div className="admin__main__body__title">
+        <span>Edit Profile</span>
+      </div>
+    </div>
+  );
+};
 
-export default Setting
+export default Setting;

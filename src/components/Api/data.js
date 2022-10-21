@@ -325,7 +325,7 @@ export const Blogs = [
     description:
       "Easily add-in a short description about your recipe! This can be of any length. Remember, you are trying to sell your recipe!",
     image: Image1,
-    user : {
+    user: {
       name: "Kelvin Tang",
       avatar: avt1,
     },
@@ -339,7 +339,7 @@ export const Blogs = [
     description:
       "Easily add-in a short description about your recipe! This can be of any length. Remember, you are trying to sell your recipe!",
     image: Image2,
-    user : {
+    user: {
       name: "Kelvin Tang",
       avatar: avt2,
     },
@@ -353,7 +353,7 @@ export const Blogs = [
     description:
       "Easily add-in a short description about your recipe! This can be of any length. Remember, you are trying to sell your recipe!",
     image: Image3,
-    user : {
+    user: {
       name: "Kelvin Tang",
       avatar: avt3,
     },
@@ -367,7 +367,7 @@ export const Blogs = [
     description:
       "Easily add-in a short description about your recipe! This can be of any length. Remember, you are trying to sell your recipe!",
     image: Image4,
-    user : {
+    user: {
       name: "Kelvin Tang",
       avatar: avt1,
     },
@@ -474,7 +474,7 @@ export const Categories = [
     id: 20,
     title: "Sandwich",
     image: type20,
-  }
+  },
 ];
 
 export const Countries = [
@@ -622,5 +622,96 @@ export const Orders = [
     method: "COD",
     total: "$75.00",
     status: "Delivered",
+  },
+];
+
+export const Product = [
+  {
+    id: 1,
+    title: "Burger",
+    image: Image1,
+    category: "Burger",
+    cuisine: "USA",
+    price: "$10.00",
+    status: "selling",
+    discount: "",
+    published: true,
+  },
+  {
+    id: 2,
+    title: "Pizza",
+    image: Image2,
+    category: "Pizza",
+    cuisine: "Italy",
+    price: "$10.00",
+    status: "selling",
+    discount: "",
+    published: true,
+  },
+  {
+    id: 3,
+    title: "Pasta",
+    image: Image3,
+    category: "Pasta",
+    cuisine: "Italy",
+    price: "$10.00",
+    status: "selling",
+    discount: "",
+    published: true,
+  },
+  {
+    id: 4,
+    title: "Salad",
+    image: Image4,
+    category: "Salad",
+    cuisine: "USA",
+    price: "$10.00",
+    status: "selling",
+    discount: "",
+    published: true,
+  },
+  {
+    id: 5,
+    title: "Sandwich",
+    image: Image5,
+    category: "Sandwich",
+    cuisine: "USA",
+    price: "$10.00",
+    status: "sold out",
+    discount: "",
+    published: false,
+  },
+  {
+    id: 6,
+    title: "Cake",
+    image: Image5,
+    category: "Cake",
+    cuisine: "USA",
+    price: "$10.00",
+    status: "selling",
+    discount: "",
+    published: true,
+  },
+  {
+    id: 7,
+    title: "Burger",
+    image: Image1,
+    category: "Burger",
+    cuisine: "USA",
+    price: "$10.00",
+    status: "sold out",
+    discount: "",
+    published: true,
+  },
+  {
+    id: 8,
+    title: "Pizza",
+    image: Image2,
+    category: "Pizza",
+    cuisine: "Italy",
+    price: "$10.00",
+    status: "selling",
+    discount: "17%",
+    published: true,
   },
 ];

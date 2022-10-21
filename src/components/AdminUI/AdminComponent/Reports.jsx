@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const Reports = () => {
   return (
-    <div>Reports</div>
-  )
-}
+    <div className="admin__main__body">
+      <div className="admin__main__body__title">
+        <span>Reports</span>
+      </div>
+    </div>
+  );
+};
 
-export default Reports
+export default Reports;

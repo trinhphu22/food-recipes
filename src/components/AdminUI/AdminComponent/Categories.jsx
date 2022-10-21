@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const Categories = () => {
   return (
-    <div>Categories</div>
-  )
-}
+    <div className="admin__main__body">
+      <div className="admin__main__body__title">
+        <span>Categories</span>
+      </div>
+    </div>
+  );
+};
 
-export default Categories
+export default Categories;
