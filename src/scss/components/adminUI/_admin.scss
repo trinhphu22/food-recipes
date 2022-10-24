@@ -323,6 +323,12 @@
             .flex-id {
               flex: 0.2;
             }
+
+            .invoice {
+              flex: 0.5;
+
+              @include flex(center, center);
+            }
           }
 
           &__header {
@@ -373,6 +379,21 @@
 
               .txt-bold {
                 font-weight: 600;
+              }
+
+              .select-process {
+                width: 100%;
+                height: 30px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding: 0 10px;
+                font-size: 0.8rem;
+                background-color: $txt-white;
+
+                &:focus {
+                  outline: none;
+                  border: 1px solid $txt-gray;
+                }
               }
 
               .status {

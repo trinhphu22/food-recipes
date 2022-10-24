@@ -51,10 +51,10 @@ const _nav = [
     name: "Orders",
     icon: <GiCompass className="icon" />,
   },
-  {
-    name: "Turnover",
-    icon: <GiMoneyStack className="icon" />,
-  },
+  // {
+  //   name: "Turnover",
+  //   icon: <GiMoneyStack className="icon" />,
+  // },
   {
     name: "Setting",
     icon: <GiPokecog className="icon" />,

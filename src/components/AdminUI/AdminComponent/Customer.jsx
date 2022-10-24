@@ -1,9 +1,8 @@
 import classNames from "classnames";
 import React, { useState } from "react";
 import { BiEdit, BiShowAlt, BiTrash } from "react-icons/bi";
-import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import { Categories, Users } from "../../Api/data";
+import { Users } from "../../Api/data";
 
 const Customer = () => {
   const [page, setPage] = useState(1);
