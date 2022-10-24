@@ -42,7 +42,7 @@ const Cuisine = () => {
             <div className="table__header__item">PUBLISHED</div>
             <div className="table__header__item">ACTIONS</div>
           </div>
-          {Countries.slice(1, 16).map((item, index) => (
+          {Countries.slice(0, 16).map((item, index) => (
             <div className="table__body">
               <div className="table__body__item flex-id">{item.id}</div>
               <div className="table__body__item ">

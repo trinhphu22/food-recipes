@@ -17,7 +17,7 @@ const nav_links = [
     path: "/collection",
   },
   {
-    display: "Blog",
+    display: "Recipes",
     path: "/blog",
   },
   {

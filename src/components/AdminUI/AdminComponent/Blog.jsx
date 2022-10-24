@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { BiEdit, BiShowAlt, BiTrash } from "react-icons/bi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
-import { Blogs, Countries } from "../../Api/data";
-import Image from "../../../assets/images/image3.jpeg";
+import { Blogs } from "../../Api/data";
 
 const Blog = () => {
   const [page, setPage] = useState(1);
