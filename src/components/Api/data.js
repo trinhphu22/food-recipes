@@ -329,6 +329,7 @@ export const Blogs = [
       name: "Kelvin Tang",
       avatar: avt1,
     },
+    approved: true
   },
   {
     id: 2,
@@ -343,6 +344,7 @@ export const Blogs = [
       name: "Kelvin Tang",
       avatar: avt2,
     },
+    approved: true
   },
   {
     id: 3,
@@ -357,6 +359,7 @@ export const Blogs = [
       name: "Kelvin Tang",
       avatar: avt3,
     },
+    approved: true
   },
   {
     id: 4,
@@ -371,6 +374,7 @@ export const Blogs = [
       name: "Kelvin Tang",
       avatar: avt1,
     },
+    approved: true
   },
 ];
 

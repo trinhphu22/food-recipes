@@ -17,7 +17,7 @@ const Category = () => {
         <input
           className="search"
           type="text"
-          placeholder="Search by product name"
+          placeholder="Search by category"
         />
         <select className="select">
           <option value="" selected disabled hidden>

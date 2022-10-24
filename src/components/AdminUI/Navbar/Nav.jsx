@@ -8,6 +8,7 @@ import {
   GiMoneyStack,
   GiPokecog,
   GiNewspaper,
+  GiBookPile,
 } from "react-icons/gi";
 
 import Logo from "../../../assets/images/logo_tasty.png";
@@ -30,15 +31,17 @@ const _nav = [
   },
   {
     name: "Cuisines",
-    icon: <GiBlackBook className="icon" />,
+    icon: <GiBookPile className="icon" />,
   },
   // {
   //   name: "Tags",
   //   icon: <GiFoodChain className="icon" />,
   // },
   {
-    name: "Blogs",
-    icon: <GiNewspaper className="icon" />,
+    name: "Recipes",
+    // icon: <GiNewspaper className="icon" />,
+    icon: <GiBlackBook className="icon" />,
+
   },
   {
     name: "Customers",
@@ -49,7 +52,7 @@ const _nav = [
     icon: <GiCompass className="icon" />,
   },
   {
-    name: "Reports",
+    name: "Turnover",
     icon: <GiMoneyStack className="icon" />,
   },
   {

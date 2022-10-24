@@ -25,10 +25,10 @@ const Admin = () => {
         {active === "Categories" && <Category />}
         {active === "Cuisines" && <Cuisine />}
         {active === "Tags" && <Tag />}
-        {active === "Blogs" && <Blog />}
+        {active === "Recipes" && <Blog />}
         {active === "Customers" && <Customer />}
         {active === "Orders" && <Order />}
-        {active === "Reports" && <Report />}
+        {active === "Turnover" && <Report />}
         {active === "Setting" && <Setting />}
       </div>
     </div>

@@ -17,7 +17,7 @@ const Cuisine = () => {
         <input
           className="search"
           type="text"
-          placeholder="Search by product name"
+          placeholder="Search by country"
         />
         <select className="select">
           <option value="" selected disabled hidden>

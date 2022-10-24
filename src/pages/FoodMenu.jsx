@@ -2,7 +2,7 @@ import React from "react";
 
 import Item from "../components/Item/Item";
 import { Categories, Countries, Items } from "../components/Api/data";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const FoodMenu = () => {
   const { id } = useParams();
@@ -29,9 +29,9 @@ const FoodMenu = () => {
           </div>
           {Categories.map((item) => (
             <div className="menu__body__left__items">
-              <span className={id === item.id.toString() && "item-selected"}>
+              <Link to={`/categories/${item.id}`} className={id === item.id.toString() && "item-selected"}>
                 {item.title}
-              </span>
+              </Link>
             </div>
           ))}
           <div className="menu__body__left__subtitle">
@@ -39,9 +39,9 @@ const FoodMenu = () => {
           </div>
           {Countries.map((item) => (
             <div className="menu__body__left__items">
-              <span className={id === item.id.toString() && "item-selected"}>
+              <Link to={`/cuisines/${item.id}`} className={id === item.id.toString() && "item-selected"}>
                 {item.title}
-              </span>
+              </Link>
             </div>
           ))}
         </div>

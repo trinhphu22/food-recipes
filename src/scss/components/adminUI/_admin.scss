@@ -358,6 +358,14 @@
                 box-shadow: $box-shadow-item;
               }
 
+              .img-recipe {
+                height: 120px;
+                width: 180px;
+                margin: 10px;
+                object-fit: fill;
+                border-radius: 10px;
+              }
+
               .img-country {
                 width: 50px;
                 box-shadow: none;
