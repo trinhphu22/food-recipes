@@ -641,7 +641,7 @@ export const Orders = [
     phone: "(123) 456-7890",
     method: "COD",
     total: "$75.00",
-    status: "Pending",
+    status: "Canceled",
   },
   {
     id: 7,

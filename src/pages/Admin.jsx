@@ -5,7 +5,7 @@ import Customer from "../components/AdminUI/AdminComponent/Customer";
 import Dashboard from "../components/AdminUI/AdminComponent/Dashboard";
 import Order from "../components/AdminUI/AdminComponent/Order";
 import Blog from "../components/AdminUI/AdminComponent/Blog";
-import Product from "../components/AdminUI/AdminComponent/Product";
+import Product from "../components/AdminUI/AdminComponent/Product/Product";
 import Report from "../components/AdminUI/AdminComponent/Report";
 import Setting from "../components/AdminUI/AdminComponent/Setting";
 import Tag from "../components/AdminUI/AdminComponent/Tag";

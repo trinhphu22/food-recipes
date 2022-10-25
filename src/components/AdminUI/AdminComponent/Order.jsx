@@ -12,12 +12,26 @@ const Order = () => {
       <div className="admin__main__body__title">
         <span>Orders</span>
       </div>
-      <div className={classNames("admin__main__body__search", "customers")}>
-        <input
-          className="search"
-          type="text"
-          placeholder="Search by name/email/phone"
-        />
+      <div className={classNames("admin__main__body__search", "orders")}>
+        <input className="search" type="text" placeholder="Search by phone" />
+        <select className="select">
+          <option value="" selected disabled hidden>
+            Status
+          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <select className="select">
+          <option value="" selected disabled hidden>
+            Order limits
+          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
         {/* <div className="button">
           <HiOutlinePlusSm className="icon" />
           <span>Add Category</span>
@@ -58,18 +72,25 @@ const Order = () => {
                     "status",
                     item.status === "Pending" && "color-F7E3EE",
                     item.status === "Processing" && "color-FBF4E2",
-                    item.status === "Delivered" && "color-B9F8B9"
+                    item.status === "Delivered" && "color-B9F8B9",
+                    item.status === "Canceled" && "color-cancel"
                   )}
                 >
                   {item.status}
                 </span>
               </div>
               <div className="table__body__item">
-                <select className="select-process" name="" id="">
-                  <option value="">Pending</option>
-                  <option value="">Delivered</option>
-                  <option value="">Processing</option>
-                  <option value="">Cancel</option>
+                <select
+                  disabled={item.status === "Canceled"}
+                  value={item.status}
+                  className="select-process"
+                  name=""
+                  id=""
+                >
+                  <option value="Pending">Pending</option>
+                  <option value="Delivered">Delivered</option>
+                  <option value="Processing">Processing</option>
+                  <option value="Canceled">Cancel</option>
                 </select>
               </div>
               <div className="table__body__item invoice">

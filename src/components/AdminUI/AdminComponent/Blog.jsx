@@ -11,10 +11,14 @@ const Blog = () => {
   return (
     <div className="admin__main__body">
       <div className="admin__main__body__title">
-        <span>Blog</span>
+        <span>Recipes</span>
       </div>
-      <div className={classNames("admin__main__body__search", "categories")}>
-        <input className="search" type="text" placeholder="Search by title" />
+      <div className={classNames("admin__main__body__search", "products")}>
+        <input
+          className="search"
+          type="text"
+          placeholder="Search by title"
+        />
         <select className="select">
           <option value="" selected disabled hidden>
             Author
@@ -24,9 +28,16 @@ const Blog = () => {
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
+        <select className="select">
+          <option value="" selected disabled hidden>
+            Status
+          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
         <div className="button">
           <HiOutlinePlusSm className="icon" />
-          <span>Add Blog</span>
+          <span>Add Recipe</span>
         </div>
       </div>
       <div className="admin__main__body__table">

@@ -44,7 +44,6 @@ const Customer = () => {
               <div className="table__body__item ">{item.role}</div>
               <div className="table__body__item">
                 <BiShowAlt className="show" />
-                <BiEdit className="edit" />
                 <BiTrash className="delete" />
               </div>
             </div>

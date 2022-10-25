@@ -145,7 +145,8 @@ const Dashboard = () => {
                     "status",
                     item.status === "Pending" && "color-F7E3EE",
                     item.status === "Processing" && "color-FBF4E2",
-                    item.status === "Delivered" && "color-B9F8B9"
+                    item.status === "Delivered" && "color-B9F8B9",
+                    item.status === "Canceled" && "color-cancel"
                   )}
                 >
                   {item.status}

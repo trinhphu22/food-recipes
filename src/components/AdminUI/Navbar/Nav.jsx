@@ -33,10 +33,10 @@ const _nav = [
     name: "Cuisines",
     icon: <GiBookPile className="icon" />,
   },
-  // {
-  //   name: "Tags",
-  //   icon: <GiFoodChain className="icon" />,
-  // },
+  {
+    name: "Tags",
+    icon: <GiFoodChain className="icon" />,
+  },
   {
     name: "Recipes",
     // icon: <GiNewspaper className="icon" />,
