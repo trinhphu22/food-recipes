@@ -115,7 +115,7 @@ const EditProd = ({ isOpen, toggleDrawer, item }) => {
         </div>
       </div>
       <div className="drawer__footer">
-        <button className="btn btn-cancel">Cancel</button>
+        <button className="btn btn-cancel" onClick={toggleDrawer}>Cancel</button>
         <button className="btn btn-update">Update Product</button>
       </div>
     </Drawer>
