@@ -50,9 +50,11 @@ const PreviewImage = ({ Image }) => {
           (Only *.jpeg and *.png images will be accepted)
         </span>
       </div>
-      <div className="content__preview img-pro">
-        <img src={imagePreview ? imagePreview : Image} alt="img" />
-      </div>
+      {(Image || imagePreview) && (
+        <div className="content__preview img-pro">
+          <img src={imagePreview ? imagePreview : Image} alt="img" />
+        </div>
+      )}
     </div>
   );
 };

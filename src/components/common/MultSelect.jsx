@@ -15,10 +15,7 @@ const customStyles = {
   }),
 };
 
-const Tag = () => {
-  const [selectedOption, setSelectedOption] = React.useState([options[0]]);
-
-  console.log(" selectedOption", selectedOption);
+const MultiSelect = ({selectedOption, setSelectedOption, options}) => {
 
   return (
     <div className="App">
@@ -31,7 +28,7 @@ const Tag = () => {
         placeholder="Select tags"
         theme={(theme) => ({
           ...theme,
-          borderRadius: "10px",
+          borderRadius: "5px",
           colors: {
             ...theme.colors,
             primary: "#eee",
@@ -43,4 +40,4 @@ const Tag = () => {
   );
 };
 
-export default Tag;
+export default MultiSelect;

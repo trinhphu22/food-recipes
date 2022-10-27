@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Category from "../components/AdminUI/AdminComponent/Category";
+import Category from "../components/AdminUI/AdminComponent/Category/Category";
 import Cuisine from "../components/AdminUI/AdminComponent/Cuisine";
 import Customer from "../components/AdminUI/AdminComponent/Customer";
 import Dashboard from "../components/AdminUI/AdminComponent/Dashboard";

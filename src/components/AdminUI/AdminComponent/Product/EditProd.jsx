@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { IoMdClose } from "react-icons/io";
 import PreviewImage from "../../../common/PreviewImage";
 
@@ -7,13 +8,22 @@ import Drawer from "react-modern-drawer";
 
 //import styles 👇
 import "react-modern-drawer/dist/index.css";
+import MultiSelect from "../../../common/MultSelect";
+
+const options = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
 
 const EditProd = ({ isOpen, toggleDrawer, item }) => {
+  const [selectedOption, setSelectedOption] = useState([options[0]]);
+
   return (
     <Drawer
       open={isOpen}
       onClose={toggleDrawer}
-      direction="right"
+      direction="left"
       className="drawer"
       size={700}
     >
@@ -38,7 +48,11 @@ const EditProd = ({ isOpen, toggleDrawer, item }) => {
             <div className="title">Product Title/Name</div>
             <div className="content">
               <div className="input-container">
-                <input className="input" type="text" />
+                <input
+                  className="input"
+                  type="text"
+                  defaultValue={item?.title}
+                />
               </div>
             </div>
           </div>
@@ -46,7 +60,7 @@ const EditProd = ({ isOpen, toggleDrawer, item }) => {
             <div className="title">Product Description</div>
             <div className="content">
               <div className="area-container">
-                <textarea className="area" name="" id=""></textarea>
+                <textarea className="area" name="" id="" />
               </div>
             </div>
           </div>
@@ -54,11 +68,11 @@ const EditProd = ({ isOpen, toggleDrawer, item }) => {
             <div className="title">Category</div>
             <div className="content">
               <div className="select">
-                <select name="" id="">
-                  <option value="">1</option>
-                  <option value="">2</option>
-                  <option value="">3</option>
-                </select>
+                <MultiSelect
+                  options={options}
+                  selectedOption={selectedOption}
+                  setSelectedOption={setSelectedOption}
+                />
               </div>
             </div>
           </div>
@@ -115,8 +129,12 @@ const EditProd = ({ isOpen, toggleDrawer, item }) => {
         </div>
       </div>
       <div className="drawer__footer">
-        <button className="btn btn-cancel" onClick={toggleDrawer}>Cancel</button>
-        <button className="btn btn-update">Update Product</button>
+        <button className="btn btn-cancel" onClick={toggleDrawer}>
+          Cancel
+        </button>
+        <button className="btn btn-update">
+          {item ? "Update Product" : "Add Product"}
+        </button>
       </div>
     </Drawer>
   );

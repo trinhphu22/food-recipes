@@ -122,7 +122,7 @@ const Cart = () => {
             <div className="cart__body__subtotal__button">
               <div className={classNames("button", "btn-checkout")}>
                 <HiShoppingCart className="icon" />
-                <span>Checkout</span>
+                <span>COD</span>
               </div>
               <div className={classNames("button", "btn-icon")}>
                 <img src={Paypal} alt="" />

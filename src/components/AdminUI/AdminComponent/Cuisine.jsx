@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { useState } from "react";
-import { BiEdit, BiShowAlt, BiTrash } from "react-icons/bi";
+import { BiEdit, BiTrash } from "react-icons/bi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
 import { Countries } from "../../Api/data";
@@ -57,7 +57,6 @@ const Cuisine = () => {
                 )}
               </div>
               <div className="table__body__item">
-                <BiShowAlt className="show" />
                 <BiEdit className="edit" />
                 <BiTrash className="delete" />
               </div>

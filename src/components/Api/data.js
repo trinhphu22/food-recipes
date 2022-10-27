@@ -175,51 +175,39 @@ export const Recipes = {
   ingredients: [
     {
       id: 1,
-      title: "Ingredient 1",
-      ingredient: [
-        {
-          id: 1,
-          name: "400g chicken breast",
-        },
-        {
-          id: 2,
-          name: "1 tbsp olive oil",
-        },
-      ],
+      name: "400g chicken breast",
     },
     {
       id: 2,
-      title: "Ingredient 2",
-      ingredient: [
-        {
-          id: 1,
-          name: "200g marshmallow",
-        },
-        {
-          id: 2,
-          name: "175g mushrooms",
-        },
-        {
-          id: 3,
-          name: "300g marinara sauce",
-        },
-        {
-          id: 4,
-          name: "250ml water",
-        },
-        {
-          id: 5,
-          name: "3tbsp tomato paste",
-        },
-        {
-          id: 6,
-          name: "5drops tabasco sauce",
-        },
-        {
-          id: 7,
-          name: "3drops worcestershire sauce",
-        },
-      ],
+      name: "1 tbsp olive oil",
+    },
+    {
+      id: 3,
+      name: "200g marshmallow",
+    },
+    {
+      id: 4,
+      name: "175g mushrooms",
+    },
+    {
+      id: 5,
+      name: "300g marinara sauce",
+    },
+    {
+      id: 6,
+      name: "250ml water",
+    },
+    {
+      id: 7,
+      name: "3tbsp tomato paste",
+    },
+    {
+      id: 8,
+      name: "5drops tabasco sauce",
+    },
+    {
+      id: 9,
+      name: "3drops worcestershire sauce",
     },
   ],
   steps: [
@@ -329,7 +317,7 @@ export const Blogs = [
       name: "Kelvin Tang",
       avatar: avt1,
     },
-    approved: true
+    approved: true,
   },
   {
     id: 2,
@@ -344,7 +332,7 @@ export const Blogs = [
       name: "Kelvin Tang",
       avatar: avt2,
     },
-    approved: true
+    approved: true,
   },
   {
     id: 3,
@@ -359,7 +347,7 @@ export const Blogs = [
       name: "Kelvin Tang",
       avatar: avt3,
     },
-    approved: true
+    approved: true,
   },
   {
     id: 4,
@@ -374,7 +362,7 @@ export const Blogs = [
       name: "Kelvin Tang",
       avatar: avt1,
     },
-    approved: true
+    approved: true,
   },
 ];
 
@@ -844,4 +832,4 @@ export const Users = [
     avatar: avt1,
     role: "member",
   },
-]
+];

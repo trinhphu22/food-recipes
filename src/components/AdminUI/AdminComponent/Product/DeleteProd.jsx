@@ -3,13 +3,16 @@ import Rodal from "rodal";
 
 import { BiTrash } from "react-icons/bi";
 
+// include styles
+import 'rodal/lib/rodal.css';
+
 const DeleteProd = ({ hide, visible, item }) => {
   return (
     <Rodal
       width={600}
       height={300}
       visible={visible}
-      onClose={hide}
+      showCloseButton={false}
       customStyles={{ borderRadius: "10px" }}
     >
       <div className="modal">

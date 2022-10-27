@@ -7,6 +7,9 @@ import { Products } from "../../../Api/data";
 // import Message from "../../common/Message";
 import EditProd from "./EditProd";
 import DeleteProd from "./DeleteProd";
+import { GiBlackBook } from "react-icons/gi";
+import RecipeProd from "./RecipeProd";
+import Popup from "../../../common/Popup";
 
 const Product = () => {
   const [page, setPage] = useState(1);
@@ -54,7 +57,12 @@ const Product = () => {
             <option value="1">1</option>
             <option value="2">2</option>
           </select>
-          <div className="button">
+          <div
+            onClick={() => {
+              toggleDrawer();
+            }}
+            className="button"
+          >
             <HiOutlinePlusSm className="icon" />
             <span>Add Product</span>
           </div>
@@ -123,6 +131,12 @@ const Product = () => {
                     }}
                     className="edit"
                   />
+                  {/* <GiBlackBook
+                    onClick={() => {
+                      toggleDrawer();
+                    }}
+                    className="recipe"
+                  /> */}
                   <BiTrash
                     onClick={() => {
                       show();
@@ -192,6 +206,11 @@ const Product = () => {
         {/* {click && <Message message={"1234"} time={3000} />} */}
         {/* Drawer */}
         <EditProd isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} />
+        <RecipeProd
+          isOpen={isOpen}
+          toggleDrawer={toggleDrawer}
+          item={product}
+        />
         <DeleteProd hide={hide} visible={visible} item={product} />
       </div>
     </>

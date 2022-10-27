@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import React, { useState } from "react";
-import { BiEdit, BiShowAlt, BiTrash } from "react-icons/bi";
+import { BiEdit, BiTrash } from "react-icons/bi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
-import { Categories } from "../../Api/data";
+import { Categories } from "../../../Api/data";
 
 const Category = () => {
   const [page, setPage] = useState(1);
@@ -57,7 +57,6 @@ const Category = () => {
                 )}
               </div>
               <div className="table__body__item">
-                <BiShowAlt className="show" />
                 <BiEdit className="edit" />
                 <BiTrash className="delete" />
               </div>
