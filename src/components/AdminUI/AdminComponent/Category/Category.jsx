@@ -4,9 +4,26 @@ import { BiEdit, BiTrash } from "react-icons/bi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
 import { Categories } from "../../../Api/data";
+import DeleteCatg from "./DeleteCatg";
+import EditCatg from "./EditCatg";
 
 const Category = () => {
   const [page, setPage] = useState(1);
+  const [product, setProduct] = useState(undefined);
+  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const show = () => {
+    setVisible(true);
+  };
+
+  const hide = () => {
+    setVisible(false);
+  };
 
   return (
     <div className="admin__main__body">
@@ -28,7 +45,12 @@ const Category = () => {
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
-        <div className="button">
+        <div
+          onClick={() => {
+            toggleDrawer();
+          }}
+          className="button"
+        >
           <HiOutlinePlusSm className="icon" />
           <span>Add Category</span>
         </div>
@@ -57,8 +79,20 @@ const Category = () => {
                 )}
               </div>
               <div className="table__body__item">
-                <BiEdit className="edit" />
-                <BiTrash className="delete" />
+                <BiEdit
+                  onClick={() => {
+                    toggleDrawer();
+                    setProduct(item);
+                  }}
+                  className="edit"
+                />
+                <BiTrash
+                  onClick={() => {
+                    show();
+                    setProduct(item);
+                  }}
+                  className="delete"
+                />
               </div>
             </div>
           ))}
@@ -118,6 +152,8 @@ const Category = () => {
           </div>
         </div>
       </div>
+      <EditCatg isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} />
+      <DeleteCatg hide={hide} visible={visible} item={product} />
     </div>
   );
 };

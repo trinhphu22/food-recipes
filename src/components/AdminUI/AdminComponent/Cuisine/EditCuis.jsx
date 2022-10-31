@@ -9,7 +9,7 @@ import Drawer from "react-modern-drawer";
 //import styles 👇
 import "react-modern-drawer/dist/index.css";
 
-const EditCatg = ({ isOpen, toggleDrawer, item }) => {
+const EditCuis = ({ isOpen, toggleDrawer, item }) => {
   return (
     <Drawer
     open={isOpen}
@@ -20,9 +20,9 @@ const EditCatg = ({ isOpen, toggleDrawer, item }) => {
   >
     <div className="drawer__header">
       <div>
-        <div className="drawer__header__title">Update Category</div>
+        <div className="drawer__header__title">Update Cuisine</div>
         <div className="drawer__header__subtitle">
-        Updated your Product category and necessary information from here
+        Updated your Product cuisine and necessary information from here
         </div>
       </div>
       <div className="drawer__header__close" onClick={toggleDrawer}>
@@ -32,11 +32,11 @@ const EditCatg = ({ isOpen, toggleDrawer, item }) => {
     <div className="drawer__body">
       <div className="card-sys">
         <div className="card-sys__item">
-          <div className="title">Category Image</div>
+          <div className="title">Country Image</div>
           <PreviewImage Image={item?.image} />
         </div>
         <div className="card-sys__item">
-          <div className="title">Category</div>
+          <div className="title">Country Name</div>
           <div className="content">
             <div className="input-container">
               <input
@@ -72,4 +72,4 @@ const EditCatg = ({ isOpen, toggleDrawer, item }) => {
   )
 }
 
-export default EditCatg
+export default EditCuis

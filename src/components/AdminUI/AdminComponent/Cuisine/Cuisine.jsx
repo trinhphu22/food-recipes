@@ -3,10 +3,27 @@ import React, { useState } from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
-import { Countries } from "../../Api/data";
+import { Countries } from "../../../Api/data";
+import DeleteCuis from "./DeleteCuis";
+import EditCuis from "./EditCuis";
 
 const Cuisine = () => {
   const [page, setPage] = useState(1);
+  const [product, setProduct] = useState(undefined);
+  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const show = () => {
+    setVisible(true);
+  };
+
+  const hide = () => {
+    setVisible(false);
+  };
 
   return (
     <div className="admin__main__body">
@@ -14,11 +31,7 @@ const Cuisine = () => {
         <span>Cuisine</span>
       </div>
       <div className={classNames("admin__main__body__search", "categories")}>
-        <input
-          className="search"
-          type="text"
-          placeholder="Search by country"
-        />
+        <input className="search" type="text" placeholder="Search by country" />
         <select className="select">
           <option value="" selected disabled hidden>
             Cuisine
@@ -28,7 +41,12 @@ const Cuisine = () => {
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
-        <div className="button">
+        <div
+          onClick={() => {
+            toggleDrawer();
+          }}
+          className="button"
+        >
           <HiOutlinePlusSm className="icon" />
           <span>Add Cuisine</span>
         </div>
@@ -57,8 +75,20 @@ const Cuisine = () => {
                 )}
               </div>
               <div className="table__body__item">
-                <BiEdit className="edit" />
-                <BiTrash className="delete" />
+                <BiEdit
+                  onClick={() => {
+                    toggleDrawer();
+                    setProduct(item);
+                  }}
+                  className="edit"
+                />
+                <BiTrash
+                  onClick={() => {
+                    show();
+                    setProduct(item);
+                  }}
+                  className="delete"
+                />
               </div>
             </div>
           ))}
@@ -118,6 +148,8 @@ const Cuisine = () => {
           </div>
         </div>
       </div>
+      <EditCuis isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} />
+      <DeleteCuis hide={hide} visible={visible} item={product} />
     </div>
   );
 };
