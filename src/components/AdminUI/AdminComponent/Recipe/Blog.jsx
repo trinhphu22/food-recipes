@@ -3,10 +3,27 @@ import React, { useState } from "react";
 import { BiEdit, BiShowAlt, BiTrash } from "react-icons/bi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
-import { Blogs } from "../../Api/data";
+import { Blogs } from "../../../Api/data";
+import DeleteBlog from "./DeleteBlog";
+import EditBlog from "./EditBlog";
 
-const Blog = () => {
+const Blog = ({ setActive }) => {
   const [page, setPage] = useState(1);
+  const [product, setProduct] = useState(undefined);
+  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const show = () => {
+    setVisible(true);
+  };
+
+  const hide = () => {
+    setVisible(false);
+  };
 
   return (
     <div className="admin__main__body">
@@ -14,11 +31,7 @@ const Blog = () => {
         <span>Recipes</span>
       </div>
       <div className={classNames("admin__main__body__search", "products")}>
-        <input
-          className="search"
-          type="text"
-          placeholder="Search by title"
-        />
+        <input className="search" type="text" placeholder="Search by title" />
         <select className="select">
           <option value="" selected disabled hidden>
             Author
@@ -64,9 +77,24 @@ const Blog = () => {
                 )}
               </div>
               <div className="table__body__item">
-                <BiShowAlt className="show" />
-                <BiEdit className="edit" />
-                <BiTrash className="delete" />
+                <BiShowAlt
+                  onClick={() => setActive("Recipe-Detail")}
+                  className="show"
+                />
+                <BiEdit
+                  onClick={() => {
+                    toggleDrawer();
+                    setProduct(item);
+                  }}
+                  className="edit"
+                />
+                <BiTrash
+                  onClick={() => {
+                    show();
+                    setProduct(item);
+                  }}
+                  className="delete"
+                />
               </div>
             </div>
           ))}
@@ -126,6 +154,8 @@ const Blog = () => {
           </div>
         </div>
       </div>
+      <DeleteBlog hide={hide} visible={visible} item={product} />
+      <EditBlog toggleDrawer={toggleDrawer} isOpen={isOpen} item={product} />
     </div>
   );
 };

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import { Items } from "../components/Api/data";
 import Item from "../components/Item/Item";
 import Slide from "../components/Slider/Slider";
 
 const Home = () => {
+
   return (
     <div className="home">
       <Slide />

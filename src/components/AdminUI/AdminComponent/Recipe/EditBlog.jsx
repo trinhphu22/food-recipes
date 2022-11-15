@@ -9,7 +9,7 @@ import Drawer from "react-modern-drawer";
 //import styles 👇
 import "react-modern-drawer/dist/index.css";
 
-const EditCuis = ({ isOpen, toggleDrawer, item }) => {
+const EditBlog = ({ isOpen, toggleDrawer, item }) => {
   return (
     <Drawer
       open={isOpen}
@@ -32,11 +32,11 @@ const EditCuis = ({ isOpen, toggleDrawer, item }) => {
       <div className="drawer__body">
         <div className="card-sys">
           <div className="card-sys__item">
-            <div className="title">Country Image</div>
+            <div className="title">Image</div>
             <PreviewImage Image={item?.image} />
           </div>
           <div className="card-sys__item">
-            <div className="title">Country Name</div>
+            <div className="title">Recipe Title</div>
             <div className="content">
               <div className="input-container">
                 <input
@@ -44,6 +44,14 @@ const EditCuis = ({ isOpen, toggleDrawer, item }) => {
                   type="text"
                   defaultValue={item?.title}
                 />
+              </div>
+            </div>
+          </div>
+          <div className="card-sys__item">
+            <div className="title">Recipe Description</div>
+            <div className="content">
+              <div className="area-container">
+                <textarea className="area" name="" id="" />
               </div>
             </div>
           </div>
@@ -72,4 +80,4 @@ const EditCuis = ({ isOpen, toggleDrawer, item }) => {
   );
 };
 
-export default EditCuis;
+export default EditBlog;

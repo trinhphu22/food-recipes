@@ -11,7 +11,7 @@ import { GiBlackBook } from "react-icons/gi";
 import RecipeProd from "./RecipeProd";
 import Popup from "../../../common/Popup";
 
-const Product = () => {
+const Product = ({ setActive }) => {
   const [page, setPage] = useState(1);
   const [product, setProduct] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
@@ -120,7 +120,10 @@ const Product = () => {
                 )}
               </div>
               <div className="table__body__item action">
-                <BiShowAlt className="show" />
+                <BiShowAlt
+                  onClick={() => setActive("Product-Detail")}
+                  className="show"
+                />
                 <BiEdit
                   onClick={() => {
                     toggleDrawer();
@@ -203,7 +206,7 @@ const Product = () => {
       {/* {click && <Message message={"1234"} time={3000} />} */}
       {/* Drawer */}
       <EditProd isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} />
-      <RecipeProd isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} />
+      {/* <RecipeProd isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} /> */}
       <DeleteProd hide={hide} visible={visible} item={product} />
     </div>
   );

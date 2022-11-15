@@ -2,10 +2,21 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import { BiEdit, BiShowAlt, BiTrash } from "react-icons/bi";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import { Users } from "../../Api/data";
+import { Users } from "../../../Api/data";
+import DeleteCus from "./DeleteCus";
 
 const Customer = () => {
   const [page, setPage] = useState(1);
+  const [product, setProduct] = useState(undefined);
+  const [visible, setVisible] = useState(false);
+
+  const show = () => {
+    setVisible(true);
+  };
+
+  const hide = () => {
+    setVisible(false);
+  };
 
   return (
     <div className="admin__main__body">
@@ -18,10 +29,6 @@ const Customer = () => {
           type="text"
           placeholder="Search by name/email/phone"
         />
-        {/* <div className="button">
-          <HiOutlinePlusSm className="icon" />
-          <span>Add Category</span>
-        </div> */}
       </div>
       <div className="admin__main__body__table">
         <div className="table">
@@ -44,7 +51,13 @@ const Customer = () => {
               <div className="table__body__item ">{item.role}</div>
               <div className="table__body__item">
                 <BiShowAlt className="show" />
-                <BiTrash className="delete" />
+                <BiTrash
+                  onClick={() => {
+                    show();
+                    setProduct(item);
+                  }}
+                  className="delete"
+                />
               </div>
             </div>
           ))}
@@ -104,6 +117,7 @@ const Customer = () => {
           </div>
         </div>
       </div>
+      <DeleteCus hide={hide} visible={visible} item={product} />
     </div>
   );
 };

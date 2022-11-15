@@ -23,7 +23,7 @@ const EditProd = ({ isOpen, toggleDrawer, item }) => {
     <Drawer
       open={isOpen}
       onClose={toggleDrawer}
-      direction="left"
+      direction="right"
       className="drawer"
       size={700}
     >

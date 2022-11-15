@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../../assets/images/logo_tasty.png";
-import { AiOutlineSearch, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineSearch } from "react-icons/ai";
+
+import { collection, onSnapshot } from "firebase/firestore";
+import { auth, db } from "../../config/firebaseConfig";
+import HeaderRight from "./HeaderRight";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+
+export const userObject = JSON.parse(localStorage.getItem("user"));
 
 const nav_links = [
   {
@@ -28,10 +35,49 @@ const nav_links = [
 
 const Header = () => {
   const [select, setSelect] = useState("Home");
+  const [profile, setProfile] = useState([]);
+  const [active, setActive] = useState(false);
+  const [user, setUser] = useState({});
+
+  // console.log("first 321", userObject);
+
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      setUser(currentUser);
+    } else {
+      setUser("");
+    }
+  });
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  // Đọc dữ liệu từ auth
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Account"), (snapshot) => {
+        setProfile(
+          snapshot.docs.filter((doc) => {
+            if (userObject) {
+              if (doc.data().email === user?.email) {
+                return {
+                  ...doc.data(),
+                  id: doc.id,
+                };
+              }
+            }
+            return false;
+          })
+        );
+      }),
+    [user]
+  );
+
+  const logOut = () => {
+    signOut(auth);
+  };
 
   return (
-    // <header className="header">
-    // <Container>
     <div className="header">
       <Link to="/" className="header__logo">
         <img src={Logo} alt="logo" />
@@ -57,18 +103,25 @@ const Header = () => {
 
       {/* ======= nav right icons ======= */}
       <div className="header__nav-right">
-        <div className="line" />
-        <a className="icon">
+        {/* <div className="line" /> */}
+        <div className="icon">
           <AiOutlineSearch />
-        </a>
-        <div className="line" />
-        <Link to="/login" className="icon">
-          <AiOutlineUser />
-        </Link>
+        </div>
+        {/* <div className="line" /> */}
+        {profile.length > 0 ? (
+          <HeaderRight
+            user={user}
+            id = {profile[0].id}
+            profile={profile[0].data()}
+            active={active}
+            setActive={setActive}
+            logOut={logOut}
+          />
+        ) : (
+          <HeaderRight />
+        )}
       </div>
     </div>
-    // </Container>
-    // </header>
   );
 };
 
