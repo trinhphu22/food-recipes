@@ -1,8 +1,39 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiUploadCloud } from "react-icons/fi";
 
-const PreviewImage = ({ Image }) => {
-  const [image, setImage] = useState("");
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../config/firebaseConfig";
+
+export const handleUpload = ({ image, Func }) => {
+  if (image) {
+    const metadata = {
+      content: image.type,
+    };
+    const storageRef = ref(storage, `images/${image.name}`);
+    const UploadTask = uploadBytesResumable(storageRef, image, metadata);
+
+    UploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+      },
+      (error) => {
+        alert("error: imaged not uploaded!");
+      },
+      () => {
+        getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+          // Lưu url từ storage vào imageUpload
+          Func(ref(downloadURL));
+        });
+      }
+    );
+  }
+};
+
+const PreviewImage = (props) => {
+  const { image, setImage, Image } = props;
   const [imagePreview, setImagePreview] = useState("");
 
   const fileInputRef = useRef();
@@ -10,7 +41,10 @@ const PreviewImage = ({ Image }) => {
   //Hiển thị image
 
   useEffect(() => {
-    if (!image) {
+    if (image === "") {
+      setImagePreview("");
+      return;
+    } else if (!image) {
       return;
     }
     const fileReader = new FileReader();
@@ -28,6 +62,7 @@ const PreviewImage = ({ Image }) => {
       setImage(event.target.files[0]);
     }
   };
+
   return (
     <div className="content">
       <input

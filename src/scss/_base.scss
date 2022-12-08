@@ -59,7 +59,7 @@ a:hover {
 .container {
   width: 100%;
   max-width: 1620px;
-  padding: 0 50px;
+  padding: 0;
   margin: auto;
 
   @include tablet {
@@ -69,6 +69,11 @@ a:hover {
   @include mobile {
     padding: 0 10px;
   }
+
+}
+
+.layout {
+  max-width: 1920px;
 }
 
 .main {

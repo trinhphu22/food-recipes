@@ -456,11 +456,19 @@
               .toggle-on {
                 color: #06a262;
                 font-size: 2.5rem;
+
+                &:hover {
+                  cursor: pointer;
+                }
               }
 
               .toggle-off {
                 color: #f50057;
                 font-size: 2.5rem;
+
+                &:hover {
+                  cursor: pointer;
+                }
               }
             }
           }
@@ -812,6 +820,10 @@
     background-color: $txt-silver;
   }
 
+  &__body {
+    min-height: calc(100vh - 200px);
+  }
+
   &__header {
     top: 0;
     border-bottom: 1px solid #eee;
@@ -965,4 +977,3 @@
   background-color: #f50057;
   color: $txt-white;
 }
-

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { useState } from "react";
-import { BiEdit, BiShowAlt, BiTrash } from "react-icons/bi";
+import { BiShowAlt } from "react-icons/bi";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { Orders } from "../../Api/data";
 

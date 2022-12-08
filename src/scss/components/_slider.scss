@@ -1,26 +1,4 @@
 .slider {
-  // width: 100%;
-  // height: auto;
-  // //   overflow-x: scroll;
-  // //   overflow: hidden;
-  // // overflow: hidden;
-  // flex-direction: row;
-
-  // @include flex(center, center);
-
-  // &__container {
-  //   @include flex(center, center);
-
-  //   flex-direction: row;
-
-  //   &__item {
-  //     height: 500px;
-  //     width: 800px;
-  //   }
-  // }
-
-  // item card
-
   &__item {
     display: block;
     aspect-ratio: auto;

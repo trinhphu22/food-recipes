@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
@@ -10,12 +10,15 @@ import DeleteProd from "./DeleteProd";
 import { GiBlackBook } from "react-icons/gi";
 import RecipeProd from "./RecipeProd";
 import Popup from "../../../common/Popup";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../../../../config/firebaseConfig";
 
 const Product = ({ setActive }) => {
   const [page, setPage] = useState(1);
   const [product, setProduct] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -28,6 +31,19 @@ const Product = ({ setActive }) => {
   const hide = () => {
     setVisible(false);
   };
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Category"), (snapshot) => {
+        setCategories(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      }),
+    []
+  );
 
   return (
     <div className="admin__main__body">
@@ -44,10 +60,9 @@ const Product = ({ setActive }) => {
           <option value="" selected disabled hidden>
             Category
           </option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
+          {categories.map((item) => (
+            <option value={item.id}>{item.category}</option>
+          ))}
         </select>
         <select className="select">
           <option value="" selected disabled hidden>

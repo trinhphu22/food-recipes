@@ -1,11 +1,13 @@
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
+import { GiBlackBook } from "react-icons/gi";
+import { HiChevronRight, HiOutlineLogout } from "react-icons/hi";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { RiUserSettingsLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const HeaderRight = (props) => {
   const { user, profile, active, setActive, logOut, id } = props;
-
-  console.log("first 123", user);
 
   return (
     <>
@@ -37,16 +39,13 @@ const HeaderRight = (props) => {
                   </div>
                 </div>
               </div>
-              <Link
-                to={`/profile/?id=${id}`}
-                className="subnav-user__tag"
-              >
+              <Link to={`/profile/?id=${id}`} className="subnav-user__tag">
                 <div className="subnav-user__tag__left">
-                  <i class="bx bxs-user-account"></i>
+                  <RiUserSettingsLine />
                 </div>
                 <div className="subnav-user__tag__center">Profile</div>
                 <div className="subnav-user__tag__right">
-                  <i class="bx bx-chevron-right"></i>
+                  <HiChevronRight />
                 </div>
               </Link>
               {/* <Link
@@ -64,30 +63,30 @@ const HeaderRight = (props) => {
                   <i class="bx bx-chevron-right"></i>
                 </div>
               </Link> */}
-              {/* {(profile.role === "Admin" || profile.role === "Author") && (
+              {(profile.role === "Admin" || profile.role === "Author") && (
                 <Link
-                  to={`/postnew/?id=${id}`}
+                  to={`/post/?id=${id}`}
                   className="subnav-user__tag"
                 >
                   <div className="subnav-user__tag__left">
-                    <i class="bx bx-detail"></i>
+                    <GiBlackBook />
                   </div>
                   <div className="subnav-user__tag__center">Post up</div>
                   <div className="subnav-user__tag__right">
-                    <i class="bx bx-chevron-right"></i>
+                    <HiChevronRight />
                   </div>
                 </Link>
-              )} */}
+              )}
               {profile.role === "Admin" && (
                 <Link to={"/admin"} className="subnav-user__tag">
                   <div className="subnav-user__tag__left">
-                    <i class="bx bx-shield-quarter"></i>
+                    <MdOutlineAdminPanelSettings />
                   </div>
                   <div className="subnav-user__tag__center">
                     Admin Dashboard
                   </div>
                   <div className="subnav-user__tag__right">
-                    <i class="bx bx-chevron-right"></i>
+                    <HiChevronRight />
                   </div>
                 </Link>
               )}
@@ -101,7 +100,7 @@ const HeaderRight = (props) => {
                 className="subnav-user__tag"
               >
                 <div className="subnav-user__tag__left">
-                  <i class="bx bx-log-out"></i>
+                  <HiOutlineLogout />
                 </div>
                 <div className="subnav-user__tag__center">Logout</div>
               </Link>

@@ -1,9 +1,17 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
-import { Categories } from "../../../Api/data";
+import { db } from "../../../../config/firebaseConfig";
+// import { Categories } from "../../../Api/data";
 import DeleteCatg from "./DeleteCatg";
 import EditCatg from "./EditCatg";
 
@@ -12,6 +20,7 @@ const Category = () => {
   const [product, setProduct] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -23,6 +32,38 @@ const Category = () => {
 
   const hide = () => {
     setVisible(false);
+  };
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Category"), (snapshot) => {
+        setCategories(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      }),
+    []
+  );
+
+  // Chỉnh sửa dữ liệu
+
+  const handleUpdate = async (item, status) => {
+    const docRef = doc(db, "Category", item.id);
+    const payload = {
+      category: item.category,
+      image: item.image,
+      published: status,
+    };
+    setDoc(docRef, payload);
+  };
+
+  // Xoá dữ liệu trong db
+
+  const handleDelete = async (id) => {
+    const docRef = doc(db, "Category", id);
+    deleteDoc(docRef);
   };
 
   return (
@@ -48,6 +89,7 @@ const Category = () => {
         <div
           onClick={() => {
             toggleDrawer();
+            setProduct(null);
           }}
           className="button"
         >
@@ -64,18 +106,28 @@ const Category = () => {
             <div className="table__header__item">PUBLISHED</div>
             <div className="table__header__item">ACTIONS</div>
           </div>
-          {Categories.slice(0, 16).map((item, index) => (
+          {categories.map((item, index) => (
             <div className="table__body">
-              <div className="table__body__item flex-id">{item.id}</div>
+              <div className="table__body__item flex-id">{index + 1}</div>
               <div className="table__body__item ">
                 <img src={item.image} alt="img" />
               </div>
-              <div className="table__body__item address">{item.title}</div>
+              <div className="table__body__item address">{item.category}</div>
               <div className="table__body__item">
                 {item.published ? (
-                  <BsToggleOn className="toggle-on" />
+                  <BsToggleOn
+                    onClick={() => {
+                      handleUpdate(item, false);
+                    }}
+                    className="toggle-on"
+                  />
                 ) : (
-                  <BsToggleOff className="toggle-off" />
+                  <BsToggleOff
+                    onClick={() => {
+                      handleUpdate(item, true);
+                    }}
+                    className="toggle-off"
+                  />
                 )}
               </div>
               <div className="table__body__item">
@@ -153,7 +205,12 @@ const Category = () => {
         </div>
       </div>
       <EditCatg isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} />
-      <DeleteCatg hide={hide} visible={visible} item={product} />
+      <DeleteCatg
+        hide={hide}
+        visible={visible}
+        item={product}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };

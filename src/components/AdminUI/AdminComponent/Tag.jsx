@@ -100,7 +100,7 @@ const Tag = () => {
           <Slider {...settings}>
             {IMAGES.map((item, index) => (
               // <div key={index} className="image-card">
-              <img className="image" width={100} src={item.image} />
+              <img className="image" width={100} src={item.image} alt="img" />
               // </div>
             ))}
           </Slider>

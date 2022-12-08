@@ -1,15 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { IoMdClose } from "react-icons/io";
-import PreviewImage from "../../../common/PreviewImage";
+import PreviewImage, { handleUpload } from "../../../common/PreviewImage";
 
 // import component 👇
 import Drawer from "react-modern-drawer";
 
 //import styles 👇
 import "react-modern-drawer/dist/index.css";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../../../../config/firebaseConfig";
 
-const EditCuis = ({ isOpen, toggleDrawer, item }) => {
+const EditCuis = (props) => {
+  const { isOpen, toggleDrawer, item } = props;
+
+  const [image, setImage] = useState(null);
+  const [cuisine, setCuisine] = useState();
+
+  const clearInputs = () => {
+    setCuisine("");
+    setImage("");
+  };
+
+  useEffect(() => {
+    clearInputs();
+  }, [isOpen]);
+
+  console.log("first item", item);
+
+  // Thêm dữ liệu vào db
+
+  const handleCuisines = async (img) => {
+    const collectionRef = collection(db, "Cuisines"); //Ghi hoặc đọc db trong collection và tạo id tự động
+    const payload = {
+      cuisine: cuisine,
+      image: img,
+      published: true,
+    }; //Gán giá trị mới vào db
+    await addDoc(collectionRef, payload);
+    clearInputs();
+  };
+
+  // Chỉnh sửa dữ liệu
+
+  const handleUpdate = async (img) => {
+    const docRef = doc(db, "Cuisines", item.id);
+    const payload = {
+      cuisine: cuisine ? cuisine : item.cuisine,
+      image: img ? img : item.image,
+      published: item.published,
+    };
+    await setDoc(docRef, payload);
+    clearInputs();
+  };
+
+  const handleAdd = () => {
+    handleUpload({ image, Func: handleCuisines });
+  };
+
+  const handleEdit = () => {
+    if (image) {
+      handleUpload({ image, Func: handleUpdate });
+    } else {
+      handleUpdate();
+    }
+  };
+
   return (
     <Drawer
       open={isOpen}
@@ -33,7 +89,11 @@ const EditCuis = ({ isOpen, toggleDrawer, item }) => {
         <div className="card-sys">
           <div className="card-sys__item">
             <div className="title">Country Image</div>
-            <PreviewImage Image={item?.image} />
+            <PreviewImage
+              Image={item?.image}
+              image={image}
+              setImage={setImage}
+            />
           </div>
           <div className="card-sys__item">
             <div className="title">Country Name</div>
@@ -42,19 +102,9 @@ const EditCuis = ({ isOpen, toggleDrawer, item }) => {
                 <input
                   className="input"
                   type="text"
-                  defaultValue={item?.title}
+                  defaultValue={item?.cuisine}
+                  onChange={(e) => setCuisine(e.target.value)}
                 />
-              </div>
-            </div>
-          </div>
-          <div className="card-sys__item">
-            <div className="title">Published</div>
-            <div className="content">
-              <div className="select">
-                <select name="" id="">
-                  <option value="">1</option>
-                  <option value="">2</option>
-                </select>
               </div>
             </div>
           </div>
@@ -64,9 +114,25 @@ const EditCuis = ({ isOpen, toggleDrawer, item }) => {
         <button className="btn btn-cancel" onClick={toggleDrawer}>
           Cancel
         </button>
-        <button className="btn btn-update">
-          {item ? "Update Product" : "Add Product"}
-        </button>
+        {item ? (
+          <button
+            onClick={() => {
+              handleEdit();
+            }}
+            className="btn btn-update"
+          >
+            Update Product
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              handleAdd();
+            }}
+            className="btn btn-update"
+          >
+            Add Product
+          </button>
+        )}
       </div>
     </Drawer>
   );

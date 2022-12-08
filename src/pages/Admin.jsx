@@ -27,7 +27,7 @@ const Admin = () => {
         {active === "Product-Detail" && <FoodDetails />}
         {active === "Categories" && <Category />}
         {active === "Cuisines" && <Cuisine />}
-        {active === "Tags" && <Tag />}
+        {/* {active === "Tags" && <Tag />} */}
         {active === "Recipes" && <Blog setActive={setActive} />}
         {active === "Recipe-Detail" && <BlogDetails />}
         {active === "Customers" && <Customer />}

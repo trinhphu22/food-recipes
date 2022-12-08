@@ -48,7 +48,13 @@ const Blog = ({ setActive }) => {
           <option value="1">1</option>
           <option value="2">2</option>
         </select>
-        <div className="button">
+        <div
+          onClick={() => {
+            toggleDrawer();
+            setProduct(null);
+          }}
+          className="button"
+        >
           <HiOutlinePlusSm className="icon" />
           <span>Add Recipe</span>
         </div>

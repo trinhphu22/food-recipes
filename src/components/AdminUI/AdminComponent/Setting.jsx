@@ -6,7 +6,6 @@ import Avatar from "../../../assets/images/avt1.jpeg";
 const Setting = () => {
   const [image, setImage] = useState("");
   const [imagePreview, setImagePreview] = useState("");
-  const [imageUpload, setImageUpload] = useState("");
 
   const fileInputRef = useRef();
 
