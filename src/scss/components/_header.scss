@@ -71,6 +71,10 @@
       font-size: 2rem;
       padding: 0 30px;
       font-weight: bolder;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &__item {
@@ -227,6 +231,57 @@
             font-size: 1rem;
           }
         }
+      }
+    }
+  }
+}
+
+.search {
+  width: 100vw;
+  height: 50px;
+  margin-top: 30px;
+  // background-color: #b30000;
+  
+  @include flex(center, center);
+
+  &__container {
+    width: 80%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 30px;
+    padding-left: 20px;
+    box-shadow: $box-shadow;
+    -webkit-box-shadow: $box-shadow;
+    -moz-box-shadow: $box-shadow;
+
+    @include flex(center, center);
+
+    &__input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-size: 1.5rem;
+      padding: 0 10px;
+    }
+
+    &__icon {
+      height: 50px;
+      width: 80px;
+      background-color: $main-color;
+      // border-top-right-radius: 30px;
+      // border-bottom-right-radius: 30px;
+      border-radius: 30px;
+
+      @include flex(center, center);
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .icon {
+        font-size: 1.5rem;
+        color: #fff;
       }
     }
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
-import { GiBlackBook } from "react-icons/gi";
+import { GiBlackBook, GiCompass } from "react-icons/gi";
 import { HiChevronRight, HiOutlineLogout } from "react-icons/hi";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { RiUserSettingsLine } from "react-icons/ri";
@@ -48,6 +48,15 @@ const HeaderRight = (props) => {
                   <HiChevronRight />
                 </div>
               </Link>
+              <Link to={`/order-management/?id=${id}`} className="subnav-user__tag">
+                <div className="subnav-user__tag__left">
+                  <GiCompass />
+                </div>
+                <div className="subnav-user__tag__center">Order Management</div>
+                <div className="subnav-user__tag__right">
+                  <HiChevronRight />
+                </div>
+              </Link>
               {/* <Link
                 to={`/message/?id=${id}`}
                 className="subnav-user__tag"
@@ -65,13 +74,13 @@ const HeaderRight = (props) => {
               </Link> */}
               {(profile.role === "Admin" || profile.role === "Author") && (
                 <Link
-                  to={`/post/?id=${id}`}
+                  to={`/recipe-management/?id=${id}`}
                   className="subnav-user__tag"
                 >
                   <div className="subnav-user__tag__left">
                     <GiBlackBook />
                   </div>
-                  <div className="subnav-user__tag__center">Post up</div>
+                  <div className="subnav-user__tag__center">Recipe Management</div>
                   <div className="subnav-user__tag__right">
                     <HiChevronRight />
                   </div>

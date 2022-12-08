@@ -32,9 +32,6 @@ const Cart = () => {
             <div className="title">Your Basket</div>
             <div className="subtitle">You have {num} items in your basket.</div>
           </div>
-          <div className="cart__header__button">
-            <button className="button">Checkout</button>
-          </div>
         </div>
         <div className="cart__body">
           <div className="cart__body__items">
@@ -108,11 +105,11 @@ const Cart = () => {
               </div>
               <div className="info">
                 <span>Shipping:</span>
-                <span>$ 8.9</span>
+                <span>$ 0</span>
               </div>
               <div className="info">
                 <span>Discount:</span>
-                <span>$ 8.9</span>
+                <span>$ 0</span>
               </div>
               <div className="total">
                 <span>Total:</span>

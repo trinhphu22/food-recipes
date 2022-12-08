@@ -1,12 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { userObject } from "../components/Header/Header";
+import React, { useState } from "react";
+// import { userObject } from "../components/Header/Header";
 
 import Avatar from "../assets/images/avt1.jpeg";
-import { GiPokecog } from "react-icons/gi";
+import ChangePassword from "../components/Profile/ChangePassword";
+import EditProfile from "../components/Profile/EditProfile";
 
 const Profile = () => {
-  console.log("object", userObject);
+  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const show = () => {
+    setVisible(true);
+  };
+
+  const hide = () => {
+    setVisible(false);
+  };
+
   return (
     <div className="profile">
       <div className="profile__card">
@@ -44,16 +58,24 @@ const Profile = () => {
             <p>about</p>
           </div>
           <div className="profile-button">
-            <div className="profile__card__info__settings">
+            <div
+              onClick={() => toggleDrawer()}
+              className="profile__card__info__settings"
+            >
               {/* <GiPokecog className="icon" /> */}
               <span>Edit Profile</span>
             </div>
-            <div className="profile__card__info__settings">
+            <div
+              onClick={() => show()}
+              className="profile__card__info__settings"
+            >
               <span>Change Password</span>
             </div>
           </div>
         </div>
       </div>
+      <EditProfile isOpen={isOpen} toggleDrawer={toggleDrawer} image={Avatar} />
+      <ChangePassword hide={hide} visible={visible} />
     </div>
   );
 };

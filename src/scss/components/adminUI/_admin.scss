@@ -925,6 +925,68 @@
       color: $txt-second-color;
     }
   }
+  &__input {
+    width: 100%;
+    height: 100px;
+    padding: 0 30px;
+
+    @include flex(flex-start, flex-start);
+
+    .title {
+      flex: 1;
+      // color: $txt-second-color;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .content {
+      @include flex(flex-start, center);
+
+      flex: 2;
+      margin-left: 20px;
+      margin: 10px 0;
+      flex-direction: column;
+
+      &__container {
+        @include flex(center, center);
+
+        height: 150px;
+        width: 100%;
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        flex-direction: column;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        & * {
+          padding: 4px 0;
+        }
+      }
+    }
+
+    .input-container{
+      width: 100%;
+      min-height: 50px;
+
+      input {
+        width: 100%;
+        min-height: 50px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        background-color: $txt-silver;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $txt-gray;
+          background-color: $txt-white;
+        }
+      }
+    }
+  }
 
   &__buttons {
     @include flex(center, center);

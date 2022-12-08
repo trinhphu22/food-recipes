@@ -18,6 +18,8 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import FoodMenu from "../pages/FoodMenu";
 import Profile from "../pages/Profile";
+import Order from "../pages/Order";
+import Recipe from "../pages/Recipe";
 import { HiShoppingCart } from "react-icons/hi";
 
 const Routers = () => {
@@ -66,6 +68,8 @@ const Routers = () => {
         <Route path="/categories/:id" element={<FoodMenu />} />
         <Route path="/cuisines/:id" element={<FoodMenu />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/order-management" element={<Order />} />
+        <Route path="/recipe-management" element={<Recipe />} />
         <Route path="/cart" element={<Cart />} />
       </Route>
       <Route path="/cart" element={<CartLayout />}>

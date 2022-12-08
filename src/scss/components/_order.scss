@@ -1,0 +1,496 @@
+.manage {
+    padding: 20px 40px;
+
+    & > * ~ * {
+      padding: 5px;
+    }
+
+    &__title,
+    &__subtitle {
+      font-size: 1.2rem;
+      font-weight: 600;
+      // margin-bottom: 40px;
+    }
+
+    &__title {
+      margin-bottom: 20px;
+    }
+
+    &__subtitle {
+      padding: 40px 0 20px 0;
+    }
+
+    &__cards {
+      @include flex(center, space-between);
+
+      // margin: 20px 0;
+
+      .card {
+        @include flex(center, center);
+
+        width: 32%;
+        min-height: 150px;
+        flex-direction: column;
+        border: none;
+        border-radius: 10px;
+        color: $txt-white;
+
+        & > * {
+          margin: 2px 0;
+        }
+
+        &__icon {
+          font-size: 2rem;
+        }
+
+        &__title {
+          font-weight: lighter;
+        }
+
+        &__money {
+          font-size: 1.8rem;
+        }
+      }
+
+      .color-0694A2 {
+        background-color: #0694a2;
+      }
+
+      .color-0646A2 {
+        background-color: #0646a2;
+      }
+
+      .color-06A262 {
+        background-color: #06a262;
+      }
+    }
+
+    &__subcards {
+      @include flex(center, space-between);
+
+      .subcard {
+        @include flex(center, flex-start);
+
+        width: 24%;
+        height: 80px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: $txt-white;
+
+        &__icon {
+          width: 50px;
+          height: 50px;
+          margin-right: 15px;
+          font-size: 1.4rem;
+          border-radius: 50%;
+
+          @include flex(center, center);
+        }
+
+        .color-DED7FB {
+          background-color: #ded7fb;
+          color: #673ab7;
+        }
+
+        .color-F7E3EE {
+          background-color: #f7e3ee;
+          color: #f50057;
+        }
+
+        .color-FBF4E2 {
+          background-color: #fbf4e2;
+          color: #f9a825;
+        }
+
+        // .color-D8F0FA {
+        //   background-color: #D8F0FA;
+        //   color: #03a9f4;
+        // }
+
+        .color-B9F8B9 {
+          background-color: #b9f8b9;
+          color: #4caf50;
+        }
+
+        &__info {
+          &__title {
+            font-size: 0.9rem;
+            color: $txt-second-color;
+          }
+
+          &__amount {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: $txt-second-color;
+          }
+        }
+      }
+    }
+
+    &__table {
+      .table {
+        font-size: 0.8rem;
+        width: 100%;
+        height: auto;
+        border-collapse: collapse;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: $txt-white;
+
+        &__header,
+        &__body {
+          @include flex(center, center);
+
+          min-height: 50px;
+
+          &__item {
+            flex: 1;
+            padding: 0 10px;
+          }
+
+          .address {
+            flex: 2;
+          }
+
+          .category {
+            @include flex(flex-start, flex-start);
+
+            flex: 2;
+
+            .item-spc {
+              padding: 2px 8px;
+              margin-right: 5px;
+              background-color: $txt-silver;
+              color: $txt-second-color;
+              border-radius: 20px;
+            }
+          }
+
+          .action {
+            flex: 1.5;
+          }
+
+          .flex-id {
+            flex: 0.2;
+          }
+
+          .invoice {
+            flex: 0.5;
+
+            @include flex(center, center);
+          }
+        }
+
+        &__header {
+          border-bottom: 1px solid #ccc;
+          background-color: #d8f0fa;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+
+          &__item {
+            font-weight: 600;
+            color: $txt-second-color;
+            text-transform: uppercase;
+          }
+        }
+
+        &__body {
+          border-bottom: 1px solid #ccc;
+
+          &__item {
+            flex: 1;
+            font-size: 0.9rem;
+            text-transform: capitalize;
+
+            .product-name {
+              @include flex(center, flex-start);
+            }
+
+            &__cancel {
+              background-color: $txt-silver;
+              border-radius: 10px;
+
+              @include flex(center, center)
+            }
+
+            img {
+              height: 40px;
+              width: 40px;
+              margin-right: 10px;
+              padding: 2px;
+              border-radius: 50%;
+              box-shadow: $box-shadow-item;
+            }
+
+            .img-recipe {
+              height: 120px;
+              width: 180px;
+              margin: 10px;
+              object-fit: fill;
+              border-radius: 10px;
+            }
+
+            .img-country {
+              width: 50px;
+              box-shadow: none;
+            }
+
+            .txt-bold {
+              font-weight: 600;
+            }
+
+            .select-process {
+              width: 100%;
+              height: 30px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              padding: 0 10px;
+              font-size: 0.8rem;
+              background-color: $txt-white;
+
+              &:focus {
+                outline: none;
+                border: 1px solid $txt-gray;
+              }
+            }
+
+            .status {
+              border-radius: 20px;
+              font-size: 0.8rem;
+              padding: 5px 10px;
+            }
+
+            .color-F7E3EE {
+              background-color: #f7e3ee;
+              color: #f50057;
+            }
+
+            .color-FBF4E2 {
+              background-color: #fbf4e2;
+              color: #f9a825;
+            }
+
+            .color-B9F8B9 {
+              background-color: #b9f8b9;
+              color: #4caf50;
+            }
+
+            .color-cancel {
+              background-color: $txt-silver;
+              color: $txt-second-color;
+            }
+
+            .flex-center {
+              @include flex(center, center);
+            }
+
+            .show,
+            .edit,
+            .delete,
+            .recipe {
+              font-size: 2rem;
+              color: $txt-second-color;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .show:hover {
+              color: #03a9f4;
+            }
+
+            .edit:hover {
+              color: #06a262;
+            }
+
+            .delete:hover {
+              color: #f50057;
+            }
+
+            .recipe:hover {
+              color: #f9a825;
+            }
+
+            .toggle-on {
+              color: #06a262;
+              font-size: 2.5rem;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .toggle-off {
+              color: #f50057;
+              font-size: 2.5rem;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+
+            .icon-small {
+              .show {
+                font-size: 1rem;
+              }
+            }
+
+            .approved {
+              width: 100px;
+              border-radius: 20px;
+
+              @include flex(center, center)
+            }
+          }
+        }
+
+        &__footer {
+          @include flex(center, space-between);
+
+          min-height: 50px;
+
+          &__show {
+            padding: 0 10px;
+            font-weight: 600;
+            color: $txt-second-color;
+          }
+
+          &__pagination {
+            font-size: 0.7rem;
+
+            @include flex(center, center);
+
+            .prev,
+            .next,
+            .page {
+              @include flex(center, center);
+
+              width: 30px;
+              height: 30px;
+              margin: 0 1px;
+              border-radius: 5px;
+
+              &:hover {
+                cursor: pointer;
+                background-color: $txt-silver;
+              }
+            }
+
+            .selected {
+              background-color: $main-color;
+              color: $txt-white;
+
+              &:hover {
+                background-color: $main-color;
+              }
+              // border-radius: 5px;
+            }
+
+            .disable {
+              color: $txt-gray;
+
+              &:hover {
+                background-color: $txt-white;
+                cursor: not-allowed;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__search {
+      @include flex(center, space-between);
+
+      min-height: 100px;
+      width: 100%;
+      padding: 0 15px;
+      margin-bottom: 40px;
+      color: $txt-second-color;
+      background-color: $txt-white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 0.9rem;
+
+      & > * {
+        @include flex(center, flex-start);
+
+        height: 50px;
+        padding: 0 10px;
+        border-radius: 10px;
+        background-color: $txt-silver;
+        border: 1px solid #ccc;
+      }
+
+      .search {
+        color: $txt-second-color;
+
+        &:focus {
+          background-color: $txt-white;
+          // border: unset;
+          outline: none;
+        }
+
+        &::placeholder {
+          color: $txt-second-color;
+        }
+      }
+
+      .select {
+        width: 50px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .button {
+        @include flex(center, center);
+
+        background-color: $main-color;
+        color: $txt-white;
+
+        .icon {
+          font-size: 1.2rem;
+          margin-right: 5px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background-color: #fe4501;
+        }
+      }
+    }
+
+    .products {
+      & > * {
+        width: 32%;
+      }
+    }
+
+    .categories {
+      & > * {
+        width: 37%;
+      }
+
+      .button {
+        width: 21%;
+      }
+    }
+
+    .customers {
+      .search {
+        width: 100%;
+      }
+    }
+
+    .orders {
+      & > * {
+        width: 49%;
+      }
+    }
+  }

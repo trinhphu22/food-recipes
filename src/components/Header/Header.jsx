@@ -7,6 +7,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { auth, db } from "../../config/firebaseConfig";
 import HeaderRight from "./HeaderRight";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { BiSearch } from "react-icons/bi";
 
 export const userObject = JSON.parse(localStorage.getItem("user"));
 
@@ -34,7 +35,8 @@ const nav_links = [
 ];
 
 const Header = () => {
-  const [select, setSelect] = useState("Home");
+  // const [select, setSelect] = useState("Home");
+  const [isSearch, setIsSearch] = useState(false);
   const [profile, setProfile] = useState([]);
   const [active, setActive] = useState(false);
   const [user, setUser] = useState({});
@@ -78,50 +80,70 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
-      <Link to="/" className="header__logo">
-        <img src={Logo} alt="logo" />
-      </Link>
+    <>
+      <div className="header">
+        <Link to="/" className="header__logo">
+          <img src={Logo} alt="logo" />
+        </Link>
 
-      {/* ======= menu ======= */}
-      <div className="header__navigation">
-        {nav_links.map((item, index) => (
-          <NavLink
-            to={item.path}
-            onClick={() => setSelect(item.display)}
-            className={
-              select === item.display
-                ? "header__navigation__select"
-                : "header__navigation__items"
-            }
-            key={index}
-          >
-            <div>{item.display}</div>
-          </NavLink>
-        ))}
-      </div>
-
-      {/* ======= nav right icons ======= */}
-      <div className="header__nav-right">
-        {/* <div className="line" /> */}
-        <div className="icon">
-          <AiOutlineSearch />
+        {/* ======= menu ======= */}
+        <div className="header__navigation">
+          {nav_links.map((item, index) => (
+            <NavLink
+              to={item.path}
+              // onClick={() => setSelect(item.display)}
+              className={
+                // select === item.display
+                // ? "header__navigation__select"
+                "header__navigation__items"
+              }
+              key={index}
+            >
+              <div>{item.display}</div>
+            </NavLink>
+          ))}
         </div>
-        {/* <div className="line" /> */}
-        {profile.length > 0 ? (
-          <HeaderRight
-            user={user}
-            id = {profile[0].id}
-            profile={profile[0].data()}
-            active={active}
-            setActive={setActive}
-            logOut={logOut}
-          />
-        ) : (
-          <HeaderRight />
-        )}
+
+        {/* ======= nav right icons ======= */}
+        <div className="header__nav-right">
+          {/* <div className="line" /> */}
+          <div
+            onClick={() => setIsSearch((_search) => !_search)}
+            className="icon"
+          >
+            <AiOutlineSearch />
+          </div>
+          {/* <div className="line" /> */}
+          {profile.length > 0 ? (
+            <HeaderRight
+              user={user}
+              id={profile[0].id}
+              profile={profile[0].data()}
+              active={active}
+              setActive={setActive}
+              logOut={logOut}
+            />
+          ) : (
+            <HeaderRight />
+          )}
+        </div>
       </div>
-    </div>
+      {/* ======= search ======= */}
+      {isSearch && (
+        <div className="search">
+          <div className="search__container">
+            <input
+              className="search__container__input"
+              type="text"
+              placeholder="Search..."
+            />
+            <div className="search__container__icon">
+              <BiSearch className="icon" />
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
