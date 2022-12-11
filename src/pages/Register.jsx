@@ -33,7 +33,6 @@ const Register = () => {
     const payload = {
       name: name,
       email: email,
-      password: password,
       role: "Guest",
       avatar: avatar,
       isDeleted: false,

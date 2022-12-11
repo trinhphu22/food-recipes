@@ -1,17 +1,38 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { BiEdit, BiShowAlt, BiTrash } from "react-icons/bi";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
-import { Blogs } from "../../../Api/data";
+import { db } from "../../../../config/firebaseConfig";
 import DeleteBlog from "./DeleteBlog";
 import EditBlog from "./EditBlog";
 
 const Blog = ({ setActive }) => {
   const [page, setPage] = useState(1);
-  const [product, setProduct] = useState(undefined);
+  const [blog, setBlog] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Recipes"), (snapshot) => {
+        setBlogs(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      }),
+    []
+  );
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -23,6 +44,34 @@ const Blog = ({ setActive }) => {
 
   const hide = () => {
     setVisible(false);
+  };
+
+  // Chỉnh sửa dữ liệu
+
+  const handleUpdate = async (item, status) => {
+    const docRef = doc(db, "Recipes", item.id);
+    const payload = {
+      image: item.image,
+      title: item.title,
+      description: item.description,
+      link: item.link,
+      cookingTime: item.cookingTime,
+      serving: item.serving,
+      ingredients: item.ingredients,
+      nutrients: item.nutrients,
+      steps: item.steps,
+      user: item.user,
+      createDate: item.createDate,
+      approved: status,
+    };
+    setDoc(docRef, payload);
+  };
+
+  // Xoá dữ liệu trong db
+
+  const handleDelete = async (id) => {
+    const docRef = doc(db, "Recipes", id);
+    deleteDoc(docRef);
   };
 
   return (
@@ -51,7 +100,7 @@ const Blog = ({ setActive }) => {
         <div
           onClick={() => {
             toggleDrawer();
-            setProduct(null);
+            setBlog(null);
           }}
           className="button"
         >
@@ -68,7 +117,7 @@ const Blog = ({ setActive }) => {
             <div className="table__header__item">approved</div>
             <div className="table__header__item">ACTIONS</div>
           </div>
-          {Blogs.map((item, index) => (
+          {blogs.map((item, index) => (
             <div className="table__body">
               <div className="table__body__item action">
                 <img src={item.image} alt="img" className="img-recipe" />
@@ -77,9 +126,19 @@ const Blog = ({ setActive }) => {
               <div className="table__body__item address">{item.title}</div>
               <div className="table__body__item">
                 {item.approved ? (
-                  <BsToggleOn className="toggle-on" />
+                  <BsToggleOn
+                    onClick={() => {
+                      handleUpdate(item, false);
+                    }}
+                    className="toggle-on"
+                  />
                 ) : (
-                  <BsToggleOff className="toggle-off" />
+                  <BsToggleOff
+                    onClick={() => {
+                      handleUpdate(item, true);
+                    }}
+                    className="toggle-off"
+                  />
                 )}
               </div>
               <div className="table__body__item">
@@ -90,14 +149,14 @@ const Blog = ({ setActive }) => {
                 <BiEdit
                   onClick={() => {
                     toggleDrawer();
-                    setProduct(item);
+                    setBlog(item);
                   }}
                   className="edit"
                 />
                 <BiTrash
                   onClick={() => {
                     show();
-                    setProduct(item);
+                    setBlog(item);
                   }}
                   className="delete"
                 />
@@ -160,8 +219,13 @@ const Blog = ({ setActive }) => {
           </div>
         </div>
       </div>
-      <DeleteBlog hide={hide} visible={visible} item={product} />
-      <EditBlog toggleDrawer={toggleDrawer} isOpen={isOpen} item={product} />
+      <DeleteBlog
+        hide={hide}
+        visible={visible}
+        item={blog}
+        handleDelete={handleDelete}
+      />
+      <EditBlog toggleDrawer={toggleDrawer} isOpen={isOpen} item={blog} />
     </div>
   );
 };

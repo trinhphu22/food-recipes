@@ -10,6 +10,8 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { BiSearch } from "react-icons/bi";
 
 export const userObject = JSON.parse(localStorage.getItem("user"));
+export const userCurrent = JSON.parse(localStorage.getItem("userCurrent"));
+export const userCurrentID = JSON.parse(localStorage.getItem("userCurrentID"));
 
 const nav_links = [
   {
@@ -41,8 +43,6 @@ const Header = () => {
   const [active, setActive] = useState(false);
   const [user, setUser] = useState({});
 
-  // console.log("first 321", userObject);
-
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
       setUser(currentUser);
@@ -62,6 +62,8 @@ const Header = () => {
           snapshot.docs.filter((doc) => {
             if (userObject) {
               if (doc.data().email === user?.email) {
+                localStorage.setItem("userCurrent", JSON.stringify(doc.data()));
+                localStorage.setItem("userCurrentID", JSON.stringify(doc.id));
                 return {
                   ...doc.data(),
                   id: doc.id,
@@ -130,14 +132,14 @@ const Header = () => {
       </div>
       {/* ======= search ======= */}
       {isSearch && (
-        <div className="search">
-          <div className="search__container">
+        <div className="search-header">
+          <div className="search-header__container">
             <input
-              className="search__container__input"
+              className="search-header__container__input"
               type="text"
               placeholder="Search..."
             />
-            <div className="search__container__icon">
+            <div className="search-header__container__icon">
               <BiSearch className="icon" />
             </div>
           </div>

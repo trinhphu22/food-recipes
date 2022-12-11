@@ -4,9 +4,11 @@ import Rodal from "rodal";
 import { BiTrash } from "react-icons/bi";
 
 // include styles
-import 'rodal/lib/rodal.css';
+import "rodal/lib/rodal.css";
 
-const DeleteProd = ({ hide, visible, item }) => {
+const DeleteProd = (props) => {
+  const { hide, visible, item, handleDelete } = props;
+
   return (
     <Rodal
       width={600}
@@ -36,7 +38,15 @@ const DeleteProd = ({ hide, visible, item }) => {
           <button className="btn btn-cancel" onClick={hide}>
             Cancel
           </button>
-          <button className="btn btn-delete">Delete</button>
+          <button
+            onClick={() => {
+              handleDelete(item.id);
+              hide();
+            }}
+            className="btn btn-delete"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </Rodal>

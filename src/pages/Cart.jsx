@@ -1,14 +1,37 @@
 import classNames from "classnames";
 import React, { useState } from "react";
-import { HiMinusSm, HiPlusSm, HiShoppingCart, HiX } from "react-icons/hi";
+import {
+  HiMinusSm,
+  HiOutlineLogin,
+  HiPlusSm,
+  HiShoppingCart,
+  HiX,
+} from "react-icons/hi";
 
 import Image from "../assets/images/image4.jpeg";
 import Paypal from "../assets/images/paypal.png";
 import Visa from "../assets/images/credit.png";
+import COD from "../components/Checkout/COD";
+import { PayPalButton } from "react-paypal-button-v2";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [num, setNum] = useState(2);
   const [numItem, setNumItem] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const show = () => {
+    setVisible(true);
+  };
+
+  const hide = () => {
+    setVisible(false);
+  };
 
   const BasketNull = () => {
     return (
@@ -116,20 +139,54 @@ const Cart = () => {
                 <span>$ 8.9</span>
               </div>
             </div>
+            {/* login */}
             <div className="cart__body__subtotal__button">
-              <div className={classNames("button", "btn-checkout")}>
+              <div
+                onClick={() => show()}
+                className={classNames("button", "btn-checkout")}
+              >
                 <HiShoppingCart className="icon" />
                 <span>COD</span>
               </div>
-              <div className={classNames("button", "btn-icon")}>
-                <img src={Paypal} alt="" />
-              </div>
-              <div className={classNames("button", "btn-icon")}>
-                <img src={Visa} alt="" />
-              </div>
+              <PayPalButton
+                amount="8.9"
+                options={{
+                  clientId: "AYul7kWs3fnD4hPnuO1dPBt_zXoj3Qvh-JhKU0kDuM3VnkpUdFfkCbN0VBgZ60LXFI5VzSdihLgAmFxH",
+                  currency: "USD",
+                  locale: "en_US",
+                }}
+                // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                onSuccess={(details, data) => {
+                  alert(
+                    "Transaction completed by " + details.payer.name.given_name
+                  );
+
+                  // OPTIONAL: Call your server to save the transaction
+                  return fetch("/paypal-transaction-complete", {
+                    method: "post",
+                    body: JSON.stringify({
+                      orderID: data.orderID,
+                    }),
+                  });
+                }}
+        
+              />
             </div>
+            {/* don't login */}
+            {/* <div className="cart__body__subtotal__button">
+              <div className="subtitle">You need to login to make payment</div>
+              <Link
+                to="/login"
+                onClick={() => show()}
+                className={classNames("button", "btn-checkout")}
+              >
+                <HiOutlineLogin className="icon" />
+                <span>Login</span>
+              </Link>
+            </div> */}
           </div>
         </div>
+        <COD hide={hide} visible={visible} />
       </>
     );
   };

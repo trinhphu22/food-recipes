@@ -3,22 +3,23 @@ import classNames from "classnames";
 import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 import { BiShowAlt, BiEdit, BiTrash } from "react-icons/bi";
-import { Products } from "../../../Api/data";
+// import { Products } from "../../../Api/data";
 // import Message from "../../common/Message";
 import EditProd from "./EditProd";
 import DeleteProd from "./DeleteProd";
 import { GiBlackBook } from "react-icons/gi";
 import RecipeProd from "./RecipeProd";
 import Popup from "../../../common/Popup";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../config/firebaseConfig";
 
 const Product = ({ setActive }) => {
-  const [page, setPage] = useState(1);
   const [product, setProduct] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [cuisines, setCuisines] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -34,8 +35,8 @@ const Product = ({ setActive }) => {
 
   useEffect(
     () =>
-      onSnapshot(collection(db, "Category"), (snapshot) => {
-        setCategories(
+      onSnapshot(collection(db, "Products"), (snapshot) => {
+        setProducts(
           snapshot.docs.map((doc) => ({
             ...doc.data(),
             id: doc.id,
@@ -44,6 +45,37 @@ const Product = ({ setActive }) => {
       }),
     []
   );
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Category"), (snapshot) => {
+        setCategories(
+          snapshot.docs.map((doc) => ({
+            value: doc.data().category,
+            label: doc.data().category,
+          }))
+        );
+      }),
+    []
+  );
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Cuisines"), (snapshot) => {
+        setCuisines(
+          snapshot.docs.map((doc) => ({
+            value: doc.data().cuisine,
+            label: doc.data().cuisine,
+          }))
+        );
+      }),
+    []
+  );
+
+  const handleDelete = async (id) => {
+    const docRef = doc(db, "Products", id);
+    deleteDoc(docRef);
+  };
 
   return (
     <div className="admin__main__body">
@@ -61,7 +93,7 @@ const Product = ({ setActive }) => {
             Category
           </option>
           {categories.map((item) => (
-            <option value={item.id}>{item.category}</option>
+            <option value={item.value}>{item.label}</option>
           ))}
         </select>
         <select className="select">
@@ -94,9 +126,9 @@ const Product = ({ setActive }) => {
             <div className="table__header__item">PUBLISHED</div>
             <div className="table__header__item action">ACTIONS</div>
           </div>
-          {Products.map((item, index) => (
+          {products.map((item, index) => (
             <div className="table__body">
-              <div className="table__body__item flex-id">{item.id}</div>
+              <div className="table__body__item flex-id">{index + 1}</div>
               <div className="table__body__item address">
                 <div className="product-name">
                   <img src={item.image} alt="img" />
@@ -104,19 +136,17 @@ const Product = ({ setActive }) => {
                 </div>
               </div>
               <div className="table__body__item category">
-                {item.categories.map((item, index) => (
-                  <span className="item-spc">{item.category}</span>
-                ))}
+                <span className="item-spc">{item.category}</span>
               </div>
               <div className="table__body__item">{item.cuisine}</div>
               <div className="table__body__item">
-                <span className="txt-bold">{item.price}</span>
+                <span className="txt-bold">{item.price}$</span>
               </div>
               <div className="table__body__item">
                 <span
                   className={classNames(
                     "status",
-                    item.status === "selling" ? "color-B9F8B9" : "color-F7E3EE"
+                    item.status === "Selling" ? "color-B9F8B9" : "color-F7E3EE"
                   )}
                 >
                   {item.status}
@@ -124,7 +154,7 @@ const Product = ({ setActive }) => {
               </div>
               <div className="table__body__item">
                 {item.discount && (
-                  <span className="txt-bold">{item.discount} Off</span>
+                  <span className="txt-bold">{item.discount}% Off</span>
                 )}
               </div>
               <div className="table__body__item">
@@ -162,67 +192,24 @@ const Product = ({ setActive }) => {
               </div>
             </div>
           ))}
-          <div className="table__footer">
-            <div className="table__footer__show">SHOWING 1-8 OF 60</div>
-            <div className="table__footer__pagination">
-              <span
-                onClick={() => page > 1 && setPage((_page) => _page - 1)}
-                className={classNames("prev", page === 1 && "disable")}
-              >
-                <HiChevronLeft />
-              </span>
-              <span
-                onClick={() => setPage(1)}
-                className={classNames("page", page === 1 && "selected")}
-              >
-                1
-              </span>
-              <span
-                onClick={() => setPage(2)}
-                className={classNames("page", page === 2 && "selected")}
-              >
-                2
-              </span>
-              <span
-                onClick={() => setPage(3)}
-                className={classNames("page", page === 3 && "selected")}
-              >
-                3
-              </span>
-              <span
-                onClick={() => setPage(4)}
-                className={classNames("page", page === 4 && "selected")}
-              >
-                4
-              </span>
-              <span
-                onClick={() => setPage(5)}
-                className={classNames("page", page === 5 && "selected")}
-              >
-                5
-              </span>
-              <span className="dot">...</span>
-              <span
-                onClick={() => setPage(8)}
-                className={classNames("page", page === 8 && "selected")}
-              >
-                8
-              </span>
-              <span
-                onClick={() => page < 8 && setPage((_page) => _page + 1)}
-                className={classNames("next", page === 8 && "disable")}
-              >
-                <HiChevronRight />
-              </span>
-            </div>
-          </div>
         </div>
       </div>
       {/* {click && <Message message={"1234"} time={3000} />} */}
       {/* Drawer */}
-      <EditProd isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} />
+      <EditProd
+        isOpen={isOpen}
+        toggleDrawer={toggleDrawer}
+        product={product}
+        categories={categories}
+        cuisines={cuisines}
+      />
       {/* <RecipeProd isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} /> */}
-      <DeleteProd hide={hide} visible={visible} item={product} />
+      <DeleteProd
+        hide={hide}
+        visible={visible}
+        item={product}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };

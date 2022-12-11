@@ -14,7 +14,7 @@ const RecipeProd = ({ isOpen, toggleDrawer, item }) => {
     <Drawer
       open={isOpen}
       onClose={toggleDrawer}
-      direction="right"
+      direction="left"
       className="drawer"
       size={700}
     >

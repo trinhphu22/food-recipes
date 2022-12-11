@@ -15,8 +15,6 @@ const FoodMenu = () => {
     (item) => item.id.toString() === id.toString()
   );
 
-  console.log("first", category);
-
   return (
     <div className="menu">
       <div className="menu__body">

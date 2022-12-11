@@ -712,6 +712,13 @@
       width: 100%;
       min-height: 50px;
 
+      .list {
+        width: 100%;
+        min-height: 30px;
+        border-bottom: 1px solid #ccc;
+        font-size: 0.8rem;
+      }
+
       input,
       select,
       textarea {
@@ -966,7 +973,7 @@
       }
     }
 
-    .input-container{
+    .input-container {
       width: 100%;
       min-height: 50px;
 

@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react'
 import Rodal from "rodal";
 
 // include styles
 import "rodal/lib/rodal.css";
 
-const ChangePassword = (props) => {
+const COD = (props) => {
   const { hide, visible, item, handleDelete } = props;
 
   return (
     <Rodal
-      width={600}
+      width={800}
       height={500}
       visible={visible}
       showCloseButton={false}
@@ -18,11 +18,11 @@ const ChangePassword = (props) => {
       <div className="modal">
         <div className="modal__info">
           <div className="modal__info__title title">
-            <span className="icon">Change Password </span>
+            <span className="icon">Cash On Delivery </span>
           </div>
         </div>
         <div className="modal__input">
-          <div className="title">Old Password</div>
+          <div className="title">Full Name</div>
           <div className="content">
             <div className="input-container">
               <input className="input" type="text" />
@@ -30,7 +30,7 @@ const ChangePassword = (props) => {
           </div>
         </div>
         <div className="modal__input">
-          <div className="title">New Password</div>
+          <div className="title">Email</div>
           <div className="content">
             <div className="input-container">
               <input className="input" type="text" />
@@ -38,7 +38,15 @@ const ChangePassword = (props) => {
           </div>
         </div>
         <div className="modal__input">
-          <div className="title">Confirm Password</div>
+          <div className="title">Phone Number</div>
+          <div className="content">
+            <div className="input-container">
+              <input className="input" type="text" />
+            </div>
+          </div>
+        </div>
+        <div className="modal__input">
+          <div className="title">Address</div>
           <div className="content">
             <div className="input-container">
               <input className="input" type="text" />
@@ -56,12 +64,12 @@ const ChangePassword = (props) => {
             }}
             className="btn btn-delete"
           >
-            Update
+            Checkout
           </button>
         </div>
       </div>
     </Rodal>
   );
-};
+}
 
-export default ChangePassword;
+export default COD

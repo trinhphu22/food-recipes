@@ -26,8 +26,6 @@ const EditCuis = (props) => {
     clearInputs();
   }, [isOpen]);
 
-  console.log("first item", item);
-
   // Thêm dữ liệu vào db
 
   const handleCuisines = async (img) => {
@@ -121,7 +119,7 @@ const EditCuis = (props) => {
             }}
             className="btn btn-update"
           >
-            Update Product
+            Update Cuisine
           </button>
         ) : (
           <button
@@ -130,7 +128,7 @@ const EditCuis = (props) => {
             }}
             className="btn btn-update"
           >
-            Add Product
+            Add Cuisine
           </button>
         )}
       </div>
