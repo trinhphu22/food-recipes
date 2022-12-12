@@ -2,6 +2,7 @@ import React from "react";
 import { BsHourglassSplit } from "react-icons/bs";
 import { MdLocalFireDepartment } from "react-icons/md";
 import { HiUsers } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const Cards = [
   {
@@ -21,30 +22,46 @@ const Cards = [
   },
 ];
 
-const Item = ({ image }) => {
+const Item = ({ item }) => {
   return (
-    <div to="/" className="slider__item">
+    <Link to={`foods/${item.id}`} className="slider__item">
       <div className="slider__item__image zoomin ">
-        <img src={image} alt="" />
+        <img src={item.image} alt="" />
       </div>
-      <div className="slider__item__title">
-        qui assumenda aperiam qui assumenda aperiam
-      </div>
+      <div className="slider__item__title">{item.title}</div>
       <div className="slider__item__collection">
-        <span>AMERICA</span>
+        <span>{item.cuisine}</span>
       </div>
       <div className="slider__item__info">
-        {Cards.map((item, index) => (
-          <div key={index} className="slider__item__info__card">
-            <div className="icon">{item.icon}</div>
-            <div className="info">
-              <div>{item.title}</div>
-              <div>{item.info}</div>
-            </div>
+        <div className="slider__item__info__card">
+          <div className="icon">
+            <BsHourglassSplit />
           </div>
-        ))}
+          <div className="info">
+            <div>Ingredients</div>
+            <div>{item.ingredientsTotal}</div>
+          </div>
+        </div>
+        <div className="slider__item__info__card">
+          <div className="icon">
+            <MdLocalFireDepartment />
+          </div>
+          <div className="info">
+            <div>Cooking</div>
+            <div>{item.cookingTime} minutes</div>
+          </div>
+        </div>
+        <div className="slider__item__info__card">
+          <div className="icon">
+            <HiUsers />
+          </div>
+          <div className="info">
+            <div>For</div>
+            <div>{item.serving} persons</div>
+          </div>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -8,6 +8,7 @@ import "rodal/lib/rodal.css";
 
 const DeleteBlog = (props) => {
   const { visible, hide, item, handleDelete } = props;
+
   return (
     <Rodal
       width={600}
@@ -41,7 +42,8 @@ const DeleteBlog = (props) => {
           </button>
           <button
             onClick={() => {
-              handleDelete();
+              handleDelete(item.id);
+              hide();
             }}
             className="btn btn-delete"
           >

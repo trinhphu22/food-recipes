@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
-import { HiChevronLeft, HiChevronRight, HiOutlinePlusSm } from "react-icons/hi";
+import { HiOutlinePlusSm } from "react-icons/hi";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 import { BiShowAlt, BiEdit, BiTrash } from "react-icons/bi";
 // import { Products } from "../../../Api/data";
 // import Message from "../../common/Message";
 import EditProd from "./EditProd";
 import DeleteProd from "./DeleteProd";
-import { GiBlackBook } from "react-icons/gi";
-import RecipeProd from "./RecipeProd";
-import Popup from "../../../common/Popup";
+// import Popup from "../../../common/Popup";
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../config/firebaseConfig";
 
@@ -24,6 +22,7 @@ const Product = ({ setActive }) => {
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
+
 
   const show = () => {
     setVisible(true);
@@ -124,6 +123,7 @@ const Product = ({ setActive }) => {
             <div className="table__header__item">STATUS</div>
             <div className="table__header__item">DISCOUNT</div>
             <div className="table__header__item">PUBLISHED</div>
+            <div className="table__header__item">RECIPE</div>
             <div className="table__header__item action">ACTIONS</div>
           </div>
           {products.map((item, index) => (
@@ -164,6 +164,16 @@ const Product = ({ setActive }) => {
                   <BsToggleOff className="toggle-off" />
                 )}
               </div>
+              <div className="table__body__item">
+                <span
+                  className={classNames(
+                    "status",
+                    item.status === "Selling" ? "color-B9F8B9" : "color-F7E3EE"
+                  )}
+                >
+                  {item.status}
+                </span>
+              </div>
               <div className="table__body__item action">
                 <BiShowAlt
                   onClick={() => setActive("Product-Detail")}
@@ -176,12 +186,6 @@ const Product = ({ setActive }) => {
                   }}
                   className="edit"
                 />
-                {/* <GiBlackBook
-                    onClick={() => {
-                      toggleDrawer();
-                    }}
-                    className="recipe"
-                  /> */}
                 <BiTrash
                   onClick={() => {
                     show();
@@ -203,7 +207,6 @@ const Product = ({ setActive }) => {
         categories={categories}
         cuisines={cuisines}
       />
-      {/* <RecipeProd isOpen={isOpen} toggleDrawer={toggleDrawer} item={product} /> */}
       <DeleteProd
         hide={hide}
         visible={visible}

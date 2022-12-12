@@ -39,7 +39,11 @@ const HeaderRight = (props) => {
                   </div>
                 </div>
               </div>
-              <Link to={`/profile/?id=${id}`} className="subnav-user__tag">
+              <Link
+                onClick={() => setActive(false)}
+                to={`/profile/?id=${id}`}
+                className="subnav-user__tag"
+              >
                 <div className="subnav-user__tag__left">
                   <RiUserSettingsLine />
                 </div>
@@ -48,7 +52,11 @@ const HeaderRight = (props) => {
                   <HiChevronRight />
                 </div>
               </Link>
-              <Link to={`/order-management/?id=${id}`} className="subnav-user__tag">
+              <Link
+                onClick={() => setActive(false)}
+                to={`/order-management/?id=${id}`}
+                className="subnav-user__tag"
+              >
                 <div className="subnav-user__tag__left">
                   <GiCompass />
                 </div>
@@ -74,13 +82,16 @@ const HeaderRight = (props) => {
               </Link> */}
               {(profile.role === "Admin" || profile.role === "Author") && (
                 <Link
+                  onClick={() => setActive(false)}
                   to={`/recipe-management/?id=${id}`}
                   className="subnav-user__tag"
                 >
                   <div className="subnav-user__tag__left">
                     <GiBlackBook />
                   </div>
-                  <div className="subnav-user__tag__center">Recipe Management</div>
+                  <div className="subnav-user__tag__center">
+                    Recipe Management
+                  </div>
                   <div className="subnav-user__tag__right">
                     <HiChevronRight />
                   </div>

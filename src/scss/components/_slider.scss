@@ -57,6 +57,7 @@
       background-color: $main-color;
       border-radius: 20px;
       border: 1px solid $txt-white;
+      text-transform: uppercase;
 
       @include flex(center, center);
     }

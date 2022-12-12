@@ -124,7 +124,7 @@ const EditBlog = (props) => {
       approved: true,
     }; //Gán giá trị mới vào db
     await addDoc(collectionRef, payload);
-    toggleDrawer();
+    clearInputs();
   };
 
   const handleUpdate = async (img) => {
@@ -147,7 +147,7 @@ const EditBlog = (props) => {
       approved: true,
     };
     await setDoc(docRef, payload);
-    toggleDrawer();
+    clearInputs();
   };
 
   const handleAdd = () => {
@@ -388,6 +388,7 @@ const EditBlog = (props) => {
           <button
             onClick={() => {
               handleEdit();
+              toggleDrawer();
             }}
             className="btn btn-update"
           >
@@ -397,6 +398,7 @@ const EditBlog = (props) => {
           <button
             onClick={() => {
               handleAdd();
+              toggleDrawer();
             }}
             className="btn btn-update"
           >

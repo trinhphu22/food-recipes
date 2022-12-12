@@ -41,7 +41,6 @@ const _nav = [
     name: "Recipes",
     // icon: <GiNewspaper className="icon" />,
     icon: <GiBlackBook className="icon" />,
-
   },
   {
     name: "Customers",
@@ -64,9 +63,9 @@ const _nav = [
 const Nav = ({ active, setActive }) => {
   return (
     <div className="admin__nav">
-      <div className="admin__nav__logo">
+      <Link to="/" className="admin__nav__logo">
         <img src={Logo} alt="logo" />
-      </div>
+      </Link>
       <div className="admin__nav__subnav">
         {_nav.map((item, index) => (
           <a

@@ -39,8 +39,8 @@ const nav_links = [
 const Header = () => {
   // const [select, setSelect] = useState("Home");
   const [isSearch, setIsSearch] = useState(false);
-  const [profile, setProfile] = useState([]);
   const [active, setActive] = useState(false);
+  const [profile, setProfile] = useState([]);
   const [user, setUser] = useState({});
 
   onAuthStateChanged(auth, (currentUser) => {

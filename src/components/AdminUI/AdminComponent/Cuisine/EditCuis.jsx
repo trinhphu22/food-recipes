@@ -101,6 +101,7 @@ const EditCuis = (props) => {
                   className="input"
                   type="text"
                   defaultValue={item?.cuisine}
+                  value={cuisine === "" ? item?.cuisine : cuisine}
                   onChange={(e) => setCuisine(e.target.value)}
                 />
               </div>
@@ -116,6 +117,7 @@ const EditCuis = (props) => {
           <button
             onClick={() => {
               handleEdit();
+              toggleDrawer();
             }}
             className="btn btn-update"
           >
@@ -125,6 +127,7 @@ const EditCuis = (props) => {
           <button
             onClick={() => {
               handleAdd();
+              toggleDrawer();
             }}
             className="btn btn-update"
           >

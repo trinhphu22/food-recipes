@@ -39,6 +39,7 @@ const Customer = () => {
             <div className="table__header__item address">email</div>
             <div className="table__header__item">phone</div>
             <div className="table__header__item">role</div>
+            <div className="table__header__item">role</div>
             <div className="table__header__item">ACTIONS</div>
           </div>
           {Users.slice(0, 8).map((item, index) => (
@@ -49,6 +50,18 @@ const Customer = () => {
               <div className="table__body__item address">{item.email}</div>
               <div className="table__body__item ">{item.phone}</div>
               <div className="table__body__item ">{item.role}</div>
+              <div className="table__body__item">
+                <select
+                  value={item.role}
+                  className="select-process"
+                  name=""
+                  id=""
+                >
+                  <option value="admin">Admin</option>
+                  <option value="author">Author</option>
+                  <option value="member">Member</option>
+                </select>
+              </div>
               <div className="table__body__item">
                 <BiShowAlt className="show" />
                 <BiTrash

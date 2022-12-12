@@ -33,7 +33,7 @@ export const handleUpload = ({ image, Func }) => {
 };
 
 const PreviewImage = (props) => {
-  const { image, setImage, Image } = props;
+  const { image, setImage, Image, isShow } = props;
   const [imagePreview, setImagePreview] = useState("");
 
   const fileInputRef = useRef();
@@ -65,26 +65,30 @@ const PreviewImage = (props) => {
 
   return (
     <div className="content">
-      <input
-        type="file"
-        accept="image/*"
-        style={{ display: "none" }}
-        onChange={handleImage}
-        ref={fileInputRef}
-      />
-      <div
-        className="content__container"
-        onClick={(event) => {
-          event.preventDefault();
-          fileInputRef.current.click();
-        }}
-      >
-        <FiUploadCloud className="icon-upload" />
-        <span>Drag your image here</span>
-        <span className="subtext">
-          (Only *.jpeg and *.png images will be accepted)
-        </span>
-      </div>
+      {isShow !== false && (
+        <>
+          <input
+            type="file"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handleImage}
+            ref={fileInputRef}
+          />
+          <div
+            className="content__container"
+            onClick={(event) => {
+              event.preventDefault();
+              fileInputRef.current.click();
+            }}
+          >
+            <FiUploadCloud className="icon-upload" />
+            <span>Drag your image here</span>
+            <span className="subtext">
+              (Only *.jpeg and *.png images will be accepted)
+            </span>
+          </div>
+        </>
+      )}
       {(Image || imagePreview) && (
         <div className="content__preview img-pro">
           <img src={imagePreview ? imagePreview : Image} alt="img" />

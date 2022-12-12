@@ -119,6 +119,7 @@ const EditCatg = (props) => {
           <button
             onClick={() => {
               handleEdit();
+              toggleDrawer();
             }}
             className="btn btn-update"
           >
@@ -128,6 +129,7 @@ const EditCatg = (props) => {
           <button
             onClick={() => {
               handleAdd();
+              toggleDrawer();
             }}
             className="btn btn-update"
           >
