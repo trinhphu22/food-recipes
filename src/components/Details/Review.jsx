@@ -1,13 +1,72 @@
 import classNames from "classnames";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdReply, MdStar, MdStarHalf, MdStarOutline } from "react-icons/md";
 import { AiOutlineMail, AiOutlineEdit } from "react-icons/ai";
 import { HiOutlineUser } from "react-icons/hi";
 import { Reviews } from "../Api/data";
 import { Rating } from "../common/Rating";
+import { userObject, userCurrent, userCurrentID } from "../Header/Header";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../../config/firebaseConfig";
+import { Link } from "react-router-dom";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 
-const Review = () => {
-  const [rating, setRating] = React.useState(0);
+const Review = ({ productID }) => {
+  const [rating, setRating] = useState(0);
+  const [user, setUser] = useState("");
+  const [content, setContent] = useState("");
+  const createDate = new Date().toLocaleDateString(); //Lấy ngày hiện tại
+  const [reviews, setReviews] = useState([]);
+
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      setUser(currentUser);
+    } else {
+      setUser("");
+    }
+  });
+
+  useEffect(() => {
+    onSnapshot(
+      query(collection(db, "Reviews"), where("productID", "==", productID)),
+      (snapshot) =>
+        setReviews(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        )
+    );
+  }, [productID]);
+
+  const clearInputs = () => {
+    setContent("");
+  };
+
+  const handleReview = async () => {
+    const collectionRef = collection(db, "Reviews"); //Ghi hoặc đọc db trong collection và tạo id tự động
+    const payload = {
+      productID,
+      content,
+      rate: rating,
+      user: {
+        id: userCurrentID,
+        name: userCurrent.name,
+        avatar: userCurrent.avatar,
+      },
+      createDate,
+    }; //Gán giá trị mới vào db
+    await addDoc(collectionRef, payload);
+    clearInputs();
+  };
+
+  // console.log("object", user.uid);
 
   const Rate = () => {
     return (
@@ -166,38 +225,79 @@ const Review = () => {
   return (
     <div className="review">
       <div className="review__header">
-        <div className="review__header__user">
-          <div className="review__header__user__title">
-            <span className="title">Add a review</span>
-            <div className="shape">
-              <span className="line" />
-              <div className="diamond" />
-            </div>
-          </div>
-          <div className="review__header__user__rating">
-            <span className="text">Give Star:</span>
-            <Rate />
-          </div>
-          <div className="review__header__user__comment">
-            <div className="input-card">
-              <div className="input-card__name">
-                <input placeholder="Enter your name" type="text" />
-                <HiOutlineUser className="icon" />
-              </div>
-              <div className="input-card__email">
-                <input placeholder="Enter your email" type="text" />
-                <AiOutlineMail className="icon" />
+        {user ? (
+          <div className="review__header__user">
+            <div className="review__header__user__title">
+              <span className="title">Add a review</span>
+              <div className="shape">
+                <span className="line" />
+                <div className="diamond" />
               </div>
             </div>
-            <div className="area-card">
-              <textarea className="comment" placeholder="Write your review" />
-              <AiOutlineEdit className="icon" />
+            <div className="review__header__user__rating">
+              <span className="text">Give Star:</span>
+              <Rate />
             </div>
-            <div className="submit">
-              <button className="submit__button">Submit Review</button>
+            <div className="review__header__user__comment">
+              <div className="input-card">
+                <div className="input-card__name">
+                  <input
+                    placeholder="Enter your name"
+                    type="text"
+                    disabled
+                    value={userCurrent.name}
+                  />
+                  <HiOutlineUser className="icon" />
+                </div>
+                <div className="input-card__email">
+                  <input
+                    placeholder="Enter your email"
+                    type="text"
+                    disabled
+                    value={userCurrent.email}
+                  />
+                  <AiOutlineMail className="icon" />
+                </div>
+              </div>
+              <div className="area-card">
+                <textarea
+                  className="comment"
+                  placeholder="Write your review"
+                  value={content}
+                  onChange={(e) => {
+                    setContent(e.target.value);
+                  }}
+                />
+                <AiOutlineEdit className="icon" />
+              </div>
+              <div className="submit">
+                <button
+                  onClick={() => {
+                    handleReview();
+                  }}
+                  className="submit__button"
+                >
+                  Submit Review
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="review__header__user">
+            <div className="review__header__user__title">
+              <span className="title">
+                You must be logged in to post a comment
+              </span>
+            </div>
+            <div className="review__header__user__comment">
+              <div className="submit space">
+                <Link to="/login">
+                  <button className="submit__button">Login</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="review__header__reviews">
           <div className="card">
             <span className="card__title">Customer review</span>
@@ -215,33 +315,31 @@ const Review = () => {
           </div>
         </div>
       </div>
-      {Reviews.map((item) => (
-        <div className="review__body">
-          <div className="review__body__avatar">
-            <div className="review__body__avatar__image">
-              <img src={item.avatar} alt="avatar" />
+      {reviews.length > 0 &&
+        reviews.map((item) => (
+          <div className="review__body">
+            <div className="review__body__avatar">
+              <div className="review__body__avatar__image">
+                <img src={item.user.avatar} alt="avatar" />
+              </div>
             </div>
-          </div>
-          <div className="review__body__content">
-            <span className="name">{item.name}</span>
-            <span className="stars">
-              <Rating item={item} />
-            </span>
-            <span className="content">{item.content}</span>
-            <div className="bottom">
-              <span className="date">{item.date}</span>
-              <span className="line" />
-              <span className="reply">
-                <MdReply className="icon" />
-                <span className="text">Reply</span>
+            <div className="review__body__content">
+              <span className="name">{item.user.name}</span>
+              <span className="stars">
+                <Rating item={item.rate} />
               </span>
+              <span className="content">{item.content}</span>
+              <div className="bottom">
+                <span className="date">{item.createDate}</span>
+                <span className="line" />
+                <span className="reply">
+                  <MdReply className="icon" />
+                  <span className="text">Reply</span>
+                </span>
+              </div>
             </div>
-            {item.replies.map((reply) => (
-              <ReviewItem reply={reply} />
-            ))}
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

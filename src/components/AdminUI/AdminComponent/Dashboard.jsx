@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   HiOutlineShoppingCart,
   HiCheck,
@@ -12,72 +12,93 @@ import { BsArrowRepeat } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
 
 import { Orders } from "../../Api/data";
-
-const TurnoverCard = [
-  {
-    name: "Today Order",
-    icon: <RiStackLine className="icon" />,
-    total: "$75",
-    color: "0694A2",
-  },
-  {
-    name: "This Month",
-    icon: <HiOutlineShoppingCart className="icon" />,
-    total: "$75",
-    color: "0646A2",
-  },
-  {
-    name: "Total Order",
-    icon: <ImCreditCard className="icon" />,
-    total: "$75",
-    color: "06A262",
-  },
-];
-
-const OderCard = [
-  {
-    name: "Today Order",
-    icon: <HiOutlineShoppingCart className="icon" />,
-    amount: "75",
-    color: "DED7FB",
-  },
-  {
-    name: "Order Pending",
-    icon: <BsArrowRepeat className="icon" />,
-    amount: "75",
-    color: "F7E3EE",
-  },
-  {
-    name: "Order Processing",
-    icon: <TbTruckDelivery className="icon" />,
-    amount: "75",
-    color: "FBF4E2",
-  },
-  {
-    name: "Order Delivered",
-    icon: <HiCheck className="icon" />,
-    amount: "75",
-    color: "B9F8B9",
-  },
-];
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { db } from "../../../config/firebaseConfig";
+import moment from "moment";
 
 const Dashboard = () => {
   const [page, setPage] = useState(1);
+  const [todayTotal, setTodayTotal] = useState(0);
+  const [todayOrder, setTodayOrder] = useState(0);
+  const [orderPending, setOrderPending] = useState(0);
+  const [orderDelivered, setOrderDelivered] = useState(0);
+  const [orderProcessing, setOrderProcessing] = useState(0);
+  const [totalOrder, setTotalOrder] = useState(0);
+  const [orders, setOrders] = useState([]);
+
+  const DATE = new Date().toLocaleDateString();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    onSnapshot(
+      query(collection(db, "Orders"), where("createDate", "==", DATE)),
+      (snapshot) => {
+        setTodayTotal(
+          snapshot.docs.reduce((acc, doc) => acc + Number(doc.data().total), 0)
+        );
+        setTodayOrder(snapshot.docs.map((doc) => doc.data()).length);
+        setOrderPending(
+          snapshot.docs.filter((doc) => doc.data().status === "Pending").length
+        );
+        setOrderDelivered(
+          snapshot.docs.filter((doc) => doc.data().status === "Delivered")
+            .length
+        );
+        setOrderProcessing(
+          snapshot.docs.filter((doc) => doc.data().status === "Processing")
+            .length
+        );
+        setOrders(snapshot.docs.map((doc) => doc.data()));
+      }
+    );
+  }, [DATE]);
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Orders"), (snapshot) => {
+        setTotalOrder(
+          snapshot.docs.reduce((acc, doc) => acc + Number(doc.data().total), 0)
+        );
+      }),
+    []
+  );
 
   const Cards = () => {
     return (
       <div className="admin__main__body__cards">
-        {TurnoverCard.map((item, index) => (
-          <div className={classNames("card", `color-${item.color}`)}>
-            <div className="card__icon">{item.icon}</div>
-            <div className="card__title">
-              <span>{item.name}</span>
-            </div>
-            <div className="card__money">
-              <span>{item.total}</span>
-            </div>
+        <div className="card color-0694A2">
+          <div className="card__icon">
+            <RiStackLine className="icon" />
           </div>
-        ))}
+          <div className="card__title">
+            <span>Today Order</span>
+          </div>
+          <div className="card__money">
+            <span>$ {todayTotal.toFixed(2)}</span>
+          </div>
+        </div>
+        <div className="card color-0646A2">
+          <div className="card__icon">
+            <HiOutlineShoppingCart className="icon" />
+          </div>
+          <div className="card__title">
+            <span>This Month</span>
+          </div>
+          <div className="card__money">
+            <span>$ {totalOrder.toFixed(2)}</span>
+          </div>
+        </div>
+        <div className="card color-06A262">
+          <div className="card__icon">
+            <ImCreditCard className="icon" />
+          </div>
+          <div className="card__title">
+            <span>Total Order</span>
+          </div>
+          <div className="card__money">
+            <span>$ {totalOrder.toFixed(2)}</span>
+          </div>
+        </div>
       </div>
     );
   };
@@ -85,21 +106,58 @@ const Dashboard = () => {
   const Subcards = () => {
     return (
       <div className="admin__main__body__subcards">
-        {OderCard.map((item, index) => (
-          <div className="subcard">
-            <div className={classNames("subcard__icon", `color-${item.color}`)}>
-              {item.icon}
+        <div className="subcard">
+          <div className="subcard__icon color-DED7FB">
+            <HiOutlineShoppingCart className="icon" />
+          </div>
+          <div className="subcard__info">
+            <div className="subcard__info__title">
+              <span>Today Order</span>
             </div>
-            <div className="subcard__info">
-              <div className="subcard__info__title">
-                <span>{item.name}</span>
-              </div>
-              <div className="subcard__info__amount">
-                <span>{item.amount}</span>
-              </div>
+            <div className="subcard__info__amount">
+              <span>{todayOrder}</span>
             </div>
           </div>
-        ))}
+        </div>
+        <div className="subcard">
+          <div className="subcard__icon color-F7E3EE">
+            <BsArrowRepeat className="icon" />
+          </div>
+          <div className="subcard__info">
+            <div className="subcard__info__title">
+              <span>Order Pending</span>
+            </div>
+            <div className="subcard__info__amount">
+              <span>{orderPending}</span>
+            </div>
+          </div>
+        </div>
+        <div className="subcard">
+          <div className="subcard__icon color-FBF4E2">
+            <TbTruckDelivery className="icon" />
+          </div>
+          <div className="subcard__info">
+            <div className="subcard__info__title">
+              <span>Order Processing</span>
+            </div>
+            <div className="subcard__info__amount">
+              <span>{orderProcessing}</span>
+            </div>
+          </div>
+        </div>
+        <div className="subcard">
+          <div className="subcard__icon color-B9F8B9">
+            <HiCheck className="icon" />
+          </div>
+          <div className="subcard__info">
+            <div className="subcard__info__title">
+              <span>Order Delivered</span>
+            </div>
+            <div className="subcard__info__amount">
+              <span>{orderDelivered}</span>
+            </div>
+          </div>
+        </div>
       </div>
     );
   };
@@ -126,13 +184,15 @@ const Dashboard = () => {
             <div className="table__header__item">total</div>
             <div className="table__header__item">status</div>
           </div>
-          {Orders.map((item, index) => (
+          {orders.map((item, index) => (
             <div className="table__body">
-              <div className="table__body__item">{item.date}</div>
+              <div className="table__body__item">
+                {moment(item.createDate, "DD/MM/YYYY").format("ll")}
+              </div>
               <div className={classNames("table__body__item", "address")}>
                 {item.address}
               </div>
-              <div className="table__body__item">{item.phone}</div>
+              <div className="table__body__item">{item.phoneNumber}</div>
               <div className="table__body__item">
                 <span className="txt-bold">{item.method}</span>
               </div>

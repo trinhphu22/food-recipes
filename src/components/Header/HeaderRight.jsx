@@ -41,7 +41,7 @@ const HeaderRight = (props) => {
               </div>
               <Link
                 onClick={() => setActive(false)}
-                to={`/profile/?id=${id}`}
+                to={`/profile/${id}`}
                 className="subnav-user__tag"
               >
                 <div className="subnav-user__tag__left">
@@ -54,7 +54,7 @@ const HeaderRight = (props) => {
               </Link>
               <Link
                 onClick={() => setActive(false)}
-                to={`/order-management/?id=${id}`}
+                to={`/order-management/${id}`}
                 className="subnav-user__tag"
               >
                 <div className="subnav-user__tag__left">
@@ -83,7 +83,7 @@ const HeaderRight = (props) => {
               {(profile.role === "Admin" || profile.role === "Author") && (
                 <Link
                   onClick={() => setActive(false)}
-                  to={`/recipe-management/?id=${id}`}
+                  to={`/recipe-management/${id}`}
                   className="subnav-user__tag"
                 >
                   <div className="subnav-user__tag__left">

@@ -31,6 +31,7 @@ const EditProd = (props) => {
   const [productDiscount, setProductDiscount] = useState();
   const [image, setImage] = useState(null);
   const [productStatus, setProductStatus] = useState();
+  const [productNum, setProductNum] = useState();
   const createDate = new Date().toLocaleDateString();
   const [recipeStatus, setRecipeStatus] = useState("false");
 
@@ -88,6 +89,7 @@ const EditProd = (props) => {
       price: productPrice,
       description: productDescription,
       discount: productDiscount,
+      productNum: productNum,
       status: productStatus,
       published: true,
       createDate,
@@ -109,7 +111,12 @@ const EditProd = (props) => {
         ? productDescription
         : product.description,
       discount: productDiscount ? productDiscount : product.discount,
-      status: productStatus ? productStatus : product.status,
+      productNum: productNum ? productNum : product.productNum,
+      status: productStatus
+        ? productStatus
+        : productNum <= 0
+        ? "Sold out"
+        : product.status,
       published: true,
       createDate,
       recipeStatus: false,
@@ -124,16 +131,21 @@ const EditProd = (props) => {
         ? productDescription
         : product.description,
       discount: productDiscount ? productDiscount : product.discount,
-      status: productStatus ? productStatus : product.status,
+      productNum: productNum ? productNum : product.productNum,
+      status: productStatus
+        ? productStatus
+        : productNum <= 0
+        ? "Sold out"
+        : product.status,
       published: true,
       createDate,
       recipeStatus: true,
-      link,
-      cookingTime,
-      serving,
-      ingredients,
-      nutrients,
-      steps,
+      link: link ? link : product.link,
+      cookingTime: cookingTime ? cookingTime : product.cookingTime,
+      serving: serving ? serving : product.serving,
+      ingredients: ingredients ? ingredients : product.ingredients,
+      nutrients: nutrients ? nutrients : product.nutrients,
+      steps: steps ? steps : product.steps,
       user: {
         name: userCurrent?.name,
         avatar: userCurrent?.avatar,
@@ -305,7 +317,8 @@ const EditProd = (props) => {
               <div className="input-container">
                 <input
                   className="input"
-                  type="text"
+                  type="number"
+                  min={0}
                   defaultValue={product?.price}
                   onChange={(e) => {
                     setProductPrice(e.target.value);
@@ -330,6 +343,21 @@ const EditProd = (props) => {
             </div>
           </div>
           <div className="card-sys__item">
+            <div className="title">Product Numbers</div>
+            <div className="content">
+              <div className="input-container">
+                <input
+                  className="input"
+                  type="text"
+                  defaultValue={product?.productNum}
+                  onChange={(e) => {
+                    setProductNum(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="card-sys__item">
             <div className="title">Status</div>
             <div className="content">
               <div className="select">
@@ -341,7 +369,12 @@ const EditProd = (props) => {
                   <option value="" selected disabled hidden>
                     Status
                   </option>
-                  <option value="Selling">Selling</option>
+                  <option
+                    disabled={product?.productNum <= 0 || productNum <= 0}
+                    value="Selling"
+                  >
+                    Selling
+                  </option>
                   <option value="Sold Out">Sold Out</option>
                 </select>
               </div>

@@ -18,11 +18,12 @@ const Product = ({ setActive }) => {
   const [categories, setCategories] = useState([]);
   const [cuisines, setCuisines] = useState([]);
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
   };
-
 
   const show = () => {
     setVisible(true);
@@ -76,6 +77,100 @@ const Product = ({ setActive }) => {
     deleteDoc(docRef);
   };
 
+  const searchHandle = (e) => {
+    let lowerCase = e.target.value.toLowerCase();
+    setSearch(lowerCase);
+  };
+
+  const FilterProduct = (props) => {
+    const filteredData = products.filter((el) => {
+      if (props.input === "") {
+        if (el.category !== props.category) {
+          return el.category.toLowerCase().includes(props.category);
+        } else {
+          return el;
+        }
+      } else {
+        return el.title.toLowerCase().includes(props.input); // search theo name
+      }
+    });
+
+    return (
+      <>
+        {filteredData.map((item, index) => (
+          <div className="table__body">
+            <div className="table__body__item flex-id">{index + 1}</div>
+            <div className="table__body__item address">
+              <div className="product-name">
+                <img src={item.image} alt="img" />
+                <span>{item.title}</span>
+              </div>
+            </div>
+            <div className="table__body__item category">
+              <span className="item-spc">{item.category}</span>
+            </div>
+            <div className="table__body__item">{item.cuisine}</div>
+            <div className="table__body__item">
+              <span className="txt-bold">{item.price}$</span>
+            </div>
+            <div className="table__body__item">
+              <span
+                className={classNames(
+                  "status",
+                  item.status === "Selling" ? "color-B9F8B9" : "color-F7E3EE"
+                )}
+              >
+                {item.status}
+              </span>
+            </div>
+            <div className="table__body__item">
+              {item.discount && (
+                <span className="txt-bold">{item.discount}% Off</span>
+              )}
+            </div>
+            <div className="table__body__item">
+              {item.published ? (
+                <BsToggleOn className="toggle-on" />
+              ) : (
+                <BsToggleOff className="toggle-off" />
+              )}
+            </div>
+            <div className="table__body__item">
+              <span
+                className={classNames(
+                  "status",
+                  item.status === "Selling" ? "color-B9F8B9" : "color-F7E3EE"
+                )}
+              >
+                {item.status}
+              </span>
+            </div>
+            <div className="table__body__item action">
+              <BiShowAlt
+                onClick={() => setActive("Product-Detail")}
+                className="show"
+              />
+              <BiEdit
+                onClick={() => {
+                  toggleDrawer();
+                  setProduct(item);
+                }}
+                className="edit"
+              />
+              <BiTrash
+                onClick={() => {
+                  show();
+                  setProduct(item);
+                }}
+                className="delete"
+              />
+            </div>
+          </div>
+        ))}
+      </>
+    );
+  };
+
   return (
     <div className="admin__main__body">
       <div className="admin__main__body__title">
@@ -86,8 +181,14 @@ const Product = ({ setActive }) => {
           className="search"
           type="text"
           placeholder="Search by product name"
+          onChange={searchHandle}
         />
-        <select className="select">
+        <select
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
+          className="select"
+        >
           <option value="" selected disabled hidden>
             Category
           </option>
@@ -126,76 +227,7 @@ const Product = ({ setActive }) => {
             <div className="table__header__item">RECIPE</div>
             <div className="table__header__item action">ACTIONS</div>
           </div>
-          {products.map((item, index) => (
-            <div className="table__body">
-              <div className="table__body__item flex-id">{index + 1}</div>
-              <div className="table__body__item address">
-                <div className="product-name">
-                  <img src={item.image} alt="img" />
-                  <span>{item.title}</span>
-                </div>
-              </div>
-              <div className="table__body__item category">
-                <span className="item-spc">{item.category}</span>
-              </div>
-              <div className="table__body__item">{item.cuisine}</div>
-              <div className="table__body__item">
-                <span className="txt-bold">{item.price}$</span>
-              </div>
-              <div className="table__body__item">
-                <span
-                  className={classNames(
-                    "status",
-                    item.status === "Selling" ? "color-B9F8B9" : "color-F7E3EE"
-                  )}
-                >
-                  {item.status}
-                </span>
-              </div>
-              <div className="table__body__item">
-                {item.discount && (
-                  <span className="txt-bold">{item.discount}% Off</span>
-                )}
-              </div>
-              <div className="table__body__item">
-                {item.published ? (
-                  <BsToggleOn className="toggle-on" />
-                ) : (
-                  <BsToggleOff className="toggle-off" />
-                )}
-              </div>
-              <div className="table__body__item">
-                <span
-                  className={classNames(
-                    "status",
-                    item.status === "Selling" ? "color-B9F8B9" : "color-F7E3EE"
-                  )}
-                >
-                  {item.status}
-                </span>
-              </div>
-              <div className="table__body__item action">
-                <BiShowAlt
-                  onClick={() => setActive("Product-Detail")}
-                  className="show"
-                />
-                <BiEdit
-                  onClick={() => {
-                    toggleDrawer();
-                    setProduct(item);
-                  }}
-                  className="edit"
-                />
-                <BiTrash
-                  onClick={() => {
-                    show();
-                    setProduct(item);
-                  }}
-                  className="delete"
-                />
-              </div>
-            </div>
-          ))}
+          <FilterProduct input={search} category={category} />
         </div>
       </div>
       {/* {click && <Message message={"1234"} time={3000} />} */}

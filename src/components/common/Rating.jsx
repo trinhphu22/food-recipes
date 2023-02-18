@@ -1,8 +1,8 @@
 import { MdStar, MdStarHalf, MdStarOutline } from "react-icons/md";
 
 export const Rating = ({ item }) => {
-  switch (item.rate) {
-    case 0.5:
+  switch (true) {
+    case 0.5 <= item && item < 1:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -14,7 +14,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 1:
+    case 1 <= item && item < 1.5:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -26,7 +26,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 1.5:
+    case 1.5 <= item && item < 2:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -38,7 +38,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 2:
+    case 2 <= item && item < 2.5:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -50,7 +50,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 2.5:
+    case 2.5 <= item && item < 3:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -62,7 +62,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 3:
+    case 3 <= item && item < 3.5:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -74,7 +74,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 3.5:
+    case 3.5 <= item && item < 4:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -86,7 +86,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 4:
+    case 4 <= item && item < 4.5:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -98,7 +98,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 4.5:
+    case 4.5 <= item && item < 5:
       return (
         <div className="item__rating">
           <span className="rate">
@@ -110,7 +110,7 @@ export const Rating = ({ item }) => {
           </span>
         </div>
       );
-    case 5:
+    case 5 <= item:
       return (
         <div className="item__rating">
           <span className="rate">

@@ -1,11 +1,44 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import { collection, doc, onSnapshot, setDoc } from "firebase/firestore";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 import { BiShowAlt } from "react-icons/bi";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { db } from "../../../config/firebaseConfig";
 import { Orders } from "../../Api/data";
 
 const Order = () => {
   const [page, setPage] = useState(1);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Orders"), (snapshot) => {
+        setOrders(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      }),
+    []
+  );
+
+  const handleUpdate = async (item, status) => {
+    const docRef = doc(db, "Orders", item.id);
+    const payload = {
+      idUser: item.idUser,
+      name: item.name,
+      phoneNumber: item.phoneNumber,
+      address: item.address,
+      carts: item.carts,
+      total: item.total,
+      method: item.method,
+      status: status,
+      createDate: item.createDate,
+    }; //Gán giá trị mới vào db
+    setDoc(docRef, payload);
+  };
 
   return (
     <div className="admin__main__body">
@@ -52,52 +85,78 @@ const Order = () => {
             <div className="table__header__item">action</div>
             <div className="table__header__item invoice">INVOICE</div>
           </div>
-          {Orders.map((item, index) => (
-            <div className="table__body">
-              <div className="table__body__item flex-id">{item.id}</div>
-              <div className="table__body__item">{item.date}</div>
-              <div className={classNames("table__body__item", "address")}>
-                {item.address}
+          {orders
+            .sort((a, b) => (a.createDate < b.createDate ? 1 : -1))
+            .map((item, index) => (
+              <div className="table__body">
+                <div className="table__body__item flex-id">{index + 1}</div>
+                <div className="table__body__item">
+                  {moment(item.createDate, "DD/MM/YYYY").format("ll")}
+                </div>
+                <div className={classNames("table__body__item", "address")}>
+                  {item.address}
+                </div>
+                <div className="table__body__item">{item.phoneNumber}</div>
+                <div className="table__body__item">
+                  <span className="txt-bold">{item.method}</span>
+                </div>
+                <div className="table__body__item">
+                  <span className="txt-bold">{item.total}</span>
+                </div>
+                <div className="table__body__item">
+                  <span
+                    className={classNames(
+                      "status",
+                      item.status === "Pending" && "color-F7E3EE",
+                      item.status === "Processing" && "color-FBF4E2",
+                      item.status === "Delivered" && "color-B9F8B9",
+                      // item.status === "Complete" && "color-D8F0FA",
+                      item.status === "Canceled" && "color-cancel"
+                    )}
+                  >
+                    {item.status}
+                  </span>
+                </div>
+                <div className="table__body__item">
+                  <select
+                    disabled={
+                      item.status === "Canceled" || item.status === "Delivered"
+                    }
+                    value={item.status}
+                    onChange={(e) => {
+                      handleUpdate(item, e.target.value);
+                    }}
+                    className="select-process"
+                  >
+                    <option
+                      disabled={
+                        item.status === "Processing" ||
+                        item.status === "Delivered"
+                      }
+                      value="Pending"
+                    >
+                      Pending
+                    </option>
+                    <option
+                      disabled={item.status === "Delivered"}
+                      value="Processing"
+                    >
+                      Processing
+                    </option>
+                    <option value="Delivered">Delivered</option>
+                    <option
+                      disabled={item.status === "Delivered"}
+                      value="Canceled"
+                    >
+                      Cancel
+                    </option>
+                  </select>
+                </div>
+                <div className="table__body__item invoice">
+                  <BiShowAlt className="show" />
+                </div>
               </div>
-              <div className="table__body__item">{item.phone}</div>
-              <div className="table__body__item">
-                <span className="txt-bold">{item.method}</span>
-              </div>
-              <div className="table__body__item">
-                <span className="txt-bold">{item.total}</span>
-              </div>
-              <div className="table__body__item">
-                <span
-                  className={classNames(
-                    "status",
-                    item.status === "Pending" && "color-F7E3EE",
-                    item.status === "Processing" && "color-FBF4E2",
-                    item.status === "Delivered" && "color-B9F8B9",
-                    item.status === "Canceled" && "color-cancel"
-                  )}
-                >
-                  {item.status}
-                </span>
-              </div>
-              <div className="table__body__item">
-                <select
-                  disabled={item.status === "Canceled"}
-                  value={item.status}
-                  className="select-process"
-                  name=""
-                  id=""
-                >
-                  <option value="Pending">Pending</option>
-                  <option value="Delivered">Delivered</option>
-                  <option value="Processing">Processing</option>
-                  <option value="Canceled">Cancel</option>
-                </select>
-              </div>
-              <div className="table__body__item invoice">
-                <BiShowAlt className="show" />
-              </div>
-            </div>
-          ))}
+            ))}
           <div className="table__footer">
             <div className="table__footer__show">SHOWING 1-8 OF 60</div>
             <div className="table__footer__pagination">

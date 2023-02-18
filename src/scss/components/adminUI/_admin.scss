@@ -248,10 +248,10 @@
             color: #f9a825;
           }
 
-          // .color-D8F0FA {
-          //   background-color: #D8F0FA;
-          //   color: #03a9f4;
-          // }
+          .color-D8F0FA {
+            background-color: #D8F0FA;
+            color: #03a9f4;
+          }
 
           .color-B9F8B9 {
             background-color: #b9f8b9;
@@ -414,6 +414,11 @@
               .color-B9F8B9 {
                 background-color: #b9f8b9;
                 color: #4caf50;
+              }
+
+              .color-D8F0FA {
+                background-color: #D8F0FA;
+                color: #03a9f4;
               }
 
               .color-cancel {
@@ -973,11 +978,11 @@
       }
     }
 
-    .input-container {
+    .input-container, .select {
       width: 100%;
       min-height: 50px;
 
-      input {
+      input, select {
         width: 100%;
         min-height: 50px;
         padding: 0 10px;

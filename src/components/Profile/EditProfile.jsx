@@ -10,7 +10,7 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { db } from "../../config/firebaseConfig";
 import PreviewImage, { handleUpload } from "../common/PreviewImage";
-import { userCurrentID } from "../Header/Header";
+import { userCurrent, userCurrentID } from "../Header/Header";
 
 const EditProfile = (props) => {
   const { isOpen, toggleDrawer, user } = props;
@@ -130,6 +130,7 @@ const EditProfile = (props) => {
                 <input
                   className="input"
                   type="text"
+                  required
                   defaultValue={user?.phoneNumber}
                   onChange={(e) => {
                     setPhoneNumber(e.target.value);
@@ -146,6 +147,7 @@ const EditProfile = (props) => {
                   className="input"
                   type="text"
                   value={address}
+                  required={!userCurrent.addresses.length > 0}
                   onChange={(e) => setAddress(e.target.value)}
                 />
                 <div onClick={handleAddAddress} className="minus">

@@ -1,11 +1,48 @@
-import React from "react";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Items } from "../components/Api/data";
 import Item from "../components/Item/Item";
 import Slide from "../components/Slider/Slider";
+import { db } from "../config/firebaseConfig";
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "Products"), (snapshot) => {
+        setProducts(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+            ingredientsTotal: doc.data().ingredients
+              ? doc.data().ingredients.length
+              : null,
+          }))
+        );
+      }),
+    []
+  );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    onSnapshot(
+      query(collection(db, "Products"), where("status", "==", "Selling")),
+      (snapshot) => {
+        setProducts(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+            ingredientsTotal: doc.data().ingredients
+              ? doc.data().ingredients.length
+              : null,
+          }))
+        );
+      }
+    );
+  }, []);
 
   return (
     <div className="home">
@@ -18,7 +55,7 @@ const Home = () => {
         </p>
       </div>
       <div className="home__container">
-        {Items.map((item) => (
+        {products.map((item) => (
           <Item item={item} />
         ))}
       </div>

@@ -1,26 +1,29 @@
+import moment from "moment";
 import React from "react";
-import Banner from "../../assets/images/banner.jpeg";
+import { Link } from "react-router-dom";
 
-const SliderBlog = () => {
+const SliderBlog = ({ item }) => {
+
   return (
-    <div className="blog__slider">
+    <Link to={`/recipes/${item[0].id}`} className="blog__slider">
       <div className="blog__slider__image">
-        <img src={Banner} alt="" />
+        <img src={item[0].image} alt="" />
       </div>
       <div className="blog__slider__background" />
       <div className="blog__slider__timeless">
-        <span>30 minutes or less</span>
+        <span>{item[0].cookingTime} minutes or less</span>
       </div>
       <div className="blog__slider__title">
-        <span>
-          Thick Or Thin: Different Styles Of Pizza Crust For 8 Classic Pies
-        </span>
+        <span>{item[0].title}</span>
       </div>
       <div className="blog__slider__info">
-        <span className="name">R.Sarah</span>
-        <span className="date"> - September 12, 2021</span>
+        <span className="name">{item[0].user.name}</span>
+        <span className="date">
+          {" "}
+          - {moment(item[0].createDate, "DD/MM/YYYY").format("LL")}
+        </span>
       </div>
-    </div>
+    </Link>
   );
 };
 
